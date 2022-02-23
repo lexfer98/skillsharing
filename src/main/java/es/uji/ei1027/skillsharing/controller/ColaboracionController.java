@@ -1,4 +1,4 @@
 package es.uji.ei1027.skillsharing.controller;
 
-public class SkillTypeController {
+public class ColaboracionController {
 }

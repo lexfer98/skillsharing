@@ -1,4 +1,4 @@
 package es.uji.ei1027.skillsharing.dao;
 
-public class AlumnoRowMapper {
+public class TipoSkillDao {
 }

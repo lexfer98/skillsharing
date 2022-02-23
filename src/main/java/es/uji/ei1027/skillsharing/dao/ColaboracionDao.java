@@ -1,4 +1,4 @@
 package es.uji.ei1027.skillsharing.dao;
 
-public class RequestRowMapper {
+public class ColaboracionDao {
 }

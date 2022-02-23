@@ -1,4 +1,4 @@
 package es.uji.ei1027.skillsharing.dao;
 
-public class CollaborationDao {
+public class OfertaDao {
 }
