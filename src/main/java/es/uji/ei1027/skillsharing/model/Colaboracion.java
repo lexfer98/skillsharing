@@ -5,8 +5,8 @@ import java.time.LocalTime;
 
 public class Colaboracion {
     private int id_colaboracion;
-    private String dni_propietario;
-    private String dni_solicitante;
+    private int idOferta;
+    private int idSolicitud;
     private LocalDate fecha_inicio;
     private LocalDate fecha_fin;
     private LocalTime horas;
@@ -27,20 +27,20 @@ public class Colaboracion {
         this.id_colaboracion = id_colaboracion;
     }
 
-    public String getDni_propietario() {
-        return dni_propietario;
+    public int getIdOferta() {
+        return idOferta;
     }
 
-    public void setDni_propietario(String dni_propietario) {
-        this.dni_propietario = dni_propietario;
+    public void setIdOferta(int idOferta) {
+        this.idOferta = idOferta;
     }
 
-    public String getDni_solicitante() {
-        return dni_solicitante;
+    public int getIdSolicitud() {
+        return this.idSolicitud;
     }
 
-    public void setDni_solicitante(String dni_solicitante) {
-        this.dni_solicitante = dni_solicitante;
+    public void setIdSolicitud(int idSolicitud) {
+        this.idSolicitud = idSolicitud;
     }
 
     public LocalDate getFecha_inicio() {
@@ -87,8 +87,8 @@ public class Colaboracion {
     public String toString() {
         return "Colaboracion{" +
                 "id_colaboracion=" + id_colaboracion +
-                ", dni_propietario='" + dni_propietario + '\'' +
-                ", dni_solicitante='" + dni_solicitante + '\'' +
+                ", idOferta='" + idOferta + '\'' +
+                ", idSolicitud='" + idSolicitud + '\'' +
                 ", fecha_inicio=" + fecha_inicio +
                 ", fecha_fin=" + fecha_fin +
                 ", horas=" + horas +
