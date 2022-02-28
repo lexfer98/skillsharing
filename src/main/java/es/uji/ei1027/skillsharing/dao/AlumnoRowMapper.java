@@ -2,7 +2,6 @@ package es.uji.ei1027.skillsharing.dao;
 
 import es.uji.ei1027.skillsharing.model.Alumno;
 import es.uji.ei1027.skillsharing.model.Genero;
-import es.uji.ei1027.skillsharing.model.Nivel;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
