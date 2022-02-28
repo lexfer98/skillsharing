@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 
 @Repository
-public class ColaboracionDao {
+public class HabilidadDao {
 
     private JdbcTemplate jdbcTemplate;
 
@@ -16,4 +16,8 @@ public class ColaboracionDao {
 
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
+
+
+
+
 }
