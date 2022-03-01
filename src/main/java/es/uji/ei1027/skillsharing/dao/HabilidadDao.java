@@ -32,7 +32,14 @@ public class HabilidadDao {
         }
     }
 
+    public void deleteHabilidad(Habilidad habilidad) {
+        jdbcTemplate.update("DELETE FROM habilidad WHERE id_habilidad = '?'",habilidad.getId_habilidad());
+    }
 
+    public void addHabilidad(Habilidad habilidad) {
+        jdbcTemplate.update(
+                "INSERT INTO Habilidad VALUES(?, ?, ?, ?, ?)",habilidad.getId_habilidad(), habilidad.getNombre(), habilidad.getNivel(), habilidad.getDescripción(), habilidad.getActiva());
+    }
 
 
 }
