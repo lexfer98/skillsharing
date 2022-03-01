@@ -15,7 +15,7 @@ public final class HabilidadRowMapper implements RowMapper<Habilidad> {
         habilidad.setId_habilidad(rs.getInt("id_habilidad"));
         habilidad.setNombre(rs.getString("nombre"));
         habilidad.setNivel(Nivel.valueOf(rs.getString("nivel").toLowerCase(Locale.ROOT)));
-        habilidad.setDescripción(rs.getString("descripcion"));
+        habilidad.setDescripcion(rs.getString("descripcion"));
         habilidad.setActiva(rs.getBoolean("activa"));
         return habilidad;
     }

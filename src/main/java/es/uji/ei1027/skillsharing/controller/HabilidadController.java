@@ -19,7 +19,7 @@ public class HabilidadController {
 
     @RequestMapping("/list")
     public String listHabilidades(Model model) {
-        model.addAttribute("habilidad", habilidadDao.getHabilidades());
+        model.addAttribute("habilidades", habilidadDao.getHabilidades());
         return "habilidad/list";
     }
 }

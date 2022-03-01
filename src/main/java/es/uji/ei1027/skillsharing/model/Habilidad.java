@@ -8,7 +8,7 @@ public class Habilidad {
     private int id_habilidad;
     private String nombre;
     private Nivel nivel;
-    private String descripción;
+    private String descripcion;
     private Boolean activa;
 
     public Habilidad(){
@@ -39,12 +39,12 @@ public class Habilidad {
         this.nivel = nivel;
     }
 
-    public String getDescripción() {
-        return descripción;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setDescripción(String descripción) {
-        this.descripción = descripción;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public Boolean getActiva() {
@@ -61,7 +61,7 @@ public class Habilidad {
                 "id_habilidad=" + id_habilidad +
                 ", nombre='" + nombre + '\'' +
                 ", nivel=" + nivel +
-                ", descripción='" + descripción + '\'' +
+                ", descripcion='" + descripcion + '\'' +
                 ", activa=" + activa +
                 '}';
     }
