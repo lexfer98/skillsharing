@@ -6,6 +6,7 @@ import es.uji.ei1027.skillsharing.model.Nivel;
 import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Locale;
 
 public final class HabilidadRowMapper implements RowMapper<Habilidad> {
 
@@ -13,7 +14,7 @@ public final class HabilidadRowMapper implements RowMapper<Habilidad> {
         Habilidad habilidad = new Habilidad();
         habilidad.setId_habilidad(rs.getInt("id_habilidad"));
         habilidad.setNombre(rs.getString("nombre"));
-        habilidad.setNivel(rs.getObject("nivel", Nivel.class));
+        habilidad.setNivel(Nivel.valueOf(rs.getString("nivel").toUpperCase(Locale.ROOT)));
         habilidad.setDescripción(rs.getString("descripcion"));
         habilidad.setActiva(rs.getBoolean("activa"));
         return habilidad;

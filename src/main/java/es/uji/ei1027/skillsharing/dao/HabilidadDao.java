@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Repository
 public class HabilidadDao {
@@ -38,7 +39,7 @@ public class HabilidadDao {
 
     public void addHabilidad(Habilidad habilidad) {
         jdbcTemplate.update(
-                "INSERT INTO Habilidad VALUES(?, ?, ?, ?, ?)",habilidad.getId_habilidad(), habilidad.getNombre(), habilidad.getNivel(), habilidad.getDescripción(), habilidad.getActiva());
+                "INSERT INTO Habilidad VALUES(?, ?, ?, ?, ?)",habilidad.getId_habilidad(), habilidad.getNombre(), habilidad.getNivel().toString().toLowerCase(Locale.ROOT), habilidad.getDescripción(), habilidad.getActiva());
     }
 
 
