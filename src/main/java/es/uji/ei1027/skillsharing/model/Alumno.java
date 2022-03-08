@@ -5,6 +5,7 @@ import java.time.LocalDate;
 public class Alumno {
     private String dni;
     private String nombre;
+    private String apellidos;
     private String email;
     private String titulacion;
     private Integer curso;
@@ -14,6 +15,15 @@ public class Alumno {
     private Integer edad;
     private Integer numTel;
     private Integer balanceHoras;
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
     private boolean isSkp;
     private String contraseña;
 

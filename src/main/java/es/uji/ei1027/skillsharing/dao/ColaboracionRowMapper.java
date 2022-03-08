@@ -15,6 +15,8 @@ public class ColaboracionRowMapper implements RowMapper<Colaboracion> {
     public Colaboracion mapRow(ResultSet rs, int rowNum) throws SQLException {
         Colaboracion colaboracion = new Colaboracion();
         colaboracion.setId_colaboracion(rs.getInt("id_colaboracion"));
+        colaboracion.setDni_propietario(rs.getString("dni_propietario"));
+        colaboracion.setDni_solicitante(rs.getString("dni_solicitante "));
         colaboracion.setIdOferta(rs.getInt("id_oferta"));
         colaboracion.setIdSolicitud(rs.getInt("id_solicitud"));
         colaboracion.setFecha_inicio(rs.getObject("fecha_inic", LocalDate.class));

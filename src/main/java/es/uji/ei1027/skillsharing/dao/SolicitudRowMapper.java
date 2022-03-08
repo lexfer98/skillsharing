@@ -1,12 +1,14 @@
 package es.uji.ei1027.skillsharing.dao;
 
+import es.uji.ei1027.skillsharing.model.Oferta;
 import es.uji.ei1027.skillsharing.model.Solicitud;
+import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
-public class SolicitudRowMapper {
+public class SolicitudRowMapper implements RowMapper<Solicitud> {
 
     public Solicitud mapRow(ResultSet rs, int rowNum) throws SQLException {
         Solicitud solicitud = new Solicitud();
