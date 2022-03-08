@@ -1,5 +1,6 @@
 package es.uji.ei1027.skillsharing.dao;
 
+import es.uji.ei1027.skillsharing.model.Habilidad;
 import es.uji.ei1027.skillsharing.model.Oferta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -23,5 +24,15 @@ public class OfertaDao {
     public void addOferta(Oferta oferta) {
         jdbcTemplate.update("INSERT INTO oferta VALUES(?, ?, ?, ?, ?, ?, ?)",
                 oferta.getIdOferta(), oferta.getIdHabilidad(), oferta.getDniPropietario(), oferta.getNombre(), oferta.getDescripcion(), oferta.getFechaIniciacion(), oferta.getFechaFinalizacion());
+    }
+    public List<Oferta> getOferta() {
+        try {
+            return jdbcTemplate.query("SELECT * FROM Oferta  AND activa = true",
+                    new OfertaRowMapper());
+
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Oferta>();
+        }
     }
 }
