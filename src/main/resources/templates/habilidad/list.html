@@ -11,8 +11,8 @@
     <tr>
         <th>Id_habilidad</th>
         <th>Nombre</th>
-        <th>Nivel</th>
         <th>Descripción</th>
+        <th>Nivel</th>
         <th>Activa</th>
         <th></th>
         <th></th>
@@ -25,8 +25,11 @@
         <td th:text="${habilidad.descripcion}"></td>
         <td th:text="${habilidad.nivel}"></td>
         <td th:text="${habilidad.activa}"></td>
+        <td><a th:href="@{/habilidad/update/{id_habilidad}(id_habilidad=${habilidad.id_habilidad})}">Edita</a>
+        </td>
     </tr>
     </tbody>
 </table>
+<a href="add">Agrega una habilidad</a>
 </body>
 </html>

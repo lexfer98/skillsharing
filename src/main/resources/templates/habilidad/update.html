@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Crea una nueva habilidadr</title>
+    <title>Crear una nueva habilidadr</title>
     <meta charset="UTF-8" />
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet"     href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
 </head>
 <body>
 <h2>Nueva habilidad</h2>
@@ -29,7 +28,7 @@
         </tr>
         <tr>
             <td><label>Activa</label></td>
-            <td><input type="checkbox" th:field="*{activa}" /></td>
+            <td><input type="text" th:field="*{activa}" /></td>
         </tr>
         <tr>
             <td colspan="2"><input type="submit" value="Agrega habilidad" /></td>

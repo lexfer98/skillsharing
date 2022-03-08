@@ -39,7 +39,14 @@ public class HabilidadDao {
 
     public void addHabilidad(Habilidad habilidad) {
         jdbcTemplate.update(
-                "INSERT INTO Habilidad VALUES(?, ?, ?, ?, ?)",habilidad.getId_habilidad(), habilidad.getNombre(), habilidad.getNivel().toString().toUpperCase(Locale.ROOT), habilidad.getDescripcion(), habilidad.getActiva());
+                "INSERT INTO Habilidad VALUES(?, ?, ?, ?, ?)",habilidad.getId_habilidad(), habilidad.getNombre(), habilidad.getDescripcion(), habilidad.getNivel().toString().toUpperCase(Locale.ROOT), habilidad.getActiva());
+    }
+
+    public void updateHabilidad(Habilidad habilidad) {
+        jdbcTemplate.update(
+                "UPDATE Habilidad SET id_habilidad = ? , nombre = ?, descripcion = ?, nivel = ? , activa = ?",
+                        habilidad.getId_habilidad(), habilidad.getNombre(),
+                habilidad.getDescripcion(), habilidad.getNivel().toString().toUpperCase(Locale.ROOT), habilidad.getActiva());
     }
 
 
