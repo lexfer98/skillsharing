@@ -25,6 +25,7 @@ public class OfertaDao {
         jdbcTemplate.update("INSERT INTO oferta VALUES(?, ?, ?, ?, ?, ?, ?)",
                 oferta.getIdOferta(), oferta.getIdHabilidad(), oferta.getDniPropietario(), oferta.getNombre(), oferta.getDescripcion(), oferta.getFechaIniciacion(), oferta.getFechaFinalizacion());
     }
+
     public List<Oferta> getOferta(String dniPropietario) {
         try {
             return jdbcTemplate.query("SELECT * FROM Oferta",
@@ -35,29 +36,9 @@ public class OfertaDao {
         }
     }
 
-    public void updateHabilidadOferta(Oferta oferta) {
-        jdbcTemplate.update("UPDATE oferta SET id_habilidad = '?' WHERE id_oferta = '?'",
-                oferta.getIdHabilidad(), oferta.getIdOferta());
-    }
-
-    public void updateNombreOferta(Oferta oferta) {
-        jdbcTemplate.update("UPDATE oferta SET nombre = '?' WHERE id_oferta = '?'",
-                oferta.getNombre(), oferta.getIdOferta());
-    }
-
-    public void updateDescripcionOferta(Oferta oferta) {
-        jdbcTemplate.update("UPDATE oferta SET descripcion = '?' WHERE id_oferta = '?'",
-                oferta.getDescripcion(), oferta.getIdOferta());
-    }
-
-    public void FechaIniciacionOferta(Oferta oferta) {
-        jdbcTemplate.update("UPDATE oferta SET fecha_inic = '?' WHERE id_oferta = '?'",
-                oferta.getFechaIniciacion(), oferta.getIdOferta());
-    }
-
-    public void FechaFinalizacionOferta(Oferta oferta) {
-        jdbcTemplate.update("UPDATE oferta SET fecha_fin = '?' WHERE id_oferta = '?'",
-                oferta.getFechaFinalizacion(), oferta.getIdOferta());
+    public void updateOferta(Oferta oferta) {
+        jdbcTemplate.update("UPDATE oferta SET nombre = '?', descripcion = '?', fecha_inic = '?', fecha_fin='?' WHERE id_oferta = '?'",
+                oferta.getNombre(), oferta.getDescripcion(), oferta.getFechaIniciacion(), oferta.getFechaFinalizacion(), oferta.getIdOferta());
     }
 
     public void deleteOferta(Oferta oferta) {
