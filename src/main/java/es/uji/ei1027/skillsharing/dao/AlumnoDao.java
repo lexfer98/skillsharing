@@ -39,18 +39,18 @@ public class AlumnoDao {
     }
 
     public void addAlumno(Alumno alumno){
-        jdbcTemplate.update("INSERT INTO Alumno VALUES(?,?,?,?,?,?,?,?,?,?)", alumno.getDni(), alumno.getNombre(),alumno.getApellidos(), alumno.getEmail(),
-                alumno.getTitulacion(), alumno.getGenero(),alumno.getEdad(), alumno.getNumTel(), alumno.getBalanceHoras(), alumno.isSkp());
+        jdbcTemplate.update("INSERT INTO Alumnos VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)", alumno.getDni(), alumno.getNombre(),alumno.getApellidos(), alumno.getEmail(),
+                alumno.getTitulacion(), alumno.getCurso(), alumno.getFechaCreacion(), alumno.getGenero(), alumno.getEdad(), alumno.getNumTel(), alumno.getBalanceHoras(), alumno.isSkp(), alumno.getContraseña());
     }
 
     public void updateAlumno(Alumno alumno){
-        jdbcTemplate.update("UPDATE Alumno SET nombre = '?', apellidos = '?', email = '?', titulacion = '?', genero = '?', edad = '?', num_tel = '?', " +
+        jdbcTemplate.update("UPDATE Alumnos SET nombre = '?', apellidos = '?', email = '?', titulacion = '?', genero = '?', edad = '?', num_tel = '?', " +
                 "balance_horas = '?', isSKP = '?' WHERE dni = '?'", alumno.getNombre(), alumno.getApellidos(), alumno.getEmail(), alumno.getTitulacion(),
                 alumno.getGenero(), alumno.getEdad(), alumno.getNumTel(), alumno.getBalanceHoras(), alumno.isSkp(), alumno.getDni());
     }
 
     public void deleteAlumno(Alumno alumno){
-        jdbcTemplate.update("DELETE FROM Alumno WHERE = '?'", alumno.getDni());
+        jdbcTemplate.update("DELETE FROM Alumnos WHERE = '?'", alumno.getDni());
     }
 }
 

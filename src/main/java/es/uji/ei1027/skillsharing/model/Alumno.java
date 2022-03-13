@@ -15,15 +15,6 @@ public class Alumno {
     private Integer edad;
     private Integer numTel;
     private Integer balanceHoras;
-
-    public String getApellidos() {
-        return apellidos;
-    }
-
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
-    }
-
     private boolean isSkp;
     private String contraseña;
 
@@ -34,6 +25,7 @@ public class Alumno {
         return "Alumno{" +
                 "dni='" + dni + '\'' +
                 ", nombre='" + nombre + '\'' +
+                ", apellidos='" + apellidos + '\'' +
                 ", email='" + email + '\'' +
                 ", titulacion='" + titulacion + '\'' +
                 ", curso=" + curso +
@@ -47,6 +39,13 @@ public class Alumno {
                 '}';
     }
 
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
 
     public String getDni() {
         return dni;
@@ -135,6 +134,7 @@ public class Alumno {
     public void setSkp(boolean skp) {
         isSkp = skp;
     }
+
     public String getContraseña() {
         return contraseña;
     }
