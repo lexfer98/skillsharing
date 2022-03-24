@@ -14,6 +14,7 @@ public class Oferta {
     private LocalDate fechaIniciacion;
     @org.springframework.format.annotation.DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaFinalizacion;
+    private boolean activa;
 
     public Oferta() {
     }
@@ -27,6 +28,7 @@ public class Oferta {
                 ", descripcion=" + descripcion +
                 ", fechaIniciacion='" + fechaIniciacion + '\'' +
                 ", fechaFinalizacion=" + fechaFinalizacion + '\'' +
+                ", Activa=" + activa + '\'' +
                 '}';
     }
 
@@ -85,4 +87,8 @@ public class Oferta {
     public LocalDate getFechaFinalizacion() {
         return this.fechaFinalizacion;
     }
+
+    public boolean isActiva() {return this.activa;}
+
+    public void setActiva(boolean activa) {this.activa = activa;}
 }

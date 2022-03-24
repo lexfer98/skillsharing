@@ -26,7 +26,7 @@ public class OfertaDao {
                 oferta.getIdOferta(), oferta.getIdHabilidad(), oferta.getDniPropietario(), oferta.getNombre(), oferta.getDescripcion(), oferta.getFechaIniciacion(), oferta.getFechaFinalizacion());
     }
 
-    public List<Oferta> getOferta(String dniPropietario) {
+    public List<Oferta> getOfertas() {
         try {
             return jdbcTemplate.query("SELECT * FROM Oferta",
                     new OfertaRowMapper());
@@ -41,8 +41,20 @@ public class OfertaDao {
                 oferta.getNombre(), oferta.getDescripcion(), oferta.getFechaIniciacion(), oferta.getFechaFinalizacion(), oferta.getIdOferta());
     }
 
-    public void deleteOferta(Oferta oferta) {
+    public void deleteOferta(int idOferta) {
         jdbcTemplate.update("UPDATE oferta SET activa = false WHERE id_oferta = '?'",
-                oferta.getIdOferta());
+                idOferta);
+    }
+
+    public Oferta getOfertas(int idOferta) {
+        try {
+            return jdbcTemplate.queryForObject("SELECT * FROM oferta WHERE id_oferta = ?",
+                    new OfertaRowMapper(),
+                    idOferta);
+
+        }
+        catch(EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 }
