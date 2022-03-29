@@ -46,7 +46,7 @@ public class OfertaDao {
                 idOferta);
     }
 
-    public Oferta getOfertas(int idOferta) {
+    public Oferta getOferta(int idOferta) {
         try {
             return jdbcTemplate.queryForObject("SELECT * FROM oferta WHERE id_oferta = ?",
                     new OfertaRowMapper(),

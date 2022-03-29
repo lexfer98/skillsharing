@@ -45,7 +45,7 @@ public class OfertaController {
 
     @RequestMapping(value="/update/{idOferta}", method = RequestMethod.GET)
     public String editOferta(Model model, @PathVariable int idOferta) {
-        model.addAttribute("oferta", ofertaDao.getOfertas(idOferta));
+        model.addAttribute("oferta", ofertaDao.getOferta(idOferta));
         return "oferta/update";
     }
 

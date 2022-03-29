@@ -18,6 +18,7 @@ public class OfertaRowMapper implements RowMapper<Oferta> {
         oferta.setDescripcion(rs.getString("descripcion"));
         oferta.setFechaIniciacion(rs.getObject("fecha_inic", LocalDate.class));
         oferta.setFechaFinalizacion(rs.getObject("fecha_fin", LocalDate.class));
+        oferta.setActiva(rs.getBoolean("activa"));
         return oferta;
     }
 }
