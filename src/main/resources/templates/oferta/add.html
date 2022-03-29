@@ -16,7 +16,9 @@
         </tr>
         <tr>
             <td><label>Id Habilidad</label></td>
-            <td><input type="text" th:field="*{idHabilidad}" /></td>
+            <td><select>
+                    <option value="${habilidad.id_habilidad}" th:each="habilidad: ${habilidades}"><a th:text=${habilidad.nombre} ></a> <a th:text=${habilidad.nivel}></a></option>
+                </select></td>
         </tr>
         <tr>
             <td><label>DNI Propietario</label></td>

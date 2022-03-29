@@ -1,5 +1,6 @@
 package es.uji.ei1027.skillsharing.controller;
 
+import es.uji.ei1027.skillsharing.dao.HabilidadDao;
 import es.uji.ei1027.skillsharing.dao.OfertaDao;
 import es.uji.ei1027.skillsharing.model.Oferta;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +17,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class OfertaController {
 
     private OfertaDao ofertaDao;
+    private HabilidadDao habilidadDao;
 
     @Autowired
     public void setOfertaDao(OfertaDao ofertaDao) {
         this.ofertaDao = ofertaDao;
+    }
+    @Autowired
+    public void setHabilidadDao(HabilidadDao habilidadDao) {
+        this.habilidadDao = habilidadDao;
     }
 
     @RequestMapping("/list")
@@ -30,6 +36,7 @@ public class OfertaController {
 
     @RequestMapping(value="/add")
     public String addOferta(Model model) {
+        model.addAttribute("habilidades", habilidadDao.getHabilidades());
         model.addAttribute("oferta", new Oferta());
         return "oferta/add";
     }
