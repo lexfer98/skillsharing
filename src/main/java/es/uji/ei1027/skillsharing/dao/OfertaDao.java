@@ -22,13 +22,13 @@ public class OfertaDao {
     }
     //Añade una oferta a la base de datos
     public void addOferta(Oferta oferta) {
-        jdbcTemplate.update("INSERT INTO oferta VALUES(?, ?, ?, ?, ?, ?, ?)",
-                oferta.getIdOferta(), oferta.getIdHabilidad(), oferta.getDniPropietario(), oferta.getNombre(), oferta.getDescripcion(), oferta.getFechaIniciacion(), oferta.getFechaFinalizacion());
+        jdbcTemplate.update("INSERT INTO oferta VALUES(default, ?, ?, ?, ?, ?, ?, true)",
+                oferta.getIdHabilidad(), oferta.getDniPropietario(), oferta.getNombre(), oferta.getDescripcion(), oferta.getFechaIniciacion(), oferta.getFechaFinalizacion());
     }
 
     public List<Oferta> getOfertas() {
         try {
-            return jdbcTemplate.query("SELECT * FROM Oferta",
+            return jdbcTemplate.query("SELECT * FROM Oferta where activa = true",
                     new OfertaRowMapper());
         }
         catch(EmptyResultDataAccessException e) {
@@ -48,7 +48,7 @@ public class OfertaDao {
 
     public Oferta getOferta(int idOferta) {
         try {
-            return jdbcTemplate.queryForObject("SELECT * FROM oferta WHERE id_oferta = ?",
+            return jdbcTemplate.queryForObject("SELECT * FROM oferta WHERE id_oferta = ? and activa = true",
                     new OfertaRowMapper(),
                     idOferta);
 

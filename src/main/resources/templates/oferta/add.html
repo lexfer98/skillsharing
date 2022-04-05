@@ -8,41 +8,33 @@
 <body>
 <h2 align="center">Nueva Oferta</h2>
 <form action="#" th:action="@{/oferta/add}"
-      th:object="${oferta}" method="post">
+       method="post">
     <table align="center">
         <tr>
-            <td><label>Id Oferta</label></td>
-            <td><input type="text" th:field="*{idOferta}" /></td>
-        </tr>
-        <tr>
             <td><label>Id Habilidad</label></td>
-            <td><select>
-                    <option value="${habilidad.id_habilidad}" th:each="habilidad: ${habilidades}"><a th:text=${habilidad.nombre} ></a> <a th:text=${habilidad.nivel}></a></option>
+            <td><select th:field="${oferta.idHabilidad}">
+               <option th:value="${habilidad.id_habilidad}" th:each="habilidad: ${habilidades}"><a th:text=${habilidad.nombre} ></a> <a th:text=${habilidad.nivel}></a></option>
                 </select></td>
         </tr>
         <tr>
             <td><label>DNI Propietario</label></td>
-            <td><input type="text" th:field="*{dniPropietario}" /></td>
+            <td><input type="text" th:field="${oferta.dniPropietario}" /></td>
         </tr>
         <tr>
             <td><label>Nombre</label></td>
-            <td><input type="text" th:field="*{nombre}" /></td>
+            <td><input type="text" th:field="${oferta.nombre}" /></td>
         </tr>
         <tr>
             <td><label>Descripcion</label></td>
-            <td><input type="text" th:field="*{descripcion}" /></td>
+            <td><input type="text" th:field="${oferta.descripcion}" /></td>
         </tr>
         <tr>
             <td><label>Fecha Iniciacion</label></td>
-            <td><input type="text" th:field="*{fechaIniciacion}" /></td>
+            <td><input type="date" th:field="${oferta.fechaIniciacion}" /></td>
         </tr>
         <tr>
             <td><label>Fecha Finalizacion</label></td>
-            <td><input type="text" th:field="*{fechaFinalizacion}" /></td>
-        </tr>
-        <tr>
-            <td><label>Activa</label></td>
-            <td><input type="text" th:field="*{activa}" /></td>
+            <td><input type="date" th:field="${oferta.fechaFinalizacion}" /></td>
         </tr>
         <tr>
             <td colspan="2"><input type="submit" value="Añadir oferta" /></td>

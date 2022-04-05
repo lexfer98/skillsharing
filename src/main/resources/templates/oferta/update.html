@@ -10,14 +10,12 @@
 <h2 align="center">Oferta</h2>
 <br>
 <br>
-<form action="#" th:action="@{/oferta/add}"
+<form action="#" th:action="@{/oferta/update}"
       th:object="${oferta}" method="post">
+    <input type="hidden" th:field="*{idOferta}" >
     <table align="center">
         <tr>
-            <td><label>Id Oferta</label></td>
-            <td><input type="text" th:field="*{idOferta}" /></td>
-        </tr>
-        <tr>
+
             <td><label>Id Habilidad</label></td>
             <td><input type="text" th:field="*{idHabilidad}" /></td>
         </tr>
@@ -42,12 +40,8 @@
             <td><input type="text" th:field="*{fechaFinalizacion}" /></td>
         </tr>
         <tr>
-            <td><label>Activa</label></td>
-            <td><input type="text" th:field="*{activa}" /></td>
-        </tr>
-        <tr>
             <td></td>
-            <td colspan="2"><input type="submit" value="Agregar oferta" /></td>
+            <td colspan="2"><input type="submit" value="Modificar oferta" /></td>
         </tr>
     </table>
 </form>
