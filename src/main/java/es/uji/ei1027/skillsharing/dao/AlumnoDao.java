@@ -39,8 +39,8 @@ public class AlumnoDao {
     }
 
     public void addAlumno(Alumno alumno){
-        jdbcTemplate.update("INSERT INTO Alumnos VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)", alumno.getDni(), alumno.getNombre(),alumno.getApellidos(), alumno.getEmail(),
-                alumno.getTitulacion(), alumno.getCurso(), alumno.getFechaCreacion(), alumno.getGenero(), alumno.getEdad(), alumno.getNumTel(), alumno.getBalanceHoras(), alumno.isSkp(), alumno.getContraseña());
+        jdbcTemplate.update("INSERT INTO Alumnos VALUES(?,?,?,?,?,?,?,?,?,?)", alumno.getDni(), alumno.getNombre(),alumno.getApellidos(), alumno.getEmail(),
+                alumno.getTitulacion(), alumno.getCurso(), alumno.getGenero(), alumno.getEdad(), alumno.getNumTel(), alumno.getContraseña());
     }
 
     public void updateAlumno(Alumno alumno){
