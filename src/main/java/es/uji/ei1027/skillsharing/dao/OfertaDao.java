@@ -36,6 +36,16 @@ public class OfertaDao {
         }
     }
 
+    public List<Oferta> getTusOfertas(String dniPropietario) {
+        try {
+            return jdbcTemplate.query("SELECT * FROM Oferta where activa = true and dni_propietadio='?'",
+                    new OfertaRowMapper(), dniPropietario);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Oferta>();
+        }
+    }
+
     public void updateOferta(Oferta oferta) {
         jdbcTemplate.update("UPDATE oferta SET nombre = '?', descripcion = '?', fecha_inic = '?', fecha_fin='?' WHERE id_oferta = '?'",
                 oferta.getNombre(), oferta.getDescripcion(), oferta.getFechaIniciacion(), oferta.getFechaFinalizacion(), oferta.getIdOferta());

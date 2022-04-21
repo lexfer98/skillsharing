@@ -28,8 +28,14 @@ public class OfertaController {
         this.habilidadDao = habilidadDao;
     }
 
+    @RequestMapping("/listTusOfertas/{dniPropietario}")
+    public String listOfertas(Model model, @PathVariable String dniPropietario) {
+        model.addAttribute("ofertas", ofertaDao.getTusOfertas(dniPropietario));
+        return "oferta/list";
+    }
+
     @RequestMapping("/list")
-    public String listOfertas(Model model) {
+    public String listTusOfertas(Model model) {
         model.addAttribute("ofertas", ofertaDao.getOfertas());
         return "oferta/list";
     }
