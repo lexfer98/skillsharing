@@ -5,8 +5,6 @@ import java.time.LocalTime;
 
 public class Colaboracion {
     private int id_colaboracion;
-    //private String dni_propietario;
-    //private String dni_solicitante;
     private int idOferta;
     private int idSolicitud;
     private LocalDate fecha_inicio;
@@ -30,24 +28,6 @@ public class Colaboracion {
                 ", activo=" + activo +
                 '}';
     }
-/*
-    public String getDni_propietario() {
-        return dni_propietario;
-    }
-
-    public void setDni_propietario(String dni_propietario) {
-        this.dni_propietario = dni_propietario;
-    }
-
-    public String getDni_solicitante() {
-        return dni_solicitante;
-    }
-
-    public void setDni_solicitante(String dni_solicitante) {
-        this.dni_solicitante = dni_solicitante;
-    }
-
-     */
 
     public Colaboracion() {
 

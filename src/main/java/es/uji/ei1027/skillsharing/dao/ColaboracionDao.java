@@ -39,24 +39,11 @@ public class ColaboracionDao {
     }
 
     public void addColaboracion(Colaboracion colaboracion){
-        /*
-        jdbcTemplate.update("INSERT INTO Colaboracion VALUES(?,?,?,?,?,?,?,?,?,?)", colaboracion.getId_colaboracion(),colaboracion.getDni_propietario(),colaboracion.getDni_solicitante(),
-                colaboracion.getIdSolicitud(),colaboracion.getIdOferta(),colaboracion.getFecha_inicio(),colaboracion.getFecha_fin(),colaboracion.getHoras(),
-                colaboracion.getPuntuacion(),colaboracion.getOpinion());
-
-         */
         jdbcTemplate.update("INSERT INTO Colaboracion VALUES(?,?,?,?,?,?,?,?,?,?)", colaboracion.getId_colaboracion(),
                 colaboracion.getIdSolicitud(),colaboracion.getIdOferta(),colaboracion.getFecha_inicio(),colaboracion.getFecha_fin(),colaboracion.getHoras(),
                 colaboracion.getPuntuacion(),colaboracion.getOpinion());
     }
     public void updateColaboracion(Colaboracion colaboracion){
-        /*jdbcTemplate.update("UPDATE Colaboracion SET dni_propietario = '?', dni_solicitante  = '?', id_solicitud = '?', id_oferta = '?'," +
-                "fecha_inic = '?', fecha_fin = '?', horas = '?', puntuacion = '?', opinion = '?' WHERE id_colaboracion = '?'",
-                colaboracion.getDni_propietario(),colaboracion.getDni_solicitante(),colaboracion.getIdSolicitud(),colaboracion.getIdOferta(),
-                colaboracion.getFecha_inicio(),colaboracion.getFecha_fin(),colaboracion.getHoras(),colaboracion.getPuntuacion(),colaboracion.getOpinion(),
-                colaboracion.getId_colaboracion());
-
-         */
         jdbcTemplate.update("UPDATE Colaboracion SET dni_propietario = '?', dni_solicitante  = '?', id_solicitud = '?', id_oferta = '?'," +
                         "fecha_inic = '?', fecha_fin = '?', horas = '?', puntuacion = '?', opinion = '?' WHERE id_colaboracion = '?'"
                ,colaboracion.getIdSolicitud(),colaboracion.getIdOferta(), colaboracion.getFecha_inicio(),colaboracion.getFecha_fin(),colaboracion.getHoras(),colaboracion.getPuntuacion(),colaboracion.getOpinion(),

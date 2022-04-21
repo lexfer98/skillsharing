@@ -13,6 +13,7 @@ public class SolicitudRowMapper implements RowMapper<Solicitud> {
     public Solicitud mapRow(ResultSet rs, int rowNum) throws SQLException {
         Solicitud solicitud = new Solicitud();
         solicitud.setId_solicitud(rs.getInt("id_solicitud"));
+        solicitud.setId_oferta(rs.getInt("id_oferta"));
         solicitud.setId_habilidad(rs.getInt("id_habilidad"));
         solicitud.setDni_solicitud(rs.getString("dni_solicitante"));
         solicitud.setNombre(rs.getString("nombre"));
@@ -20,7 +21,7 @@ public class SolicitudRowMapper implements RowMapper<Solicitud> {
         solicitud.setFecha_inic(rs.getObject("fecha_inic", LocalDate.class));
         solicitud.setFecha_fin(rs.getObject("fecha_fin", LocalDate.class));
         solicitud.setActiva(rs.getBoolean("activa"));
-
+        solicitud.setEstado(rs.getBoolean("estado"));
 
         return solicitud;
     }

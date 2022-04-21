@@ -28,7 +28,7 @@ public class SolicitudDao {
         }
     }
 
-    public List<Solicitud> getSolicitud(String id_solicitud){
+    public List<Solicitud> getSolicitud(int id_solicitud){
         try {
             return jdbcTemplate.query("SELECT * FROM Solicitud WHERE id_solicitud = '?'", new SolicitudRowMapper(),id_solicitud);
         }catch (EmptyResultDataAccessException e){
@@ -37,17 +37,21 @@ public class SolicitudDao {
     }
 
     public void addSolicitud(Solicitud solicitud){
-        jdbcTemplate.update("INSER INTO Solicitud VALUES(?,?,?,?,?,?,?,?)",solicitud.getId_solicitud(),solicitud.getId_habilidad(),solicitud.getDni_solicitud(),
+        jdbcTemplate.update("INSERT INTO Solicitud VALUES(?,?,?,?,?,?,?,?,?,?)",solicitud.getId_solicitud(),solicitud.getId_habilidad(),solicitud.getId_oferta(),solicitud.isEstado(),solicitud.getDni_solicitud(),
                 solicitud.getNombre(),solicitud.getDescripcion(),solicitud.getFecha_inic(),solicitud.getFecha_fin(), solicitud.isActiva());
     }
 
     public void updateSolicitud(Solicitud solicitud){
-        jdbcTemplate.update("UPDATE Solicitud SET id_habilidad = '?', dni_solicitante = '?', nombre = '?', descripcion = '?', fecha_inic = '?'" +
-                ", fecha_fin = '?', activa = '?' WHERE id_solicitud = '?'",solicitud.getId_habilidad(),solicitud.getDni_solicitud(),solicitud.getNombre(),
+        jdbcTemplate.update("UPDATE Solicitud SET id_habilidad = '?',id_oferta = '?',estado = '?', dni_solicitante = '?', nombre = '?', descripcion = '?', fecha_inic = '?'" +
+                ", fecha_fin = '?', activa = '?' WHERE id_solicitud = '?'",solicitud.getId_habilidad(),solicitud.getId_oferta(),solicitud.isEstado(),solicitud.getDni_solicitud(),solicitud.getNombre(),
                 solicitud.getDescripcion(),solicitud.getFecha_inic(),solicitud.getFecha_fin(),solicitud.getId_solicitud());
     }
 
-    public void deleteSolicitud(Solicitud solicitud){
-        jdbcTemplate.update("UPDATE Solicitud SET activa = false WHERE id_solicitud = '?'",solicitud.getId_solicitud());
+    public void deleteSolicitud(int solicitud){
+        jdbcTemplate.update("UPDATE Solicitud SET activa = false WHERE id_solicitud = '?'",solicitud);
+    }
+
+    public void desactivarSolicitud(int solicitud){
+        jdbcTemplate.update("UPDATE Solicitud SET estado = false WHERE id_solicitud = '?'",solicitud);
     }
 }

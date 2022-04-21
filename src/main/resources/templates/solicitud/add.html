@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Crear una nueva oferta</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"     href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<h2 align="center">Nueva Oferta</h2>
+<form action="#" th:action="@{/oferta/add}"
+       method="post">
+    <table align="center">
+        <tr>
+            <td><label>Id Habilidad</label></td>
+            <td><select th:field="${oferta.idHabilidad}">
+               <option th:value="${habilidad.id_habilidad}" th:each="habilidad: ${habilidades}"><a th:text=${habilidad.nombre} ></a> <a th:text=${habilidad.nivel}></a></option>
+                </select></td>
+        </tr>
+        <tr>
+            <td><label>DNI Propietario</label></td>
+            <td><input type="text" th:field="${oferta.dniPropietario}" /></td>
+        </tr>
+        <tr>
+            <td><label>Nombre</label></td>
+            <td><input type="text" th:field="${oferta.nombre}" /></td>
+        </tr>
+        <tr>
+            <td><label>Descripcion</label></td>
+            <td><input type="text" th:field="${oferta.descripcion}" /></td>
+        </tr>
+        <tr>
+            <td><label>Fecha Iniciacion</label></td>
+            <td><input type="date" th:field="${oferta.fechaIniciacion}" /></td>
+        </tr>
+        <tr>
+            <td><label>Fecha Finalizacion</label></td>
+            <td><input type="date" th:field="${oferta.fechaFinalizacion}" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Añadir oferta" /></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

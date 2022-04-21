@@ -6,12 +6,30 @@ public class Solicitud {
 
     private int id_solicitud;
     private int id_habilidad;
+    private int id_oferta;
     private String dni_solicitud;
     private String nombre;
     private String descripcion;
     private LocalDate fecha_inic;
     private LocalDate fecha_fin;
     private boolean activa;
+    private boolean estado;
+
+    @Override
+    public String toString() {
+        return "Solicitud{" +
+                "id_solicitud=" + id_solicitud +
+                ", id_habilidad=" + id_habilidad +
+                ", id_oferta=" + id_oferta +
+                ", dni_solicitud='" + dni_solicitud + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", fecha_inic=" + fecha_inic +
+                ", fecha_fin=" + fecha_fin +
+                ", activa=" + activa +
+                ", estado=" + estado +
+                '}';
+    }
 
     public Solicitud(){}
 
@@ -77,5 +95,21 @@ public class Solicitud {
 
     public void setActiva(boolean activa) {
         this.activa = activa;
+    }
+
+    public int getId_oferta() {
+        return id_oferta;
+    }
+
+    public void setId_oferta(int id_oferta) {
+        this.id_oferta = id_oferta;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 }
