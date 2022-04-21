@@ -9,7 +9,7 @@ public class Colaboracion {
     private int idSolicitud;
     private LocalDate fecha_inicio;
     private LocalDate fecha_fin;
-    private LocalTime horas;
+    private int horas;
     private int puntuación;
     private String opinion;
     private boolean activo;
@@ -75,11 +75,11 @@ public class Colaboracion {
         this.fecha_fin = fecha_fin;
     }
 
-    public LocalTime getHoras() {
+    public int getHoras() {
         return horas;
     }
 
-    public void setHoras(LocalTime horas) {
+    public void setHoras(int horas) {
         this.horas = horas;
     }
 

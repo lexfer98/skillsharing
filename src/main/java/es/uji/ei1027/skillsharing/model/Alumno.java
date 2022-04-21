@@ -8,13 +8,13 @@ public class Alumno {
     private String apellidos;
     private String email;
     private String titulacion;
-    private Integer curso;
+    private int curso;
     @org.springframework.format.annotation.DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaCreacion;
     private Genero genero;
-    private Integer edad;
-    private Integer numTel;
-    private Integer balanceHoras;
+    private int edad;
+    private int numTel;
+    private int balanceHoras;
     private boolean isSkp;
     private String contraseña;
 
@@ -79,7 +79,7 @@ public class Alumno {
         this.titulacion = titulacion;
     }
 
-    public Integer getCurso() {
+    public int getCurso() {
         return curso;
     }
 
@@ -103,7 +103,7 @@ public class Alumno {
         this.genero = genero;
     }
 
-    public Integer getEdad() {
+    public int getEdad() {
         return edad;
     }
 
@@ -111,7 +111,7 @@ public class Alumno {
         this.edad = edad;
     }
 
-    public Integer getNumTel() {
+    public int getNumTel() {
         return numTel;
     }
 
@@ -119,11 +119,11 @@ public class Alumno {
         this.numTel = numTel;
     }
 
-    public Integer getBalanceHoras() {
+    public int getBalanceHoras() {
         return balanceHoras;
     }
 
-    public void setBalanceHoras(Integer balanceHoras) {
+    public void setBalanceHoras(int balanceHoras) {
         this.balanceHoras = balanceHoras;
     }
 

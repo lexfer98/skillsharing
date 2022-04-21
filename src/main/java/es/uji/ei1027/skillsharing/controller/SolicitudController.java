@@ -75,10 +75,4 @@ public class SolicitudController {
         solicitudDao.deleteSolicitud(id_solicitud);
         return "redirect:../list";
     }
-
-    @RequestMapping(value = "/delete/{id_solicitud}")
-    public String processDesactivar(@PathVariable int id_solicitud) {
-        solicitudDao.deleteSolicitud(id_solicitud);
-        return "redirect:../list";
-    }
 }
