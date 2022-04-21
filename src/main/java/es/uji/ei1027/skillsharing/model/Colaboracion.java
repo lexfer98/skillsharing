@@ -5,8 +5,8 @@ import java.time.LocalTime;
 
 public class Colaboracion {
     private int id_colaboracion;
-    private String dni_propietario;
-    private String dni_solicitante;
+    //private String dni_propietario;
+    //private String dni_solicitante;
     private int idOferta;
     private int idSolicitud;
     private LocalDate fecha_inicio;
@@ -14,7 +14,23 @@ public class Colaboracion {
     private LocalTime horas;
     private int puntuación;
     private String opinion;
+    private boolean activo;
 
+    @Override
+    public String toString() {
+        return "Colaboracion{" +
+                "id_colaboracion=" + id_colaboracion +
+                ", idOferta=" + idOferta +
+                ", idSolicitud=" + idSolicitud +
+                ", fecha_inicio=" + fecha_inicio +
+                ", fecha_fin=" + fecha_fin +
+                ", horas=" + horas +
+                ", puntuación=" + puntuación +
+                ", opinion='" + opinion + '\'' +
+                ", activo=" + activo +
+                '}';
+    }
+/*
     public String getDni_propietario() {
         return dni_propietario;
     }
@@ -30,6 +46,8 @@ public class Colaboracion {
     public void setDni_solicitante(String dni_solicitante) {
         this.dni_solicitante = dni_solicitante;
     }
+
+     */
 
     public Colaboracion() {
 
@@ -101,18 +119,14 @@ public class Colaboracion {
         this.opinion = opinion;
     }
 
-    @Override
-    public String toString() {
-        return "Colaboracion{" +
-                "id_colaboracion=" + id_colaboracion +
-                ", idOferta='" + idOferta + '\'' +
-                ", idSolicitud='" + idSolicitud + '\'' +
-                ", fecha_inicio=" + fecha_inicio +
-                ", fecha_fin=" + fecha_fin +
-                ", horas=" + horas +
-                ", puntuación=" + puntuación +
-                ", opinion='" + opinion + '\'' +
-                '}';
+
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 }
 

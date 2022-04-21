@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Modificar una colaboracion</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"     href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<br>
+<h2 align="center">Colaboracion</h2>
+<br>
+<br>
+<form action="#" th:action="@{/colaboracion/update}"
+      th:object="${colaboracion}" method="post">
+    <input type="hidden" th:field="*{id_colaboracion}" >
+    <table align="center">
+        <tr>
+
+            <td><label>Id colaboracion</label></td>
+            <td><input type="text" th:field="*{id_colaboracion}" /></td>
+        </tr>
+        <tr>
+            <td><label>id solicitud</label></td>
+            <td><input type="text" th:field="*{id_solicitud}" /></td>
+        </tr>
+        <tr>
+            <td><label>id oferta</label></td>
+            <td><input type="text" th:field="*{id_oferta}" /></td>
+        </tr>
+        <tr>
+            <td><label>Fecha Iniciacion</label></td>
+            <td><input type="text" th:field="*{fecha_inic}" /></td>
+        </tr>
+        <tr>
+            <td><label>Fecha Fin</label></td>
+            <td><input type="text" th:field="*{fecha_fin}" /></td>
+        </tr>
+        <tr>
+            <td><label>Horas</label></td>
+            <td><input type="text" th:field="*{horas}" /></td>
+        </tr>
+
+        <tr>
+            <td><label>Puntuacion</label></td>
+            <td><input type="number" th:field="*{puntuacion}" minlength="1" maxlength="5" /></td>
+        </tr>
+
+        <tr>
+            <td><label>Opinion</label></td>
+            <td><input type="text" th:field="*{opinion}" /></td>
+        </tr>
+
+        <tr>
+            <td><label>Activo</label></td>
+            <td><input type="text" th:field="*{activo}" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="2"><input type="submit" value="Modificar colaboracion" /></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
