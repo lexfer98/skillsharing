@@ -5,13 +5,15 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
 </head>
 <body>
-<h1 align="center">Lista de ofertas</h1>
+<h1 align="center">Lista de solicitudes</h1>
 <table align="center">
     <thead>
     <tr>
-        <th>Id Oferta</th>
+        <th>Id solicitud</th>
         <th>Id Habilidad</th>
-        <th>DNI Propietario</th>
+        <th>Id oferta</th>
+        <th>Estado</th>
+        <th>DNI solicitud</th>
         <th>Nombre</th>
         <th>Descripcion</th>
         <th>Fecha Iniciacion</th>
@@ -22,20 +24,20 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="oferta: ${ofertas}">
-        <td th:text="${oferta.idOferta}"></td>
-        <td th:text="${oferta.idHabilidad}"></td>
-        <td th:text="${oferta.dniPropietario}"></td>
+    <tr th:each="solicitud: ${solicitudes}">
+        <td th:text="${oferta.id_solicitud}"></td>
+        <td th:text="${oferta.id_habilidad}"></td>
+        <td th:text="${oferta.estado}"></td>
+        <td th:text="${oferta.dni_solicitud}"></td>
         <td th:text="${oferta.nombre}"></td>
         <td th:text="${oferta.descripcion}"></td>
-        <td th:text="${oferta.fechaIniciacion}"></td>
-        <td th:text="${oferta.fechaFinalizacion}"></td>
+        <td th:text="${oferta.fecha_inic}"></td>
+        <td th:text="${oferta.fecha_fin}"></td>
         <td th:text="${oferta.activa}"></td>
-        <td><a th:href="@{/oferta/update/{id_oferta}(id_oferta=${oferta.idOferta})}">Edita</a>
+        <td><a th:href="@{/solicitud/update/{id_solicitud}(id_solicitud=${solicitud.id_solicitud})}">Edita</a>
         </td>
     </tr>
     </tbody>
 </table>
-<a href="add">Agrega una oferta</a>
 </body>
 </html>
