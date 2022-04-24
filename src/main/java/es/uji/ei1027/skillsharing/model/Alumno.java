@@ -11,7 +11,7 @@ public class Alumno {
     private int curso;
     @org.springframework.format.annotation.DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaCreacion;
-    private Genero genero;
+    private String genero;
     private int edad;
     private int numTel;
     private int balanceHoras;
@@ -95,11 +95,11 @@ public class Alumno {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public Genero getGenero() {
+    public String getGenero() {
         return genero;
     }
 
-    public void setGenero(Genero genero) {
+    public void setGenero(String genero) {
         this.genero = genero;
     }
 

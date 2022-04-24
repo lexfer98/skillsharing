@@ -9,7 +9,10 @@ import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import javax.swing.*;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 @Repository
@@ -38,9 +41,10 @@ public class AlumnoDao {
         }
     }
 
+    String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
     public void addAlumno(Alumno alumno){
-        jdbcTemplate.update("INSERT INTO Alumnos VALUES(?,?,?,?,?,?,?,?,?,?)", alumno.getDni(), alumno.getNombre(),alumno.getApellidos(), alumno.getEmail(),
-                alumno.getTitulacion(), alumno.getCurso(), alumno.getGenero(), alumno.getEdad(), alumno.getNumTel(), alumno.getContraseña());
+        jdbcTemplate.update("INSERT INTO Alumnos VALUES(?,?,?,?,?,?,?,?,?,?,?,0,false)", alumno.getDni(), alumno.getNombre(),alumno.getApellidos(), alumno.getContraseña(),alumno.getEmail(),
+                LocalDate.now(),alumno.getTitulacion(), alumno.getCurso(), alumno.getGenero(), alumno.getEdad(), alumno.getNumTel());
     }
 
     public void updateAlumno(Alumno alumno){

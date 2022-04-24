@@ -18,7 +18,7 @@ public class AlumnoController {
 
     @Autowired
     public void setAlumnoDao(AlumnoDao AlumnoDao){
-        this.alumnoDao=alumnoDao;
+        this.alumnoDao= AlumnoDao;
     }
 
     @RequestMapping(value="/add")
