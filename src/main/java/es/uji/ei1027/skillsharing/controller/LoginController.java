@@ -1,7 +1,7 @@
 package es.uji.ei1027.skillsharing.controller;
 
-import es.uji.ei1027.skillsharing.dao.UserDao;
-import es.uji.ei1027.skillsharing.model.UserDetails;
+import es.uji.ei1027.skillsharing.dao.AlumnoRegDao;
+import es.uji.ei1027.skillsharing.model.Alumno;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,78 +14,60 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
 
-class UserValidator implements Validator {
+class AlumnoValidator implements Validator {
     @Override
     public boolean supports(Class<?> cls) {
-        return UserDetails.class.isAssignableFrom(cls);
+        return Alumno.class.isAssignableFrom(cls);
     }
     @Override
     public void validate(Object obj, Errors errors) {
         // Exercici: Afegeix codi per comprovar que
         // l'usuari i la contrasenya no estiguen buits
-        UserDetails user = (UserDetails) obj;
-        if (user.getUsername().trim().equals("")) {
-            errors.rejectValue("username", "obligatorio",
-                    "Debes introducir un valor");
-        }
-        if(user.getPassword().trim().equals("")) {
-            errors.rejectValue("password", "obligatoria",
-                    "Debes introducir un valor");
-        }
+        // ...
+        Alumno alumno = (Alumno) obj;
+        if ((alumno.getDni().trim().equals("") )&& (alumno.getContraseña().trim().equals("") ))
+            errors.rejectValue("pass", "pass",
+                    "Cal introduir usuari y contrasenya");
     }
 }
 
 @Controller
 public class LoginController {
     @Autowired
-    private UserDao userDao;
+    private AlumnoRegDao alumnoRegDao;
 
-    @RequestMapping("/login")
-    public String login(Model model, HttpSession session) {
-        if(session.getAttribute("user")!=null){
-            UserDetails user = (UserDetails) session.getAttribute("user");
-            if (user.getTipo().equals("alumno")){
-                return "redirect:/gestionUsuario/users";
-            }
-            else {
-                    return "redirect:/admin";
-                }
-            }
-
-        model.addAttribute("user",new UserDetails());
-        return "login";
+    @RequestMapping("/loginV2")
+    public String login(Model model) {
+        model.addAttribute("alumno", new Alumno());
+        return "loginV2";
     }
 
-    @RequestMapping(value="/login", method= RequestMethod.POST)
-    public String checkLogin(@ModelAttribute("user") UserDetails user,
+    @RequestMapping(value = "/loginV2", method = RequestMethod.POST)
+    public String checkLogin(@ModelAttribute("alumno") Alumno alumno,
                              BindingResult bindingResult, HttpSession session) {
-        UserValidator userValidator=new UserValidator();
+
+        String url = "";
+        AlumnoValidator alumnoValidator = new AlumnoValidator();
+        alumnoValidator.validate(alumno, bindingResult);
         if (bindingResult.hasErrors()) {
-            return "login";
+            return "loginV2";
         }
         // Comprova que el login siga correcte
         // intentant carregar les dades de l'usuari
-        user = userDao.loadUserByUsername(user.getUsername(), user.getPassword());
-        if (user == null) {
-            bindingResult.rejectValue("password", "badpw","Contraseña incorrecta");
-            return "login";
+        alumno = alumnoRegDao.loadUserByUsername(alumno.getDni(), alumno.getContraseña());
+        if (alumno == null) {
+            bindingResult.rejectValue("contraseña", "badpw", "Contrasenya incorrecta");
+            return "loginV2";
         }
         // Autenticats correctament.
         // Guardem les dades de l'usuari autenticat a la sessió
-        String url = (String) session.getAttribute("nextUrl");
-        session.setAttribute("user", user);
-
-        // Torna a la pàgina principal
-        //return "redirect:/";
-        if (url != null)
-            return "redirect:/" + url;
-        if (user.getTipo().equals("alumno")) {
-            return "gestionUsuario/users";
-        } else {
-                return "admin";
-            }
+        session.setAttribute("alumno", alumno);
+        if (session.getAttribute("nextUrl") != null) {
+            url = session.getAttribute("nextUrl").toString();
         }
-
+        // Torna a la pàgina principal
+        return url;
+    }
 
     @RequestMapping("/logout")
     public String logout(HttpSession session) {
