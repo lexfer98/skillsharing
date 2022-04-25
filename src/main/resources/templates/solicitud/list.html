@@ -25,15 +25,15 @@
     </thead>
     <tbody>
     <tr th:each="solicitud: ${solicitudes}">
-        <td th:text="${oferta.id_solicitud}"></td>
-        <td th:text="${oferta.id_habilidad}"></td>
-        <td th:text="${oferta.estado}"></td>
-        <td th:text="${oferta.dni_solicitud}"></td>
-        <td th:text="${oferta.nombre}"></td>
-        <td th:text="${oferta.descripcion}"></td>
-        <td th:text="${oferta.fecha_inic}"></td>
-        <td th:text="${oferta.fecha_fin}"></td>
-        <td th:text="${oferta.activa}"></td>
+        <td th:text="${solicitud.id_solicitud}"></td>
+        <td th:text="${solicitud.id_habilidad}"></td>
+        <td th:text="${solicitud.estado}"></td>
+        <td th:text="${solicitud.dni_solicitud}"></td>
+        <td th:text="${solicitud.nombre}"></td>
+        <td th:text="${solicitud.descripcion}"></td>
+        <td th:text="${solicitud.fecha_inic}"></td>
+        <td th:text="${solicitud.fecha_fin}"></td>
+        <td th:text="${solicitud.activa}"></td>
         <td><a th:href="@{/solicitud/update/{id_solicitud}(id_solicitud=${solicitud.id_solicitud})}">Edita</a>
         </td>
     </tr>
