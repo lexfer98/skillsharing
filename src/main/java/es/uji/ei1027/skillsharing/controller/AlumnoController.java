@@ -35,5 +35,5 @@ public class AlumnoController {
         alumnoDao.addAlumno(alumno);
         return "redirect:/";
     }
-    //Funciona a veces
+
 }

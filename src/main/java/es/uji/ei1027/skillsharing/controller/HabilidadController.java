@@ -1,10 +1,13 @@
 package es.uji.ei1027.skillsharing.controller;
 
 import es.uji.ei1027.skillsharing.dao.HabilidadDao;
+import es.uji.ei1027.skillsharing.model.Alumno;
 import es.uji.ei1027.skillsharing.model.Habilidad;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,6 +34,16 @@ public class HabilidadController {
         model.addAttribute("habilidad", new Habilidad());
         return "habilidad/add";
     }
+
+    @RequestMapping(value="/add", method= RequestMethod.POST)
+    public String processAddSubmit(@ModelAttribute("habilidad") Habilidad habilidad,
+                                   BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "habilidad/add";
+        habilidadDao.addHabilidad(habilidad);
+        return "redirect:gestionusuario/users";
+    }
+
     @RequestMapping(value="/update/{id_habilidad}", method = RequestMethod.GET)
     public String editHabilidad(Model model, @PathVariable String id_habilidad) {
         model.addAttribute("habilidad", id_habilidad);

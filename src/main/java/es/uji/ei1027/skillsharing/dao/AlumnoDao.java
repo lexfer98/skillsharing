@@ -41,7 +41,6 @@ public class AlumnoDao {
         }
     }
 
-    String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
     public void addAlumno(Alumno alumno){
         jdbcTemplate.update("INSERT INTO Alumnos VALUES(?,?,?,?,?,?,?,?,?,?,?,0,false)", alumno.getDni(), alumno.getNombre(),alumno.getApellidos(), alumno.getContraseña(),alumno.getEmail(),
                 LocalDate.now(),alumno.getTitulacion(), alumno.getCurso(), alumno.getGenero(), alumno.getEdad(), alumno.getNumTel());

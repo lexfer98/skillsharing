@@ -55,7 +55,8 @@ public class LoginController {
         // Comprova que el login siga correcte
         // intentant carregar les dades de l'usuari
         alumno = alumnoRegDao.loadUserByUsername(alumno.getDni(), alumno.getContraseña());
-        if (alumno == null) {
+
+                if (alumno == null) {
             bindingResult.rejectValue("contraseña", "badpw", "Contrasenya incorrecta");
             return "loginV2";
         }
@@ -64,6 +65,7 @@ public class LoginController {
         session.setAttribute("alumno", alumno);
         url = (session.getAttribute("nextUrl") != null ? session.getAttribute("nextUrl").toString() : "gestionUsuario/users");
         // Torna a la pàgina principal
+        System.out.println(url);
         return url;
     }
 
