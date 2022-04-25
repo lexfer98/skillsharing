@@ -62,9 +62,7 @@ public class LoginController {
         // Autenticats correctament.
         // Guardem les dades de l'usuari autenticat a la sessió
         session.setAttribute("alumno", alumno);
-        if (session.getAttribute("nextUrl") != null) {
-            url = session.getAttribute("nextUrl").toString();
-        }
+        url = (session.getAttribute("nextUrl") != null ? session.getAttribute("nextUrl").toString() : "gestionUsuario/users");
         // Torna a la pàgina principal
         return url;
     }
