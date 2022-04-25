@@ -35,4 +35,5 @@ public class AlumnoController {
         alumnoDao.addAlumno(alumno);
         return "redirect:/login";
     }
+    //Funciona a veces
 }
