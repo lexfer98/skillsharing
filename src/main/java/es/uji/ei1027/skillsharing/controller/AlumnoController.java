@@ -33,7 +33,7 @@ public class AlumnoController {
         if (bindingResult.hasErrors())
         return "alumno/add";
         alumnoDao.addAlumno(alumno);
-        return "redirect:/login";
+        return "redirect:/";
     }
     //Funciona a veces
 }
