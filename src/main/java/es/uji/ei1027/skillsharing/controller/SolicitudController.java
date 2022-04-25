@@ -3,6 +3,7 @@ package es.uji.ei1027.skillsharing.controller;
 import es.uji.ei1027.skillsharing.dao.HabilidadDao;
 import es.uji.ei1027.skillsharing.dao.OfertaDao;
 import es.uji.ei1027.skillsharing.dao.SolicitudDao;
+import es.uji.ei1027.skillsharing.model.Alumno;
 import es.uji.ei1027.skillsharing.model.Oferta;
 import es.uji.ei1027.skillsharing.model.Solicitud;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ public class SolicitudController {
 
     private SolicitudDao solicitudDao;
     private HabilidadDao habilidadDao;
+    private OfertaDao ofertaDao;
 
     @Autowired
     public void setSolicitudDao(SolicitudDao solicitudDao) {
@@ -31,22 +33,25 @@ public class SolicitudController {
         this.habilidadDao = habilidadDao;
     }
 
+    @Autowired
+    public void setOfertaDao(OfertaDao ofertaDao) {
+        this.ofertaDao = ofertaDao;
+    }
+
     @RequestMapping("/list")
     public String listSolicitudes(Model model) {
         model.addAttribute("solicitudes", solicitudDao.getSolicitudes());
         return "solicitud/list";
     }
 
-    @RequestMapping(value = "/add")
-    public String addSolicitud(Model model) {
-        model.addAttribute("habilidades", habilidadDao.getHabilidades());
-        model.addAttribute("solicitud", new Solicitud());
-        return "solicitud/add";
-    }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String processAddSubmit(@ModelAttribute("solicitud") Solicitud solicitud,
-                                   BindingResult bindingResult) {
+
+    @RequestMapping(value = "/add/{id_oferta}", method = RequestMethod.POST)
+    public String processAddSubmit(BindingResult bindingResult,@PathVariable int id_oferta, @ModelAttribute("alumno") Alumno alumno) {
+        Oferta of = ofertaDao.getOferta(id_oferta);
+        Solicitud solicitud = new Solicitud();
+        solicitud.crearSolicitudOferta(of);
+        solicitud.setDni_solicitud(alumno.getDni());
         if (bindingResult.hasErrors())
             return "solicitud/add";
         solicitudDao.addSolicitud(solicitud);
@@ -55,7 +60,7 @@ public class SolicitudController {
 
     @RequestMapping(value = "/update/{id_solicitud}", method = RequestMethod.GET)
     public String editSolicitud(Model model, @PathVariable int id_solicitud) {
-        model.addAttribute("oferta", solicitudDao.getSolicitud(id_solicitud));
+        model.addAttribute("solicitud", solicitudDao.getSolicitud(id_solicitud));
         return "solictud/update";
     }
 

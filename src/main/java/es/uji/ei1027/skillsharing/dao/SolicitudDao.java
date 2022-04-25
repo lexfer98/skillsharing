@@ -37,8 +37,7 @@ public class SolicitudDao {
     }
 
     public void addSolicitud(Solicitud solicitud){
-        jdbcTemplate.update("INSERT INTO Solicitud VALUES(?,?,?,?,?,?,?,?,?,?)",solicitud.getId_solicitud(),solicitud.getId_habilidad(),solicitud.getId_oferta(),solicitud.isEstado(),solicitud.getDni_solicitud(),
-                solicitud.getNombre(),solicitud.getDescripcion(),solicitud.getFecha_inic(),solicitud.getFecha_fin(), solicitud.isActiva());
+        jdbcTemplate.update("INSERT INTO Solicitud VALUES(default,?,?,null,?,?,?,?,?,true)",solicitud.getId_habilidad(), solicitud.getId_oferta(), solicitud.getDni_solicitud(), solicitud.getNombre(), solicitud.getDescripcion(), solicitud.getFecha_inic(), solicitud.getFecha_fin());
     }
 
     public void updateSolicitud(Solicitud solicitud){
