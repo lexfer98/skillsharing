@@ -47,8 +47,9 @@ public class OfertaDao {
     }
 
     public void updateOferta(Oferta oferta) {
-        jdbcTemplate.update("UPDATE oferta SET nombre = '?', descripcion = '?', fecha_inic = '?', fecha_fin='?' WHERE id_oferta = '?'",
-                oferta.getNombre(), oferta.getDescripcion(), oferta.getFechaIniciacion(), oferta.getFechaFinalizacion(), oferta.getIdOferta());
+        System.out.println(oferta);
+        jdbcTemplate.update("UPDATE oferta SET nombre = ?, descripcion = ?, fecha_inic = ?, fecha_fin=? WHERE id_oferta = ? and activa = ?",
+                oferta.getNombre(), oferta.getDescripcion(), oferta.getFechaIniciacion(), oferta.getFechaFinalizacion(), oferta.getIdOferta(), oferta.isActiva());
     }
 
     public void deleteOferta(int idOferta) {

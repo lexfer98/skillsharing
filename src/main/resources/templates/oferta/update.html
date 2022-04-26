@@ -13,15 +13,13 @@
 <form action="#" th:action="@{/oferta/update}"
       th:object="${oferta}" method="post">
     <input type="hidden" th:field="*{idOferta}" >
+    <input type="hidden" th:field="*{dniPropietario}" />
+    <input type="hidden" th:field="*{activa}" />
     <table align="center">
         <tr>
 
             <td><label>Id Habilidad</label></td>
             <td><input type="text" th:field="*{idHabilidad}" /></td>
-        </tr>
-        <tr>
-            <td><label>DNI Propietario</label></td>
-            <td><input type="text" th:field="*{dniPropietario}" /></td>
         </tr>
         <tr>
             <td><label>Nombre</label></td>
@@ -39,6 +37,7 @@
             <td><label>Fecha Finalizacion</label></td>
             <td><input type="text" th:field="*{fechaFinalizacion}" /></td>
         </tr>
+
         <tr>
             <td></td>
             <td colspan="2"><input type="submit" value="Modificar oferta" /></td>
