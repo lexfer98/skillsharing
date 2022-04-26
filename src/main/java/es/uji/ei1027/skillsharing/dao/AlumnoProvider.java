@@ -32,10 +32,5 @@ public class AlumnoProvider implements AlumnoRegDao {
         }
     }
 
-    @Override
-    public Alumno getAlumno(String dni){
-        return getAlumno(dni);
-    }
-
 }
 

@@ -55,6 +55,7 @@ public class LoginController {
         // Comprova que el login siga correcte
         // intentant carregar les dades de l'usuari
         alumno = alumnoRegDao.loadUserByUsername(alumno.getDni(), alumno.getContraseña());
+        System.out.println(alumno);
         if (alumno == null) {
             bindingResult.rejectValue("contraseña", "badpw", "Contrasenya incorrecta");
             return "loginV2";
