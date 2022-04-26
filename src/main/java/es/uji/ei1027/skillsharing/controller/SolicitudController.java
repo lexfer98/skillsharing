@@ -49,7 +49,6 @@ public class SolicitudController {
         Solicitud solicitud = new Solicitud();
         solicitud.crearSolicitudOferta(ofertaDao.getOferta(id_oferta));
         solicitud.setDni_solicitud(alumno.getDni());
-        System.out.println(solicitud);
         solicitudDao.addSolicitud(solicitud);
         return "redirect:../../oferta/list";
     }

@@ -66,7 +66,6 @@ public class OfertaController {
     public String processUpdateSubmit(
             @ModelAttribute("oferta") Oferta oferta,
             BindingResult bindingResult) {
-        System.out.println(oferta);
         if (bindingResult.hasErrors())
             return "oferta/update";
         ofertaDao.updateOferta(oferta);
