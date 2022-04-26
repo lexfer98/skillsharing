@@ -19,13 +19,13 @@ public class AlumnoRowMapper implements RowMapper<Alumno> {
         alumno.setEmail(rs.getString("email"));
         alumno.setTitulacion(rs.getString("titulacion"));
         alumno.setCurso(rs.getInt("curso"));
-        alumno.setFechaCreacion(rs.getObject("fechacreacion", LocalDate.class));
+        alumno.setFechaCreacion(rs.getObject("fecha_creacion", LocalDate.class));
         alumno.setGenero(rs.getString("genero"));
         alumno.setEdad(rs.getInt("edad"));
-        alumno.setNumTel(rs.getInt("numtelefono"));
-        alumno.setBalanceHoras(rs.getInt("balancehoras"));
-        alumno.setSkp(rs.getBoolean("SKP"));
-        alumno.setContraseña(rs.getString("contraseña"));
+        alumno.setNumTel(rs.getInt("num_tel"));
+        alumno.setBalanceHoras(rs.getInt("balance_horas"));
+        alumno.setSkp(rs.getBoolean("isskp"));
+        alumno.setContraseña(rs.getString("password"));
 
         return alumno;
     }

@@ -33,12 +33,8 @@ public class AlumnoDao {
         }
     }
 
-    public List<Alumno> getAlumno(String dni){
-        try {
-            return jdbcTemplate.query("SELECT * FROM Alumno WHERE dni = '?'", new AlumnoRowMapper(), dni);
-        }catch (EmptyResultDataAccessException e){
-            return new ArrayList<>();
-        }
+    public Alumno getAlumno(String dni){
+            return jdbcTemplate.queryForObject("SELECT * FROM Alumnos WHERE dni = ?", new AlumnoRowMapper(), dni);
     }
 
     public void addAlumno(Alumno alumno){

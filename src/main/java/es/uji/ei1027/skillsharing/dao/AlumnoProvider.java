@@ -2,21 +2,29 @@ package es.uji.ei1027.skillsharing.dao;
 
 import es.uji.ei1027.skillsharing.model.Alumno;
 import org.jasypt.util.password.BasicPasswordEncryptor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Repository
 public class AlumnoProvider implements AlumnoRegDao {
+    AlumnoDao knownUsers = new AlumnoDao();
 
-    final Map<String, Alumno> knownUsers = new HashMap<String, Alumno>();
-
-
+    @Autowired
+    public void setAlumnoProviderDao(AlumnoDao alumnoDao) {
+        this.knownUsers = alumnoDao;
+    }
     @Override
     public Alumno loadUserByUsername(String dni, String contraseña) {
-        Alumno alumno = knownUsers.get(dni.trim());
+        Alumno alumno = knownUsers.getAlumno(dni);
+        System.out.println("Provider");
+        System.out.println(alumno);
+        System.out.println("Pass");
+        System.out.println(contraseña);
         if (alumno == null)
             return null; // Usuari no trobat
         // Contrasenya
@@ -28,11 +36,6 @@ public class AlumnoProvider implements AlumnoRegDao {
             return null; // bad login!
         }
     }
-
-        @Override
-        public Collection<Alumno> listarUsuarios () {
-            return knownUsers.values();
-        }
 
 }
 

@@ -15,12 +15,12 @@
           th:object="${alumno}" method="post">
         <p>
             <label>Nom d'usuari:</label>
-            <input class="form_control" type="text" th:field="*{dni}"/>
+            <input class="form_control" type="text" th:field="${alumno.dni}"/>
         <div class="error" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div>
         </p>
         <p>
             <label>Contrasenya:</label>
-            <input class="form_control" type="password" th:field="*{contraseña}"/>
+            <input class="form_control" type="password" th:field="${alumno.contraseña}"/>
         <div class="error" th:if="${#fields.hasErrors('contraseña')}" th:errors="*{contraseña}"></div>
         </p>
         <input type="submit" value="Accedir" />

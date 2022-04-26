@@ -7,6 +7,5 @@ import java.util.Collection;
 public interface AlumnoRegDao {
 
     Alumno loadUserByUsername(String dni, String contraseña);
-    Collection<Alumno> listarUsuarios();
 
 }
