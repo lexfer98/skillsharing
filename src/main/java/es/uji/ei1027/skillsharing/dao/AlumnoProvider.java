@@ -5,26 +5,20 @@ import org.jasypt.util.password.BasicPasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Repository
 public class AlumnoProvider implements AlumnoRegDao {
-    AlumnoDao knownUsers = new AlumnoDao();
 
+    private AlumnoDao alumnoDao;
     @Autowired
-    public void setAlumnoProviderDao(AlumnoDao alumnoDao) {
-        this.knownUsers = alumnoDao;
+    public void setAlumnoDao(AlumnoDao alumnoDao){
+        this.alumnoDao= alumnoDao;
     }
     @Override
     public Alumno loadUserByUsername(String dni, String contraseña) {
-        Alumno alumno = knownUsers.getAlumno(dni);
-        System.out.println("Provider");
-        System.out.println(alumno);
-        System.out.println("Pass");
-        System.out.println(contraseña);
+        Alumno alumno = alumnoDao.getAlumno(dni);
+
         if (alumno == null)
             return null; // Usuari no trobat
         // Contrasenya
@@ -32,9 +26,15 @@ public class AlumnoProvider implements AlumnoRegDao {
         if (passwordEncryptor.checkPassword(contraseña, alumno.getContraseña())) {
             // Es deuria esborrar de manera segura el camp password abans de tornar-lo
             return alumno;
-        } else {
+        }
+        else {
             return null; // bad login!
         }
+    }
+
+    @Override
+    public Alumno getAlumno(String dni){
+        return getAlumno(dni);
     }
 
 }
