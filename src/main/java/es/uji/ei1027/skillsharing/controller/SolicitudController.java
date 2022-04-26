@@ -44,18 +44,14 @@ public class SolicitudController {
         return "solicitud/list";
     }
 
-
-
-    @RequestMapping(value = "/add/{id_oferta}", method = RequestMethod.POST)
-    public String processAddSubmit(BindingResult bindingResult,@PathVariable int id_oferta, @ModelAttribute("alumno") Alumno alumno) {
-        Oferta of = ofertaDao.getOferta(id_oferta);
+    @RequestMapping(value = "/add/{id_oferta}")
+    public String processAddSubmit(@ModelAttribute("alumno") Alumno alumno, @PathVariable int id_oferta) {
         Solicitud solicitud = new Solicitud();
-        solicitud.crearSolicitudOferta(of);
+        solicitud.crearSolicitudOferta(ofertaDao.getOferta(id_oferta));
         solicitud.setDni_solicitud(alumno.getDni());
-        if (bindingResult.hasErrors())
-            return "solicitud/add";
+        System.out.println(solicitud);
         solicitudDao.addSolicitud(solicitud);
-        return "redirect:list";
+        return "redirect:../../oferta/list";
     }
 
     @RequestMapping(value = "/update/{id_solicitud}", method = RequestMethod.GET)
@@ -76,8 +72,7 @@ public class SolicitudController {
     }
 
     @RequestMapping(value = "/delete/{id_solicitud}")
-    public String processDelete(@PathVariable int id_solicitud) {
+    public void processDelete(@PathVariable int id_solicitud) {
         solicitudDao.deleteSolicitud(id_solicitud);
-        return "redirect:../list";
     }
 }
