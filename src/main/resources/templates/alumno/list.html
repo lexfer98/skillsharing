@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Llista de alumnes del sistema</title>
+    <meta charset="UTF-8"/>
+    <!-- Afegim una fulla d'estil (Bootstrap) -->
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css"
+          th:href="@{/css/bootstrap.css}"/>
+</head>
+
+<body>
+<h1>Llista de alumnes del sistema</h1>
+<div th:if="${#lists.isEmpty(alumnos)}">
+    No hi ha usuaris
+</div>
+<table th:unless="${#lists.isEmpty(users)}"  class="table table-condensed">
+    <thead>
+    <tr>
+        <th>DNI</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="alumno: ${alumnos}">
+        <td th:text="${alumno.dni}"></td>
+    </tr>
+    </tbody>
+</table>
+<a href="/" class="btn btn-primary" role="button">Tornar</a>
+</body>
+</html>

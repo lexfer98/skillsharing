@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>SkillSharing</title>
@@ -7,10 +7,19 @@
 <body>
     <nav>
         <ul>
-            <li><a href="loginV2">Iniciar sesión</a></li>
+
             <li><a href="oferta/list">Ver ofertas</a></li>
         </ul>
     </nav>
+    <div class="loggeduser" th:object="${session}">
+        <p th:if="*{alumno == null}">
+            No autenticat <a href="/loginV2" th:href="@{/loginV2}">Entrar</a>
+        </p>
+        <p th:unless="*{alumno == null}">
+            Autenticat com <span th:text="*{alumno.dni}"></span> <a
+                href="/logout" th:href="@{/logout}">Eixir</a>
+        </p>
+    </div>
 
 </body>
 </html>

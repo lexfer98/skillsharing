@@ -49,5 +49,16 @@ public class HabilidadDao {
                 habilidad.getDescripcion(), habilidad.getNivel().toString().toUpperCase(Locale.ROOT), habilidad.getActiva());
     }
 
+    public Habilidad getIdHabilidad(int habilidad) {
+        try {
+            return jdbcTemplate.queryForObject("SELECT * FROM Habilidad WHERE id_habilidad = ?",
+                    new HabilidadRowMapper(),
+                    habilidad);
+
+        }
+        catch(EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
 
 }

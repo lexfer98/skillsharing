@@ -45,8 +45,8 @@ public class HabilidadController {
     }
 
     @RequestMapping(value="/update/{id_habilidad}", method = RequestMethod.GET)
-    public String editHabilidad(Model model, @PathVariable String id_habilidad) {
-        model.addAttribute("habilidad", id_habilidad);
+    public String editHabilidad(Model model, @PathVariable int id_habilidad) {
+        model.addAttribute("habilidad", habilidadDao.getIdHabilidad(id_habilidad));
         return "habilidad/update";
     }
 

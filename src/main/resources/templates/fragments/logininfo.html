@@ -1,0 +1,9 @@
+<div class="loggeduser" th:object="${session}" xmlns:th="http://www.w3.org/1999/xhtml">
+    <p th:if="*{alumno == null}">
+        No autenticat <a href="/loginV2" th:href="@{/loginV2}">Entrar</a>
+    </p>
+    <p th:unless="*{alumno == null}">
+        Autenticat com <span th:text="*{alumno.dni}"></span> <a
+            href="/logout" th:href="@{/logout}">Eixir</a>
+    </p>
+</div>

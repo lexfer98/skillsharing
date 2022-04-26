@@ -1,7 +1,9 @@
 package es.uji.ei1027.skillsharing.controller;
 
 import es.uji.ei1027.skillsharing.dao.AlumnoDao;
+import es.uji.ei1027.skillsharing.dao.AlumnoRegDao;
 import es.uji.ei1027.skillsharing.model.Alumno;
+import org.jasypt.util.password.BasicPasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,16 +12,23 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
 @Controller
 @RequestMapping("/alumno")
-public class AlumnoController {
+public class AlumnoController{
 
     private AlumnoDao alumnoDao;
+
 
     @Autowired
     public void setAlumnoDao(AlumnoDao AlumnoDao){
         this.alumnoDao= AlumnoDao;
     }
+
 
     @RequestMapping(value="/add")
     public String addAlumno(Model model) {
