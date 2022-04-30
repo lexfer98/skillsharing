@@ -20,7 +20,7 @@
         </p>
         <p>
             <label>Contrasenya:</label>
-            <input class="form_control" type="password" th:field="${alumno.contraseña}"/>
+            <input class="form_control" type="password" th:field="${alumno.contraseña}" minlength="6" maxlength="20"/>
         <div class="error" th:if="${#fields.hasErrors('contraseña')}" th:errors="*{contraseña}"></div>
         </p>
         <input type="submit" value="Accedir" />

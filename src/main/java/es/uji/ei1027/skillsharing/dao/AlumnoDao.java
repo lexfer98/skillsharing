@@ -34,7 +34,11 @@ public class AlumnoDao {
     }
 
     public Alumno getAlumno(String dni){
+        try {
             return jdbcTemplate.queryForObject("SELECT * FROM Alumnos WHERE dni = ?", new AlumnoRowMapper(), dni);
+        }catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 
     public void addAlumno(Alumno alumno){

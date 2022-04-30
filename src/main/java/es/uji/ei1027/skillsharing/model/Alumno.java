@@ -144,9 +144,12 @@ public class Alumno {
     }
 
     public void setContraseña(String contraseña) {
-        BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
-        this.contraseña = passwordEncryptor.encryptPassword(contraseña);
+        this.contraseña = contraseña;
 
+    }
+    public void encriptarContraseña(){
+        BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
+        this.contraseña = passwordEncryptor.encryptPassword(this.contraseña);
     }
 }
 

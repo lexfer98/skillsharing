@@ -25,6 +25,7 @@ public class AlumnoProvider implements AlumnoRegDao {
         BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
         if (passwordEncryptor.checkPassword(contraseña, alumno.getContraseña())) {
             // Es deuria esborrar de manera segura el camp password abans de tornar-lo
+            alumno.encriptarContraseña();
             return alumno;
         }
         else {

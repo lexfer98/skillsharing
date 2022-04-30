@@ -43,8 +43,9 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/loginV2", method = RequestMethod.POST)
-    public String checkLogin(@ModelAttribute("alumno") Alumno alumno,
-                             BindingResult bindingResult, HttpSession session) {
+    public String checkLogin(@ModelAttribute("alumno") Alumno alumno, BindingResult bindingResult, HttpSession session) {
+        System.out.println(alumno.getDni());
+        System.out.println(alumno.getContraseña());
 
         String url = "";
         AlumnoValidator alumnoValidator = new AlumnoValidator();
@@ -57,7 +58,7 @@ public class LoginController {
         alumno = alumnoRegDao.loadUserByUsername(alumno.getDni(), alumno.getContraseña());
         System.out.println(alumno);
         if (alumno == null) {
-            bindingResult.rejectValue("contraseña", "badpw", "Contrasenya incorrecta");
+            bindingResult.rejectValue("contraseña", "badpw", "Usuario y contraseña incorrectos");
             return "loginV2";
         }
         // Autenticats correctament.
