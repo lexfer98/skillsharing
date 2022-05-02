@@ -2,6 +2,7 @@ package es.uji.ei1027.skillsharing.controller;
 
 import es.uji.ei1027.skillsharing.dao.HabilidadDao;
 import es.uji.ei1027.skillsharing.dao.OfertaDao;
+import es.uji.ei1027.skillsharing.model.Alumno;
 import es.uji.ei1027.skillsharing.model.Oferta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/oferta")
@@ -35,14 +38,16 @@ public class OfertaController {
     }
 
     @RequestMapping("/list")
-    public String listTusOfertas(Model model) {
+    public String listTusOfertas(Model model, HttpSession session) {
+        session.setAttribute("alumno", session.getAttribute("alumno"));
         model.addAttribute("ofertas", ofertaDao.getOfertas());
         return "oferta/list";
     }
 
     @RequestMapping(value="/add")
-    public String addOferta(Model model) {
+    public String addOferta(Model model, @ModelAttribute("alumno") Alumno alumno) {
         model.addAttribute("habilidades", habilidadDao.getHabilidades());
+        model.addAttribute("alumno", alumno);
         model.addAttribute("oferta", new Oferta());
         return "oferta/add";
     }

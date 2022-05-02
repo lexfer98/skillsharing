@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/solicitud")
 public class SolicitudController {
@@ -45,11 +47,16 @@ public class SolicitudController {
     }
 
     @RequestMapping(value = "/add/{id_oferta}")
-    public String processAddSubmit(@ModelAttribute("alumno") Alumno alumno, @PathVariable int id_oferta) {
+    public String processAddSubmit(@PathVariable int id_oferta, HttpSession session) {
+        if (session.getAttribute("alumno") == null){
+            return "../loginV2";
+        }
         Solicitud solicitud = new Solicitud();
+        Alumno alumno = (Alumno) session.getAttribute("alumno");
         solicitud.crearSolicitudOferta(ofertaDao.getOferta(id_oferta));
         solicitud.setDni_solicitud(alumno.getDni());
         solicitudDao.addSolicitud(solicitud);
+        session.setAttribute("alumno", session.getAttribute("alumno"));
         return "redirect:../../oferta/list";
     }
 
