@@ -22,6 +22,8 @@ import java.util.Map;
 public class AlumnoController{
 
     private AlumnoDao alumnoDao;
+    private AlumnoRegDao alumnoRegDao;
+
 
 
     @Autowired
@@ -29,6 +31,21 @@ public class AlumnoController{
         this.alumnoDao= AlumnoDao;
     }
 
+    @Autowired
+    public void setAlumnoRegDao(AlumnoRegDao alumnoRegDao){
+        this.alumnoRegDao= alumnoRegDao;
+    }
+
+    @RequestMapping("/list")
+    public String listarAlumnos(HttpSession session,Model model){
+        session.setAttribute("nextUrl","alumno/list");
+        if (session.getAttribute("alumno") == null){
+            model.addAttribute("alumno",new Alumno());
+            return "loginV2";
+        }
+
+        return "alumno/list";
+    }
 
     @RequestMapping(value="/add")
     public String addAlumno(Model model) {

@@ -88,7 +88,7 @@ public class Alumno {
         return curso;
     }
 
-    public void setCurso(Integer curso) {
+    public void setCurso(int curso) {
         this.curso = curso;
     }
 
@@ -112,7 +112,7 @@ public class Alumno {
         return edad;
     }
 
-    public void setEdad(Integer edad) {
+    public void setEdad(int edad) {
         this.edad = edad;
     }
 
@@ -120,7 +120,7 @@ public class Alumno {
         return numTel;
     }
 
-    public void setNumTel(Integer numTel) {
+    public void setNumTel(int numTel) {
         this.numTel = numTel;
     }
 
@@ -145,13 +145,17 @@ public class Alumno {
     }
 
     public void setContraseña(String contraseña) {
+
         BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
         this.contraseña = passwordEncryptor.encryptPassword(contraseña);
 
     }
+
     public void encriptarContraseña(){
         BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
         this.contraseña = passwordEncryptor.encryptPassword(this.contraseña);
     }
+
+
 }
 

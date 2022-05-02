@@ -41,7 +41,14 @@ public class SolicitudController {
     }
 
     @RequestMapping("/list")
-    public String listSolicitudes(Model model) {
+    public String listSolicitudes(HttpSession session,Model model) {
+
+        session.setAttribute("nextUrl","solicitud/list");
+        if (session.getAttribute("alumno") == null){
+            model.addAttribute("alumno",new Alumno());
+            return "loginV2";
+        }
+
         model.addAttribute("solicitudes", solicitudDao.getSolicitudes());
         return "solicitud/list";
     }
@@ -81,4 +88,9 @@ public class SolicitudController {
     public void processDelete(@PathVariable int id_solicitud) {
         solicitudDao.deleteSolicitud(id_solicitud);
     }
+
+
+
+
+
 }

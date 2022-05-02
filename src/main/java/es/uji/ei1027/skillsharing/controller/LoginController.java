@@ -44,8 +44,6 @@ public class LoginController {
 
     @RequestMapping(value = "/loginV2", method = RequestMethod.POST)
     public String checkLogin(@ModelAttribute("alumno") Alumno alumno, BindingResult bindingResult, HttpSession session) {
-        System.out.println(alumno.getDni());
-        System.out.println(alumno.getContraseña());
 
         String url = "";
         AlumnoValidator alumnoValidator = new AlumnoValidator();
@@ -55,8 +53,8 @@ public class LoginController {
         }
         // Comprova que el login siga correcte
         // intentant carregar les dades de l'usuari
-        alumno = alumnoRegDao.loadUserByUsername(alumno.getDni(), alumno.getContraseña());
-        System.out.println(alumno);
+        alumno = alumnoRegDao.loadUserByDni(alumno.getDni(), alumno.getContraseña());
+
         if (alumno == null) {
             bindingResult.rejectValue("contraseña", "badpw", "Usuario y contraseña incorrectos");
             return "loginV2";
