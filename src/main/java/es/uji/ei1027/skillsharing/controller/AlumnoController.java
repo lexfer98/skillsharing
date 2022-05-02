@@ -58,6 +58,7 @@ public class AlumnoController{
                                    BindingResult bindingResult) {
         if (bindingResult.hasErrors())
         return "alumno/add";
+        alumno.encriptarContraseña();
         alumnoDao.addAlumno(alumno);
         return "redirect:/";
     }
