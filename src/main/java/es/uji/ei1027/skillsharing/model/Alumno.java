@@ -3,6 +3,7 @@ package es.uji.ei1027.skillsharing.model;
 import org.jasypt.util.password.BasicPasswordEncryptor;
 
 import java.time.LocalDate;
+import org.jasypt.util.password.BasicPasswordEncryptor;
 
 public class Alumno {
     private String dni;
@@ -144,7 +145,8 @@ public class Alumno {
     }
 
     public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+        BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
+        this.contraseña = passwordEncryptor.encryptPassword(contraseña);
 
     }
     public void encriptarContraseña(){
