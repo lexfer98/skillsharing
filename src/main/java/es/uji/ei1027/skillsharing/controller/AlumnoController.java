@@ -63,4 +63,15 @@ public class AlumnoController{
         return "redirect:/";
     }
 
+    @RequestMapping("/users")
+    public String llevarMenú(HttpSession session,Model model) {
+
+        session.setAttribute("nextUrl","alumno/users");
+        if (session.getAttribute("alumno") == null){
+            model.addAttribute("alumno",new Alumno());
+            return "loginV2";
+        }
+        return "alumno/users";
+    }
+
 }
