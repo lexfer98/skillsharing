@@ -32,7 +32,8 @@ public class OfertaController {
     }
 
     @RequestMapping("/listTusOfertas/{dniPropietario}")
-    public String listOfertas(Model model, @PathVariable String dniPropietario) {
+    public String listOfertas(Model model, @PathVariable String dniPropietario, HttpSession session) {
+        session.setAttribute("alumno", session.getAttribute("alumno"));
         model.addAttribute("ofertas", ofertaDao.getTusOfertas(dniPropietario));
         return "oferta/list";
     }
@@ -45,7 +46,8 @@ public class OfertaController {
     }
 
     @RequestMapping(value="/add")
-    public String addOferta(Model model, @ModelAttribute("alumno") Alumno alumno) {
+    public String addOferta(Model model, @ModelAttribute("alumno") Alumno alumno, HttpSession session) {
+        session.setAttribute("alumno", session.getAttribute("alumno"));
         model.addAttribute("habilidades", habilidadDao.getHabilidades());
         model.addAttribute("alumno", alumno);
         model.addAttribute("oferta", new Oferta());
@@ -54,7 +56,8 @@ public class OfertaController {
 
     @RequestMapping(value="/add", method= RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("oferta") Oferta oferta,
-                                   BindingResult bindingResult) {
+                                   BindingResult bindingResult, HttpSession session) {
+        session.setAttribute("alumno", session.getAttribute("alumno"));
         if (bindingResult.hasErrors())
             return "oferta/add";
         ofertaDao.addOferta(oferta);
@@ -62,7 +65,8 @@ public class OfertaController {
     }
 
     @RequestMapping(value="/update/{idOferta}", method = RequestMethod.GET)
-    public String editOferta(Model model, @PathVariable int idOferta) {
+    public String editOferta(Model model, @PathVariable int idOferta, HttpSession session) {
+        session.setAttribute("alumno", session.getAttribute("alumno"));
         model.addAttribute("oferta", ofertaDao.getOferta(idOferta));
         return "oferta/update";
     }
@@ -70,7 +74,8 @@ public class OfertaController {
     @RequestMapping(value="/update", method = RequestMethod.POST)
     public String processUpdateSubmit(
             @ModelAttribute("oferta") Oferta oferta,
-            BindingResult bindingResult) {
+            BindingResult bindingResult, HttpSession session) {
+        session.setAttribute("alumno", session.getAttribute("alumno"));
         if (bindingResult.hasErrors())
             return "oferta/update";
         ofertaDao.updateOferta(oferta);
@@ -78,7 +83,8 @@ public class OfertaController {
     }
 
     @RequestMapping(value="/delete/{idOferta}")
-    public String processDelete(@PathVariable int idOferta) {
+    public String processDelete(@PathVariable int idOferta, HttpSession session) {
+        session.setAttribute("alumno", session.getAttribute("alumno"));
         ofertaDao.deleteOferta(idOferta);
         return "redirect:../list";
     }

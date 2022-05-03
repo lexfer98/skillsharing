@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/habilidad")
 public class HabilidadController {
@@ -24,20 +26,23 @@ public class HabilidadController {
     }
 
     @RequestMapping("/list")
-    public String listHabilidades(Model model) {
+    public String listHabilidades(Model model, HttpSession session) {
+        session.setAttribute("alumno", session.getAttribute("alumno"));
         model.addAttribute("habilidades", habilidadDao.getHabilidades());
         return "habilidad/list";
     }
 
     @RequestMapping(value="/add")
-    public String addHabilidad(Model model) {
+    public String addHabilidad(Model model, HttpSession session) {
+        session.setAttribute("alumno", session.getAttribute("alumno"));
         model.addAttribute("habilidad", new Habilidad());
         return "habilidad/add";
     }
 
     @RequestMapping(value="/add", method= RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("habilidad") Habilidad habilidad,
-                                   BindingResult bindingResult) {
+                                   BindingResult bindingResult, HttpSession session) {
+        session.setAttribute("alumno", session.getAttribute("alumno"));
         if (bindingResult.hasErrors())
             return "habilidad/add";
         habilidadDao.addHabilidad(habilidad);
@@ -45,7 +50,8 @@ public class HabilidadController {
     }
 
     @RequestMapping(value="/update/{id_habilidad}", method = RequestMethod.GET)
-    public String editHabilidad(Model model, @PathVariable int id_habilidad) {
+    public String editHabilidad(Model model, @PathVariable int id_habilidad, HttpSession session) {
+        session.setAttribute("alumno", session.getAttribute("alumno"));
         model.addAttribute("habilidad", habilidadDao.getIdHabilidad(id_habilidad));
         return "habilidad/update";
     }

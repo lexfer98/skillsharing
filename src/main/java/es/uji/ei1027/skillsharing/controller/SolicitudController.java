@@ -48,7 +48,7 @@ public class SolicitudController {
             model.addAttribute("alumno",new Alumno());
             return "loginV2";
         }
-
+        session.setAttribute("alumno", session.getAttribute("alumno"));
         model.addAttribute("solicitudes", solicitudDao.getSolicitudes());
         return "solicitud/list";
     }
@@ -68,24 +68,28 @@ public class SolicitudController {
     }
 
     @RequestMapping(value = "/update/{id_solicitud}", method = RequestMethod.GET)
-    public String editSolicitud(Model model, @PathVariable int id_solicitud) {
+    public String editSolicitud(Model model, @PathVariable int id_solicitud, HttpSession session) {
         model.addAttribute("solicitud", solicitudDao.getSolicitud(id_solicitud));
+        session.setAttribute("alumno", session.getAttribute("alumno"));
         return "solictud/update";
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String processUpdateSubmit(
             @ModelAttribute("solicitud") Solicitud solicitud,
-            BindingResult bindingResult) {
+            BindingResult bindingResult,
+            HttpSession session) {
         System.out.println(solicitud);
         if (bindingResult.hasErrors())
             return "solicitud/update";
         solicitudDao.updateSolicitud(solicitud);
+        session.setAttribute("alumno", session.getAttribute("alumno"));
         return "redirect:list";
     }
 
     @RequestMapping(value = "/delete/{id_solicitud}")
-    public void processDelete(@PathVariable int id_solicitud) {
+    public void processDelete(@PathVariable int id_solicitud, HttpSession session) {
+        session.setAttribute("alumno", session.getAttribute("alumno"));
         solicitudDao.deleteSolicitud(id_solicitud);
     }
 

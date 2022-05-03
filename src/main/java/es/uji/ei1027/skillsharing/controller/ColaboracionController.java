@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/colaboracion")
 public class ColaboracionController {
@@ -28,13 +30,15 @@ public class ColaboracionController {
 
 
     @RequestMapping("/list")
-    public String listColaboraciones(Model model) {
+    public String listColaboraciones(Model model, HttpSession session) {
+        session.setAttribute("alumno", session.getAttribute("alumno"));
         model.addAttribute("colaboraciones", colaboracionDao.getColaboraciones());
         return "colaboracion/list";
     }
 
     @RequestMapping(value="/update/{id_colaboracion}", method = RequestMethod.GET)
-    public String editColaboracion(Model model, @PathVariable int id_colaboracion) {
+    public String editColaboracion(Model model, @PathVariable int id_colaboracion, HttpSession session) {
+        session.setAttribute("alumno", session.getAttribute("alumno"));
         model.addAttribute("colaboracion", colaboracionDao.getColaboracion(id_colaboracion));
         return "colaboracion/update";
     }
@@ -42,7 +46,8 @@ public class ColaboracionController {
     @RequestMapping(value="/update", method = RequestMethod.POST)
     public String processUpdateSubmit(
             @ModelAttribute("colaboracion")Colaboracion colaboracion,
-            BindingResult bindingResult) {
+            BindingResult bindingResult, HttpSession session) {
+        session.setAttribute("alumno", session.getAttribute("alumno"));
         System.out.println(colaboracion);
         if (bindingResult.hasErrors())
             return "colaboracion/update";
