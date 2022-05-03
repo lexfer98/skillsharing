@@ -17,9 +17,10 @@
     <input type="hidden" th:field="*{activa}" />
     <table align="center">
         <tr>
-
             <td><label>Id Habilidad</label></td>
-            <td><input type="text" th:field="*{idHabilidad}" /></td>
+            <td><select th:field="${oferta.idHabilidad}">
+                <option th:value="${habilidad.id_habilidad}" th:each="habilidad: ${habilidades}"><a th:text=${habilidad.nombre} ></a> <a th:text=${habilidad.nivel}></a></option>
+            </select></td>
         </tr>
         <tr>
             <td><label>Nombre</label></td>

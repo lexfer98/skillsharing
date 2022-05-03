@@ -31,22 +31,35 @@ public class OfertaController {
         this.habilidadDao = habilidadDao;
     }
 
-    @RequestMapping("/listTusOfertas/{dniPropietario}")
+    @RequestMapping("/listpropias/{dniPropietario}")
     public String listOfertas(Model model, @PathVariable String dniPropietario, HttpSession session) {
+        session.setAttribute("nextUrl", "redirect:oferta/listpropias");
+        if (session.getAttribute("alumno") == null)
+        {
+            model.addAttribute("alumno",new Alumno() );
+            return "loginV2";
+        }
         session.setAttribute("alumno", session.getAttribute("alumno"));
         model.addAttribute("ofertas", ofertaDao.getTusOfertas(dniPropietario));
-        return "oferta/list";
+        return "oferta/listpropias";
     }
 
     @RequestMapping("/list")
     public String listTusOfertas(Model model, HttpSession session) {
         session.setAttribute("alumno", session.getAttribute("alumno"));
+        model.addAttribute("habilidades", habilidadDao.getHabilidades());
         model.addAttribute("ofertas", ofertaDao.getOfertas());
         return "oferta/list";
     }
 
     @RequestMapping(value="/add")
     public String addOferta(Model model, @ModelAttribute("alumno") Alumno alumno, HttpSession session) {
+        session.setAttribute("nextUrl", "redirect:oferta/add");
+        if (session.getAttribute("alumno") == null)
+        {
+            model.addAttribute("alumno",new Alumno() );
+            return "loginV2";
+        }
         session.setAttribute("alumno", session.getAttribute("alumno"));
         model.addAttribute("habilidades", habilidadDao.getHabilidades());
         model.addAttribute("alumno", alumno);
@@ -58,15 +71,24 @@ public class OfertaController {
     public String processAddSubmit(@ModelAttribute("oferta") Oferta oferta,
                                    BindingResult bindingResult, HttpSession session) {
         session.setAttribute("alumno", session.getAttribute("alumno"));
+        Alumno alumno = (Alumno) session.getAttribute("alumno");
+        oferta.setDniPropietario(alumno.getDni());
         if (bindingResult.hasErrors())
             return "oferta/add";
         ofertaDao.addOferta(oferta);
         return "redirect:list";
     }
 
-    @RequestMapping(value="/update/{idOferta}", method = RequestMethod.GET)
+    @RequestMapping(value="/update/{idOferta}")
     public String editOferta(Model model, @PathVariable int idOferta, HttpSession session) {
+        session.setAttribute("nextUrl", "redirect:oferta/update/"+idOferta);
+        if (session.getAttribute("alumno") == null)
+        {
+            model.addAttribute("alumno",new Alumno() );
+            return "loginV2";
+        }
         session.setAttribute("alumno", session.getAttribute("alumno"));
+        model.addAttribute("habilidades", habilidadDao.getHabilidades());
         model.addAttribute("oferta", ofertaDao.getOferta(idOferta));
         return "oferta/update";
     }
@@ -83,9 +105,15 @@ public class OfertaController {
     }
 
     @RequestMapping(value="/delete/{idOferta}")
-    public String processDelete(@PathVariable int idOferta, HttpSession session) {
+    public String processDelete(@PathVariable int idOferta, HttpSession session, Model model) {
+        session.setAttribute("nextUrl", "redirect:oferta/list");
+        if (session.getAttribute("alumno") == null)
+        {
+            model.addAttribute("alumno",new Alumno() );
+            return "loginV2";
+        }
         session.setAttribute("alumno", session.getAttribute("alumno"));
         ofertaDao.deleteOferta(idOferta);
-        return "redirect:../list";
+        return "redirect:/list";
     }
 }

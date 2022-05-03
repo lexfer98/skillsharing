@@ -38,7 +38,7 @@ public class OfertaDao {
 
     public List<Oferta> getTusOfertas(String dniPropietario) {
         try {
-            return jdbcTemplate.query("SELECT * FROM Oferta where activa = true and dni_propietadio='?'",
+            return jdbcTemplate.query("SELECT * FROM Oferta where activa = true and dni_propietadio=?",
                     new OfertaRowMapper(), dniPropietario);
         }
         catch(EmptyResultDataAccessException e) {
@@ -52,7 +52,7 @@ public class OfertaDao {
     }
 
     public void deleteOferta(int idOferta) {
-        jdbcTemplate.update("UPDATE oferta SET activa = false WHERE id_oferta = '?'",
+        jdbcTemplate.update("UPDATE oferta SET activa = false WHERE id_oferta = ?",
                 idOferta);
     }
 

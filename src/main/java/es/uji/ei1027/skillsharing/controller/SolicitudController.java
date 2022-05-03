@@ -86,7 +86,6 @@ public class SolicitudController {
             @ModelAttribute("solicitud") Solicitud solicitud,
             BindingResult bindingResult,
             HttpSession session) {
-        System.out.println(solicitud);
         if (bindingResult.hasErrors())
             return "solicitud/update";
         solicitudDao.updateSolicitud(solicitud);
