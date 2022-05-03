@@ -43,19 +43,22 @@ public class AlumnoController{
             model.addAttribute("alumno",new Alumno());
             return "loginV2";
         }
+        session.setAttribute("alumno", session.getAttribute("alumno"));
 
         return "alumno/list";
     }
 
     @RequestMapping(value="/add")
-    public String addAlumno(Model model) {
+    public String addAlumno(Model model, HttpSession session) {
+        session.setAttribute("alumno", session.getAttribute("alumno"));
         model.addAttribute("alumno", new Alumno());
         return "alumno/add";
     }
 
     @RequestMapping(value="/add", method= RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("alumno") Alumno alumno,
-                                   BindingResult bindingResult) {
+                                   BindingResult bindingResult, HttpSession session) {
+        session.setAttribute("alumno", session.getAttribute("alumno"));
         if (bindingResult.hasErrors())
         return "alumno/add";
         alumno.encriptarContraseña();
