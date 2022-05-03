@@ -30,7 +30,7 @@ public class SolicitudDao {
     }
 
     public Solicitud getSolicitud(int id_solicitud){
-            return jdbcTemplate.queryForObject("SELECT * FROM Solicitud WHERE id_solicitud = '?'", new SolicitudRowMapper(),id_solicitud);
+            return jdbcTemplate.queryForObject("SELECT * FROM Solicitud WHERE id_solicitud = ?", new SolicitudRowMapper(),id_solicitud);
     }
 
     // Lo que tu solicitas

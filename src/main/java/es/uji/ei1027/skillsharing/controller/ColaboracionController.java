@@ -81,7 +81,7 @@ public class ColaboracionController {
         Alumno alumno = (Alumno) session.getAttribute("alumno");
         session.setAttribute("alumno", session.getAttribute("alumno"));
         colaboracionDao.addColaboracion(colaboracion);
-        return "redirect:../../colaboracion/listpropia";
+        return "redirect:../../colaboracion/listpropias";
     }
 
 }
