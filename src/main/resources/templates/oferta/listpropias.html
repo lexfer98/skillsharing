@@ -12,14 +12,12 @@
 <table align="center">
     <thead>
     <tr>
-        <th>Id Oferta</th>
-        <th>Id Habilidad</th>
+        <th>Nombre Habilidad</th>
         <th>DNI Propietario</th>
         <th>Nombre</th>
         <th>Descripcion</th>
         <th>Fecha Iniciacion</th>
         <th>Fecha Finalizacion</th>
-        <th>Activa</th>
         <th></th>
         <th></th>
     </tr>
@@ -28,16 +26,15 @@
 
 
     <tr th:each="oferta: ${ofertas}" class="table-light">
-        <td th:text="${oferta.idOferta}"></td>
-        <td th:text="${oferta.idHabilidad}"></td>
+        <td th:each="habilidad: ${habilidades}" th:text="${habilidad.id_habilidad==oferta.idHabilidad ? habilidad.nombre+' '+habilidad.nivel : 'No existe'}"></td>
         <td th:text="${oferta.dniPropietario}"></td>
         <td th:text="${oferta.nombre}"></td>
         <td th:text="${oferta.descripcion}"></td>
         <td th:text="${oferta.fechaIniciacion}"></td>
         <td th:text="${oferta.fechaFinalizacion}"></td>
-        <td th:text="${oferta.activa}"></td>
-        <td><a th:href="@{/oferta/update/{id_oferta}(id_oferta=${oferta.idOferta})}">Edita</a>
-        <td><a th:href="@{/solicitud/add/{id_oferta}(id_oferta=${oferta.idOferta})}">Solicitar</a>
+        <td><a th:href="@{/oferta/update/{idOferta}(idOferta=${oferta.idOferta})}">Edita</a>
+        <td><a th:href="@{/oferta/delete/{idOferta}(idOferta=${oferta.idOferta})}">Borrar</a>
+        <!--<td><a th:href="@{/solicitud/listpropias/{id_solicitud}(id_solicitud=${oferta.idOferta})}">Ver Solicitudes</a> Hacer List por ofertas en solicitud-->
         </td>
     </tr>
     </tbody>

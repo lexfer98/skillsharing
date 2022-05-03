@@ -38,7 +38,7 @@ public class OfertaDao {
 
     public List<Oferta> getTusOfertas(String dniPropietario) {
         try {
-            return jdbcTemplate.query("SELECT * FROM Oferta where activa = true and dni_propietadio=?",
+            return jdbcTemplate.query("SELECT * FROM Oferta where activa = true and dni_propietario=?",
                     new OfertaRowMapper(), dniPropietario);
         }
         catch(EmptyResultDataAccessException e) {

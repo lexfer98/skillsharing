@@ -108,6 +108,13 @@ public class Colaboracion {
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
+
+    public void crearColaboracion(Solicitud solicitud){
+        this.idOferta = solicitud.getId_oferta();
+        this.idSolicitud = solicitud.getId_solicitud();
+        this.fecha_inicio = solicitud.getFecha_inic();
+        this.fecha_fin = solicitud.getFecha_fin();
+    }
 }
 
 

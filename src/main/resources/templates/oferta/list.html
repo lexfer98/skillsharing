@@ -32,13 +32,10 @@
         <td th:text="${oferta.descripcion}"></td>
         <td th:text="${oferta.fechaIniciacion}"></td>
         <td th:text="${oferta.fechaFinalizacion}"></td>
-        <td><a th:href="@{/oferta/update/{id_oferta}(id_oferta=${oferta.idOferta})}">Edita</a>
-        <td><a th:href="@{/oferta/delete/{id_oferta}(id_oferta=${oferta.idOferta})}">Borrar</a>
         <td><a th:href="@{/solicitud/add/{id_oferta}(id_oferta=${oferta.idOferta})}">Solicitar</a>
         </td>
     </tr>
     </tbody>
 </table>
-<a href="add">Agrega una oferta</a>
 </body>
 </html>

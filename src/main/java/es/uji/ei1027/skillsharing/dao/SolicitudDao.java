@@ -29,12 +29,8 @@ public class SolicitudDao {
         }
     }
 
-    public List<Solicitud> getSolicitud(int id_solicitud){
-        try {
-            return jdbcTemplate.query("SELECT * FROM Solicitud WHERE id_solicitud = '?'", new SolicitudRowMapper(),id_solicitud);
-        }catch (EmptyResultDataAccessException e){
-            return new ArrayList<Solicitud>();
-        }
+    public Solicitud getSolicitud(int id_solicitud){
+            return jdbcTemplate.queryForObject("SELECT * FROM Solicitud WHERE id_solicitud = '?'", new SolicitudRowMapper(),id_solicitud);
     }
 
     public List<Oferta> getTusSolicitudes(String dniPropietario) {

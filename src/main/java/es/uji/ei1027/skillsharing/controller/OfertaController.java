@@ -31,16 +31,12 @@ public class OfertaController {
         this.habilidadDao = habilidadDao;
     }
 
-    @RequestMapping("/listpropias/{dniPropietario}")
-    public String listOfertas(Model model, @PathVariable String dniPropietario, HttpSession session) {
-        session.setAttribute("nextUrl", "redirect:oferta/listpropias");
-        if (session.getAttribute("alumno") == null)
-        {
-            model.addAttribute("alumno",new Alumno() );
-            return "loginV2";
-        }
+    @RequestMapping("/listpropias")
+    public String listOfertas(Model model, HttpSession session) {
         session.setAttribute("alumno", session.getAttribute("alumno"));
-        model.addAttribute("ofertas", ofertaDao.getTusOfertas(dniPropietario));
+        Alumno alumno = (Alumno) session.getAttribute("alumno");
+        model.addAttribute("habilidades", habilidadDao.getHabilidades());
+        model.addAttribute("ofertas", ofertaDao.getTusOfertas(alumno.getDni()));
         return "oferta/listpropias";
     }
 

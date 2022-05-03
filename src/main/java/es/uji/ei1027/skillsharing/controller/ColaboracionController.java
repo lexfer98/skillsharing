@@ -4,6 +4,7 @@ package es.uji.ei1027.skillsharing.controller;
 import es.uji.ei1027.skillsharing.dao.ColaboracionDao;
 import es.uji.ei1027.skillsharing.dao.HabilidadDao;
 import es.uji.ei1027.skillsharing.dao.OfertaDao;
+import es.uji.ei1027.skillsharing.dao.SolicitudDao;
 import es.uji.ei1027.skillsharing.model.Alumno;
 import es.uji.ei1027.skillsharing.model.Colaboracion;
 import es.uji.ei1027.skillsharing.model.Oferta;
@@ -24,10 +25,22 @@ import javax.servlet.http.HttpSession;
 public class ColaboracionController {
 
     private ColaboracionDao colaboracionDao;
+    private SolicitudDao solicitudDao;
+    private OfertaDao ofertaDao;
 
     @Autowired
     public void setColaboracionDao(ColaboracionDao colaboracionDao){
         this.colaboracionDao=colaboracionDao;
+    }
+
+    @Autowired
+    public void setSolicitudDao(SolicitudDao solicitudDao){
+        this.solicitudDao=solicitudDao;
+    }
+
+    @Autowired
+    public void setOfertaDao(OfertaDao ofertaDao){
+        this.ofertaDao=ofertaDao;
     }
 
 
@@ -57,14 +70,17 @@ public class ColaboracionController {
         return "redirect:list";
     }
 
-    @RequestMapping(value = "/add/{id_oferta}")
-    public String processAddSubmit(@PathVariable int id_oferta,@PathVariable int id_solicitud, HttpSession session) {
+    @RequestMapping(value = "/add/{id_solicitud}")
+    public String processAddSubmit(@PathVariable int id_solicitud, HttpSession session) {
         if (session.getAttribute("alumno") == null){
             return "../loginV2";
         }
+        Solicitud solicitud = solicitudDao.getSolicitud(id_solicitud);
         Colaboracion colaboracion = new Colaboracion();
+        colaboracion.crearColaboracion(solicitud);
         Alumno alumno = (Alumno) session.getAttribute("alumno");
         session.setAttribute("alumno", session.getAttribute("alumno"));
+        colaboracionDao.addColaboracion(colaboracion);
         return "redirect:../../colaboracion/listpropia";
     }
 
