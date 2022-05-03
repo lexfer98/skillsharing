@@ -34,8 +34,7 @@
         <td th:text="${oferta.fechaFinalizacion}"></td>
         <td><a th:href="@{/oferta/update/{idOferta}(idOferta=${oferta.idOferta})}">Edita</a>
         <td><a th:href="@{/oferta/delete/{idOferta}(idOferta=${oferta.idOferta})}">Borrar</a>
-        <!--<td><a th:href="@{/solicitud/listpropias/{id_solicitud}(id_solicitud=${oferta.idOferta})}">Ver Solicitudes</a> Hacer List por ofertas en solicitud-->
-        </td>
+        <td><a th:href="@{/solicitud/listsolicitadas/{id_oferta}(id_oferta=${oferta.idOferta})}">Ver Solicitudes</a>
     </tr>
     </tbody>
 </table>

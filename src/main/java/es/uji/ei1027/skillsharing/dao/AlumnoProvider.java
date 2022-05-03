@@ -34,6 +34,9 @@ public class AlumnoProvider implements AlumnoRegDao {
         }catch (EmptyResultDataAccessException ex){
             return null;
         }
+
+
+
         if (alumno == null)
             return null; // Usuari no trobat
         // Contrasenya

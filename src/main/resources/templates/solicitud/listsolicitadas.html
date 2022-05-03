@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
 </head>
 <body>
-<h1 align="center">Mis solicitudes a otras ofertas ( ver si estoy aceptado o rechazado )</h1>
+<h1 align="center">Mis solicitudesa de ofertas ( aceptar/rechazar )</h1>
 <table align="center">
     <thead>
     <tr>
@@ -35,8 +35,10 @@
         <td th:text="${solicitud.fecha_fin}"></td>
         <td th:text="${solicitud.activa}"></td>
 
-
-        </td>
+        <!-- FALTA PONER AQUI PARA ACEPTAR , ES DECIR QUE SE CREE LA COLABORACION-->
+        <!-- <td><a th:href="@{/colaboracion/add/{id_colaboracion}(id_colaboracion=${colaboracion.id_colaboracion})}">Aceptar</a> -->
+        <!-- FALTA PONER AQUI PARA RECHAZAR , ES DECIR QUE SE BORRE LA SOLICITUD DEL ALUMNO(DNI) QUE LA SOLICITA-->
+        <!-- <td><a th:href="@{/solicitud/delete/{id_solicitud}(id_solicitud=${solicitud.id_solicitud})}">Rechazar</a>-->
     </tr>
     </tbody>
 </table>

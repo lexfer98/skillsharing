@@ -33,13 +33,25 @@ public class SolicitudDao {
             return jdbcTemplate.queryForObject("SELECT * FROM Solicitud WHERE id_solicitud = '?'", new SolicitudRowMapper(),id_solicitud);
     }
 
-    public List<Oferta> getTusSolicitudes(String dniPropietario) {
+    // Lo que tu solicitas
+    public List<Solicitud> getTusSolicitadas(String dniSolicitante) {
         try {
-            return jdbcTemplate.query("SELECT * FROM Solicitud where activa = true and dni_propietadio='?'",
-                    new OfertaRowMapper(), dniPropietario);
+            return jdbcTemplate.query("SELECT * FROM Solicitud where activa = true and dni_solicitante=?",
+                    new SolicitudRowMapper(), dniSolicitante);
         }
         catch(EmptyResultDataAccessException e) {
-            return new ArrayList<Oferta>();
+            return new ArrayList<Solicitud>();
+        }
+    }
+
+    //La lista de solicitudes respecto a cada oferta
+    public List<Solicitud> getSolicitudesDeCadaOferta(int idOferta) {
+        try {
+            return jdbcTemplate.query("SELECT * FROM Solicitud where activa = true and id_oferta=?",
+                    new SolicitudRowMapper(), idOferta);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Solicitud>();
         }
     }
 
@@ -48,7 +60,7 @@ public class SolicitudDao {
     }
 
     public void updateSolicitud(Solicitud solicitud){
-        jdbcTemplate.update("UPDATE Solicitud SET id_habilidad = '?',id_oferta = '?',estado = '?', dni_solicitante = '?', nombre = '?', descripcion = '?', fecha_inic = '?'" +
+        jdbcTemplate.update("UPDATE Solicitud SET id_habilidad = '?',id_oferta = '?',estado = '?', dni_solicitante = '?', nombre = '?', descricpion = '?', fecha_inic = '?'" +
                 ", fecha_fin = '?', activa = '?' WHERE id_solicitud = '?'",solicitud.getId_habilidad(),solicitud.getId_oferta(),solicitud.isEstado(),solicitud.getDni_solicitud(),solicitud.getNombre(),
                 solicitud.getDescripcion(),solicitud.getFecha_inic(),solicitud.getFecha_fin(),solicitud.getId_solicitud());
     }

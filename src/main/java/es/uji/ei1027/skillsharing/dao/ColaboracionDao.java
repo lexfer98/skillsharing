@@ -32,21 +32,23 @@ public class ColaboracionDao {
 
     public List<Colaboracion> getColaboracion(int id_colaboracion){
         try {
-            return jdbcTemplate.query("SELECT * FROM Colaboracion WHERE id_colaboracion = '?'", new ColaboracionRowMapper(),id_colaboracion);
+            return jdbcTemplate.query("SELECT * FROM Colaboracion WHERE id_colaboracion = ?", new ColaboracionRowMapper(),id_colaboracion);
         }catch (EmptyResultDataAccessException e){
             return new ArrayList<>();
         }
     }
 
     public void addColaboracion(Colaboracion colaboracion){
-        jdbcTemplate.update("INSERT INTO Colaboracion VALUES(?,?,?,?,?,?,?,?,?,?)", colaboracion.getId_colaboracion(),
-                colaboracion.getIdSolicitud(),colaboracion.getIdOferta(),colaboracion.getFecha_inicio(),colaboracion.getFecha_fin(),colaboracion.getHoras(),
-                colaboracion.getPuntuacion(),colaboracion.getOpinion());
+        jdbcTemplate.update("INSERT INTO Colaboracion VALUES(default,?,?,?,?,null,null,null,true)",
+                colaboracion.getIdSolicitud(),colaboracion.getIdOferta(),colaboracion.getFecha_inicio(),
+                colaboracion.getFecha_fin());
     }
+
     public void updateColaboracion(Colaboracion colaboracion){
-        jdbcTemplate.update("UPDATE Colaboracion SET dni_propietario = '?', dni_solicitante  = '?', id_solicitud = '?', id_oferta = '?'," +
-                        "fecha_inic = '?', fecha_fin = '?', horas = '?', puntuacion = '?', opinion = '?' WHERE id_colaboracion = '?'"
-               ,colaboracion.getIdSolicitud(),colaboracion.getIdOferta(), colaboracion.getFecha_inicio(),colaboracion.getFecha_fin(),colaboracion.getHoras(),colaboracion.getPuntuacion(),colaboracion.getOpinion(),
+        jdbcTemplate.update("UPDATE Colaboracion SET dni_propietario = ?, dni_solicitante  = ?, id_solicitud = ?, id_oferta = ?," +
+                        "fecha_inic = ?, fecha_fin = ?, horas = ?, puntuacion = ?, opinion = ? WHERE id_colaboracion = ?"
+               ,colaboracion.getIdSolicitud(),colaboracion.getIdOferta(), colaboracion.getFecha_inicio(),colaboracion.getFecha_fin()
+                ,colaboracion.getHoras(),colaboracion.getPuntuacion(),colaboracion.getOpinion(),
                 colaboracion.getId_colaboracion());
     }
 

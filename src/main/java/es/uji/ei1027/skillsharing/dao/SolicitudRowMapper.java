@@ -17,7 +17,7 @@ public class SolicitudRowMapper implements RowMapper<Solicitud> {
         solicitud.setId_habilidad(rs.getInt("id_habilidad"));
         solicitud.setDni_solicitud(rs.getString("dni_solicitante"));
         solicitud.setNombre(rs.getString("nombre"));
-        solicitud.setDescripcion(rs.getString("descripcion"));
+        solicitud.setDescripcion(rs.getString("descricpion"));
         solicitud.setFecha_inic(rs.getObject("fecha_inic", LocalDate.class));
         solicitud.setFecha_fin(rs.getObject("fecha_fin", LocalDate.class));
         solicitud.setActiva(rs.getBoolean("activa"));

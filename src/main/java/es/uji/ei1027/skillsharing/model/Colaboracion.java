@@ -99,8 +99,6 @@ public class Colaboracion {
         this.opinion = opinion;
     }
 
-
-
     public boolean isActivo() {
         return activo;
     }

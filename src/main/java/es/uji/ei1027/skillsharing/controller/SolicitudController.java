@@ -53,11 +53,20 @@ public class SolicitudController {
         return "solicitud/list";
     }
 
-    @RequestMapping("/listpropias/{dniPropietario}")
-    public String listTusSolicitudes(Model model, @PathVariable String dniPropietario, HttpSession session) {
+    //Lo que tu solicitas para saber si te la han aceptado o no
+    @RequestMapping("/listpropias")
+    public String listTusSolicitudes(Model model, HttpSession session) {
         session.setAttribute("alumno", session.getAttribute("alumno"));
-        model.addAttribute("solicitudes", solicitudDao.getTusSolicitudes(dniPropietario));
+        Alumno alumno = (Alumno) session.getAttribute("alumno");
+        model.addAttribute("solicitudes", solicitudDao.getTusSolicitadas(alumno.getDni()));
         return "solicitud/listpropias";
+    }
+
+    @RequestMapping("/listsolicitadas/{id_oferta}")
+    public String listSolicitudesDeCadaOferta(Model model, @PathVariable int id_oferta, HttpSession session) {
+        session.setAttribute("alumno", session.getAttribute("alumno"));
+        model.addAttribute("solicitudes", solicitudDao.getSolicitudesDeCadaOferta(id_oferta));
+        return "solicitud/listsolicitadas";
     }
 
     @RequestMapping(value = "/add/{id_oferta}")
