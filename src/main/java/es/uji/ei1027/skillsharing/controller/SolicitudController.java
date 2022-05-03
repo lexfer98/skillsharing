@@ -53,6 +53,13 @@ public class SolicitudController {
         return "solicitud/list";
     }
 
+    @RequestMapping("/listpropias/{dniPropietario}")
+    public String listTusSolicitudes(Model model, @PathVariable String dniPropietario, HttpSession session) {
+        session.setAttribute("alumno", session.getAttribute("alumno"));
+        model.addAttribute("solicitudes", solicitudDao.getTusSolicitudes(dniPropietario));
+        return "solicitud/listpropias";
+    }
+
     @RequestMapping(value = "/add/{id_oferta}")
     public String processAddSubmit(@PathVariable int id_oferta, HttpSession session) {
         if (session.getAttribute("alumno") == null){

@@ -4,8 +4,10 @@ package es.uji.ei1027.skillsharing.controller;
 import es.uji.ei1027.skillsharing.dao.ColaboracionDao;
 import es.uji.ei1027.skillsharing.dao.HabilidadDao;
 import es.uji.ei1027.skillsharing.dao.OfertaDao;
+import es.uji.ei1027.skillsharing.model.Alumno;
 import es.uji.ei1027.skillsharing.model.Colaboracion;
 import es.uji.ei1027.skillsharing.model.Oferta;
+import es.uji.ei1027.skillsharing.model.Solicitud;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,6 +55,17 @@ public class ColaboracionController {
             return "colaboracion/update";
         colaboracionDao.updateColaboracion(colaboracion);
         return "redirect:list";
+    }
+
+    @RequestMapping(value = "/add/{id_oferta}")
+    public String processAddSubmit(@PathVariable int id_oferta,@PathVariable int id_solicitud, HttpSession session) {
+        if (session.getAttribute("alumno") == null){
+            return "../loginV2";
+        }
+        Colaboracion colaboracion = new Colaboracion();
+        Alumno alumno = (Alumno) session.getAttribute("alumno");
+        session.setAttribute("alumno", session.getAttribute("alumno"));
+        return "redirect:../../colaboracion/listpropia";
     }
 
 }

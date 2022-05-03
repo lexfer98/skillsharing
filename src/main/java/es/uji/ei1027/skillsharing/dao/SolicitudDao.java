@@ -1,5 +1,6 @@
 package es.uji.ei1027.skillsharing.dao;
 
+import es.uji.ei1027.skillsharing.model.Oferta;
 import es.uji.ei1027.skillsharing.model.Solicitud;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -33,6 +34,16 @@ public class SolicitudDao {
             return jdbcTemplate.query("SELECT * FROM Solicitud WHERE id_solicitud = '?'", new SolicitudRowMapper(),id_solicitud);
         }catch (EmptyResultDataAccessException e){
             return new ArrayList<Solicitud>();
+        }
+    }
+
+    public List<Oferta> getTusSolicitudes(String dniPropietario) {
+        try {
+            return jdbcTemplate.query("SELECT * FROM Solicitud where activa = true and dni_propietadio='?'",
+                    new OfertaRowMapper(), dniPropietario);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Oferta>();
         }
     }
 
