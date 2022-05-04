@@ -41,6 +41,8 @@ public class SolicitudController {
     public void setOfertaDao(OfertaDao ofertaDao) {
         this.ofertaDao = ofertaDao;
     }
+
+    @Autowired
     public void setAlumnoDao(AlumnoDao alumnoDao) { this.alumnoDao = alumnoDao; }
 
     @RequestMapping("/list")

@@ -10,7 +10,7 @@ public class Colaboracion {
     private LocalDate fecha_inicio;
     private LocalDate fecha_fin;
     private int horas;
-    private int puntuación;
+    private int puntuacion;
     private String opinion;
     private boolean activo;
 
@@ -23,7 +23,7 @@ public class Colaboracion {
                 ", fecha_inicio=" + fecha_inicio +
                 ", fecha_fin=" + fecha_fin +
                 ", horas=" + horas +
-                ", puntuación=" + puntuación +
+                ", puntuación=" + puntuacion +
                 ", opinion='" + opinion + '\'' +
                 ", activo=" + activo +
                 '}';
@@ -84,11 +84,11 @@ public class Colaboracion {
     }
 
     public int getPuntuacion() {
-        return puntuación;
+        return puntuacion;
     }
 
     public void setPuntuación(int puntuación) {
-        this.puntuación = puntuación;
+        this.puntuacion = puntuación;
     }
 
     public String getOpinion() {

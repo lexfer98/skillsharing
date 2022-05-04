@@ -23,15 +23,15 @@
     <tbody>
     <tr th:each="colaboracion: ${colaboraciones}">
         <td th:text="${colaboracion.id_colaboracion}"></td>
-        <td th:text="${colaboracion.id_solicitud}"></td>
-        <td th:text="${colaboracion.id_oferta}"></td>
-        <td th:text="${colaboracion.fecha_inic}"></td>
+        <td th:text="${colaboracion.idSolicitud}"></td>
+        <td th:text="${colaboracion.idOferta}"></td>
+        <td th:text="${colaboracion.fecha_inicio}"></td>
         <td th:text="${colaboracion.fecha_fin}"></td>
         <td th:text="${colaboracion.horas}"></td>
         <td th:text="${colaboracion.puntuacion}"></td>
         <td th:text="${colaboracion.opinion}"></td>
         <td th:text="${colaboracion.activo}"></td>
-        <td><a th:href="@{/colaboracion/update/{id_colaboracion}(id_colaboracion=${colaboracion.id_colaboracion})}">Edita</a>
+        <!-- <td><a th:href="@{/colaboracion/update/{id_colaboracion}(id_colaboracion=${colaboracion.id_colaboracion})}">Edita</a> -->
         </td>
     </tr>
     </tbody>
