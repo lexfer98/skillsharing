@@ -49,6 +49,14 @@ public class ColaboracionController {
         return "colaboracion/list";
     }
 
+    @RequestMapping("/listpropias")
+    public String listColaboracionesPropias(Model model, HttpSession session) {
+        session.setAttribute("alumno", session.getAttribute("alumno"));
+        Alumno alumno = (Alumno) session.getAttribute("Alumno");
+        model.addAttribute("colaboraciones", colaboracionDao.getColaboracionesPropias(alumno.getDni()));
+        return "colaboracion/listpropias";
+    }
+
     @RequestMapping(value="/update/{id_colaboracion}", method = RequestMethod.GET)
     public String editColaboracion(Model model, @PathVariable int id_colaboracion, HttpSession session) {
         session.setAttribute("alumno", session.getAttribute("alumno"));

@@ -46,7 +46,7 @@ public class HabilidadController {
         if (bindingResult.hasErrors())
             return "habilidad/add";
         habilidadDao.addHabilidad(habilidad);
-        return "redirect:gestionusuario/users";
+        return "alumno/users";
     }
 
     @RequestMapping(value="/update/{id_habilidad}", method = RequestMethod.GET)

@@ -11,11 +11,6 @@
 <form action="#" th:action="@{/habilidad/add}"
       th:object="${habilidad}" method="post">
     <table>
-        <tr>
-            <td><label>IdHabilidad</label></td>
-            <td><input type="number" th:field="*{id_habilidad}" /></td>
-        </tr>
-        <tr>
             <td><label>Nombre</label></td>
             <td><input type="text" th:field="*{nombre}" /></td>
         </tr>
@@ -25,7 +20,12 @@
         </tr>
         <tr>
             <td><label>Nivel</label></td>
-            <td><input type="text" th:field="*{nivel}" /></td>
+            <td><select th:field="*{nivel}">
+                    <option value="experto">Experto</option>
+                    <option value="medio">Medio</option>
+                    <option value="novato">Novato</option>
+                </select>
+            </td>
         </tr>
 
         <tr>

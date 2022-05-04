@@ -1,7 +1,6 @@
 package es.uji.ei1027.skillsharing.model;
 
 import java.time.LocalDate;
-
 public class Solicitud {
 
     private int id_solicitud;
