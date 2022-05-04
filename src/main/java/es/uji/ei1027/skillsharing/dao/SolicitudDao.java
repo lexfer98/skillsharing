@@ -23,14 +23,14 @@ public class SolicitudDao {
 
     public List<Solicitud> getSolicitudes(){
         try {
-            return jdbcTemplate.query("SELECT * FROM Solicitud", new SolicitudRowMapper());
+            return jdbcTemplate.query("SELECT * FROM Solicitud where and activa = true", new SolicitudRowMapper());
         }catch (EmptyResultDataAccessException e){
             return new ArrayList<Solicitud>();
         }
     }
 
     public Solicitud getSolicitud(int id_solicitud){
-            return jdbcTemplate.queryForObject("SELECT * FROM Solicitud WHERE id_solicitud = ?", new SolicitudRowMapper(),id_solicitud);
+            return jdbcTemplate.queryForObject("SELECT * FROM Solicitud WHERE id_solicitud = ? and activa = true", new SolicitudRowMapper(),id_solicitud);
     }
 
     // Lo que tu solicitas
@@ -47,7 +47,7 @@ public class SolicitudDao {
     //La lista de solicitudes respecto a cada oferta
     public List<Solicitud> getSolicitudesDeCadaOferta(int idOferta) {
         try {
-            return jdbcTemplate.query("SELECT * FROM Solicitud where activa = true and id_oferta=?",
+            return jdbcTemplate.query("SELECT * FROM Solicitud where activa = true and estado is null and id_oferta=?",
                     new SolicitudRowMapper(), idOferta);
         }
         catch(EmptyResultDataAccessException e) {
@@ -60,16 +60,20 @@ public class SolicitudDao {
     }
 
     public void updateSolicitud(Solicitud solicitud){
-        jdbcTemplate.update("UPDATE Solicitud SET id_habilidad = '?',id_oferta = '?',estado = '?', dni_solicitante = '?', nombre = '?', descricpion = '?', fecha_inic = '?'" +
-                ", fecha_fin = '?', activa = '?' WHERE id_solicitud = '?'",solicitud.getId_habilidad(),solicitud.getId_oferta(),solicitud.isEstado(),solicitud.getDni_solicitud(),solicitud.getNombre(),
+        jdbcTemplate.update("UPDATE Solicitud SET id_habilidad = ?,id_oferta = ?,estado = ?, dni_solicitante = ?, nombre = ?, descricpion = ?, fecha_inic = ?" +
+                ", fecha_fin = ?, activa = ? WHERE id_solicitud = ?",solicitud.getId_habilidad(),solicitud.getId_oferta(),solicitud.isEstado(),solicitud.getDni_solicitud(),solicitud.getNombre(),
                 solicitud.getDescripcion(),solicitud.getFecha_inic(),solicitud.getFecha_fin(),solicitud.getId_solicitud());
     }
 
     public void deleteSolicitud(int solicitud){
-        jdbcTemplate.update("UPDATE Solicitud SET activa = false WHERE id_solicitud = '?'",solicitud);
+        jdbcTemplate.update("UPDATE Solicitud SET activa = false WHERE id_solicitud = ?",solicitud);
     }
 
-    public void desactivarSolicitud(int solicitud){
-        jdbcTemplate.update("UPDATE Solicitud SET estado = false WHERE id_solicitud = '?'",solicitud);
+    public void aceptarSolicitud(int solicitud){
+        jdbcTemplate.update("UPDATE Solicitud SET estado = true WHERE id_solicitud = ? and activa = true",solicitud);
+    }
+
+    public void rechazarSolicitud(int solicitud){
+        jdbcTemplate.update("UPDATE Solicitud SET estado = false WHERE id_solicitud = ? and activa = true",solicitud);
     }
 }

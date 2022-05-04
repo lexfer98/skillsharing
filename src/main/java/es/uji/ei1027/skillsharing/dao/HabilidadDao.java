@@ -34,7 +34,7 @@ public class HabilidadDao {
     }
 
     public void deleteHabilidad(Habilidad habilidad) {
-        jdbcTemplate.update("UPDATE habilidad SET activa = false WHERE id_habilidad = '?'",habilidad.getId_habilidad());
+        jdbcTemplate.update("UPDATE habilidad SET activa = false WHERE id_habilidad = ?",habilidad.getId_habilidad());
     }
 
     public void addHabilidad(Habilidad habilidad) {
@@ -51,7 +51,7 @@ public class HabilidadDao {
 
     public Habilidad getIdHabilidad(int habilidad) {
         try {
-            return jdbcTemplate.queryForObject("SELECT * FROM Habilidad WHERE id_habilidad = ?",
+            return jdbcTemplate.queryForObject("SELECT * FROM Habilidad WHERE id_habilidad = ? and activa = true",
                     new HabilidadRowMapper(),
                     habilidad);
 

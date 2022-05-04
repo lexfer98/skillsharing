@@ -47,13 +47,13 @@ public class AlumnoDao {
     }
 
     public void updateAlumno(Alumno alumno){
-        jdbcTemplate.update("UPDATE Alumnos SET nombre = '?', apellidos = '?', email = '?', titulacion = '?', genero = '?', edad = '?', num_tel = '?', " +
-                "balance_horas = '?', isSKP = '?' WHERE dni = '?'", alumno.getNombre(), alumno.getApellidos(), alumno.getEmail(), alumno.getTitulacion(),
+        jdbcTemplate.update("UPDATE Alumnos SET nombre = ?, apellidos = ?, email = ?, titulacion = ?, genero = ?, edad = ?, num_tel = ?, " +
+                "balance_horas = ?, isSKP = ? WHERE dni = ?", alumno.getNombre(), alumno.getApellidos(), alumno.getEmail(), alumno.getTitulacion(),
                 alumno.getGenero(), alumno.getEdad(), alumno.getNumTel(), alumno.getBalanceHoras(), alumno.isSkp(), alumno.getDni());
     }
 
     public void deleteAlumno(Alumno alumno){
-        jdbcTemplate.update("DELETE FROM Alumnos WHERE = '?'", alumno.getDni());
+        jdbcTemplate.update("DELETE FROM Alumnos WHERE = ?", alumno.getDni());
     }
 }
 

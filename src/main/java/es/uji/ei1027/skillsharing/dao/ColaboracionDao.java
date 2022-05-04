@@ -24,7 +24,7 @@ public class ColaboracionDao {
 
     public List<Colaboracion> getColaboraciones(){
         try{
-            return jdbcTemplate.query("SELECT * FROM Colaboracion",new ColaboracionRowMapper());
+            return jdbcTemplate.query("SELECT * FROM Colaboracion Where activa = true",new ColaboracionRowMapper());
         }catch (EmptyResultDataAccessException e){
             return new ArrayList<>();
         }
@@ -32,7 +32,7 @@ public class ColaboracionDao {
 
     public List<Colaboracion> getColaboracionesPropias(String dni){
         try{
-            return jdbcTemplate.query("SELECT c.* FROM Colaboracion AS c JOIN oferta AS o USING(id_oferta) JOIN solicitud AS s USING(id_solicitud) WHERE o.dni_propietario=? OR s.dni_solicitante = ?",
+            return jdbcTemplate.query("SELECT c.* FROM Colaboracion AS c JOIN oferta AS o USING(id_oferta) JOIN solicitud AS s USING(id_solicitud) WHERE o.dni_propietario=? OR s.dni_solicitante = ? AND activa = true",
                     new ColaboracionRowMapper(), dni, dni);
         }catch (EmptyResultDataAccessException e){
             return new ArrayList<>();
@@ -41,7 +41,7 @@ public class ColaboracionDao {
 
     public List<Colaboracion> getColaboracion(int id_colaboracion){
         try {
-            return jdbcTemplate.query("SELECT * FROM Colaboracion WHERE id_colaboracion = ?", new ColaboracionRowMapper(),id_colaboracion);
+            return jdbcTemplate.query("SELECT * FROM Colaboracion WHERE id_colaboracion = ? AND activa = true", new ColaboracionRowMapper(),id_colaboracion);
         }catch (EmptyResultDataAccessException e){
             return new ArrayList<>();
         }
@@ -59,6 +59,10 @@ public class ColaboracionDao {
                ,colaboracion.getIdSolicitud(),colaboracion.getIdOferta(), colaboracion.getFecha_inicio(),colaboracion.getFecha_fin()
                 ,colaboracion.getHoras(),colaboracion.getPuntuacion(),colaboracion.getOpinion(),
                 colaboracion.getId_colaboracion());
+    }
+
+    public void deleteColaboracion(int id_colaboracion){
+        jdbcTemplate.update("UPDATE Colaboracion SET activa = false WHERE id_colaboracion = ?", id_colaboracion);
     }
 
 

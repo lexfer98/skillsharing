@@ -116,9 +116,17 @@ public class SolicitudController {
     }
 
     @RequestMapping(value = "/delete/{id_solicitud}")
-    public void processDelete(@PathVariable int id_solicitud, HttpSession session) {
+    public String processDelete(@PathVariable int id_solicitud, HttpSession session) {
         session.setAttribute("alumno", session.getAttribute("alumno"));
         solicitudDao.deleteSolicitud(id_solicitud);
+        return "solicitud/listpropias";
+    }
+
+    @RequestMapping(value = "/rechazar/{id_solicitud}")
+    public String rechazar(@PathVariable int id_solicitud, HttpSession session) {
+        session.setAttribute("alumno", session.getAttribute("alumno"));
+        solicitudDao.rechazarSolicitud(id_solicitud);
+        return "solicitud/listsolicitadas/"+solicitudDao.getSolicitud(id_solicitud).getId_oferta();
     }
 
 

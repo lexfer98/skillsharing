@@ -77,7 +77,7 @@ public class ColaboracionController {
     }
 
     @RequestMapping(value = "/add/{id_solicitud}")
-    public String processAddSubmit(@PathVariable int id_solicitud, HttpSession session) {
+    public String processAddSubmit(@PathVariable int id_solicitud,HttpSession session) {
         if (session.getAttribute("alumno") == null){
             return "../loginV2";
         }
@@ -86,8 +86,9 @@ public class ColaboracionController {
         colaboracion.crearColaboracion(solicitud);
         Alumno alumno = (Alumno) session.getAttribute("alumno");
         session.setAttribute("alumno", session.getAttribute("alumno"));
+        solicitudDao.aceptarSolicitud(id_solicitud);
         colaboracionDao.addColaboracion(colaboracion);
-        return "redirect:../../colaboracion/listpropias";
+        return "redirect:../../solicitud/listsolicitadas/"+solicitud.getId_oferta();
     }
 
 }

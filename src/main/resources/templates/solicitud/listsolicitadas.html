@@ -30,11 +30,9 @@
         <td th:text="${solicitud.fecha_inic}"></td>
         <td th:text="${solicitud.fecha_fin}"></td>
 
-        <!-- FALTA PONER AQUI PARA ACEPTAR , ES DECIR QUE SE CREE LA COLABORACION-->
+
         <td><a th:href="@{/colaboracion/add/{id_solicitud}(id_solicitud=${solicitud.id_solicitud})}">Aceptar</a>
-        <!-- <td><a th:href="@{/colaboracion/add/{id_colaboracion}(id_colaboracion=${colaboracion.id_colaboracion})}">Aceptar</a> -->
-        <!-- FALTA PONER AQUI PARA RECHAZAR , ES DECIR QUE SE BORRE LA SOLICITUD DEL ALUMNO(DNI) QUE LA SOLICITA-->
-        <!-- <td><a th:href="@{/solicitud/delete/{id_solicitud}(id_solicitud=${solicitud.id_solicitud})}">Rechazar</a>-->
+        <td><a th:href="@{/solicitud/rechazar/{id_solicitud}(id_solicitud=${solicitud.id_solicitud})}">Rechazar</a>
     </tr>
     </tbody>
 </table>
