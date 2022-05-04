@@ -1,10 +1,7 @@
 package es.uji.ei1027.skillsharing.controller;
 
 
-import es.uji.ei1027.skillsharing.dao.ColaboracionDao;
-import es.uji.ei1027.skillsharing.dao.HabilidadDao;
-import es.uji.ei1027.skillsharing.dao.OfertaDao;
-import es.uji.ei1027.skillsharing.dao.SolicitudDao;
+import es.uji.ei1027.skillsharing.dao.*;
 import es.uji.ei1027.skillsharing.model.Alumno;
 import es.uji.ei1027.skillsharing.model.Colaboracion;
 import es.uji.ei1027.skillsharing.model.Oferta;
@@ -42,6 +39,7 @@ public class ColaboracionController {
     public void setOfertaDao(OfertaDao ofertaDao){
         this.ofertaDao=ofertaDao;
     }
+
 
 
     @RequestMapping("/list")

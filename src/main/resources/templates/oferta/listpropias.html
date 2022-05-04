@@ -26,8 +26,8 @@
 
 
     <tr th:each="oferta: ${ofertas}" class="table-light">
-        <td th:each="habilidad: ${habilidades}" th:text="${habilidad.id_habilidad==oferta.idHabilidad ? habilidad.nombre+' '+habilidad.nivel : 'No existe'}"></td>
-        <td th:text="${oferta.dniPropietario}"></td>
+        <td th:each="habilidad: ${habilidades}" th:if="${habilidad.id_habilidad==oferta.idHabilidad}" th:text="${habilidad.nombre+' '+habilidad.nivel}"></td>
+        <td th:text="${alumno.nombre+' '+alumno.apellidos}"></td>
         <td th:text="${oferta.nombre}"></td>
         <td th:text="${oferta.descripcion}"></td>
         <td th:text="${oferta.fechaIniciacion}"></td>

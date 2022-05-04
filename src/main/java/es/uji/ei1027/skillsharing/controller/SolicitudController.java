@@ -1,5 +1,6 @@
 package es.uji.ei1027.skillsharing.controller;
 
+import es.uji.ei1027.skillsharing.dao.AlumnoDao;
 import es.uji.ei1027.skillsharing.dao.HabilidadDao;
 import es.uji.ei1027.skillsharing.dao.OfertaDao;
 import es.uji.ei1027.skillsharing.dao.SolicitudDao;
@@ -24,6 +25,7 @@ public class SolicitudController {
     private SolicitudDao solicitudDao;
     private HabilidadDao habilidadDao;
     private OfertaDao ofertaDao;
+    private AlumnoDao alumnoDao;
 
     @Autowired
     public void setSolicitudDao(SolicitudDao solicitudDao) {
@@ -39,6 +41,7 @@ public class SolicitudController {
     public void setOfertaDao(OfertaDao ofertaDao) {
         this.ofertaDao = ofertaDao;
     }
+    public void setAlumnoDao(AlumnoDao alumnoDao) { this.alumnoDao = alumnoDao; }
 
     @RequestMapping("/list")
     public String listSolicitudes(HttpSession session,Model model) {
@@ -49,6 +52,8 @@ public class SolicitudController {
             return "loginV2";
         }
         session.setAttribute("alumno", session.getAttribute("alumno"));
+        model.addAttribute("alumnos", alumnoDao.getAlumnos());
+        model.addAttribute("habilidades", habilidadDao.getHabilidades());
         model.addAttribute("solicitudes", solicitudDao.getSolicitudes());
         return "solicitud/list";
     }
@@ -58,6 +63,9 @@ public class SolicitudController {
     public String listTusSolicitudes(Model model, HttpSession session) {
         session.setAttribute("alumno", session.getAttribute("alumno"));
         Alumno alumno = (Alumno) session.getAttribute("alumno");
+        System.out.println(solicitudDao.getTusSolicitadas(alumno.getDni()));
+        model.addAttribute("alumno", alumno);
+        model.addAttribute("habilidades", habilidadDao.getHabilidades());
         model.addAttribute("solicitudes", solicitudDao.getTusSolicitadas(alumno.getDni()));
         return "solicitud/listpropias";
     }
@@ -65,9 +73,12 @@ public class SolicitudController {
     @RequestMapping("/listsolicitadas/{id_oferta}")
     public String listSolicitudesDeCadaOferta(Model model, @PathVariable int id_oferta, HttpSession session) {
         session.setAttribute("alumno", session.getAttribute("alumno"));
+        model.addAttribute("habilidades", habilidadDao.getHabilidades());
+        model.addAttribute("alumnos", alumnoDao.getAlumnos());
         model.addAttribute("solicitudes", solicitudDao.getSolicitudesDeCadaOferta(id_oferta));
         return "solicitud/listsolicitadas";
     }
+
 
     @RequestMapping(value = "/add/{id_oferta}")
     public String processAddSubmit(@PathVariable int id_oferta, HttpSession session) {

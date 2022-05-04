@@ -7,7 +7,7 @@ public class Solicitud {
     private int id_solicitud;
     private int id_habilidad;
     private int id_oferta;
-    private boolean estado;
+    private Boolean estado;
     private String dni_solicitud;
     private String nombre;
     private String descripcion;
@@ -105,11 +105,11 @@ public class Solicitud {
         this.id_oferta = id_oferta;
     }
 
-    public boolean isEstado() {
+    public Boolean isEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(Boolean estado) {
         this.estado = estado;
     }
 

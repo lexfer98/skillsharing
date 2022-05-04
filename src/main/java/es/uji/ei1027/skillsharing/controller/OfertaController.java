@@ -1,5 +1,6 @@
 package es.uji.ei1027.skillsharing.controller;
 
+import es.uji.ei1027.skillsharing.dao.AlumnoDao;
 import es.uji.ei1027.skillsharing.dao.HabilidadDao;
 import es.uji.ei1027.skillsharing.dao.OfertaDao;
 import es.uji.ei1027.skillsharing.model.Alumno;
@@ -21,6 +22,7 @@ public class OfertaController {
 
     private OfertaDao ofertaDao;
     private HabilidadDao habilidadDao;
+    private AlumnoDao alumnoDao;
 
     @Autowired
     public void setOfertaDao(OfertaDao ofertaDao) {
@@ -30,11 +32,14 @@ public class OfertaController {
     public void setHabilidadDao(HabilidadDao habilidadDao) {
         this.habilidadDao = habilidadDao;
     }
+    @Autowired
+    public void setAlumnoDao(AlumnoDao alumnoDao){ this.alumnoDao=alumnoDao;}
 
     @RequestMapping("/listpropias")
     public String listOfertas(Model model, HttpSession session) {
         session.setAttribute("alumno", session.getAttribute("alumno"));
         Alumno alumno = (Alumno) session.getAttribute("alumno");
+        model.addAttribute("alumno", alumno);
         model.addAttribute("habilidades", habilidadDao.getHabilidades());
         model.addAttribute("ofertas", ofertaDao.getTusOfertas(alumno.getDni()));
         return "oferta/listpropias";
@@ -44,6 +49,7 @@ public class OfertaController {
     public String listTusOfertas(Model model, HttpSession session) {
         session.setAttribute("alumno", session.getAttribute("alumno"));
         model.addAttribute("habilidades", habilidadDao.getHabilidades());
+        model.addAttribute("alumnos", alumnoDao.getAlumnos());
         model.addAttribute("ofertas", ofertaDao.getOfertas());
         return "oferta/list";
     }

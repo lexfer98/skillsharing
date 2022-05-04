@@ -27,7 +27,7 @@ public class AlumnoDao {
 
     public List<Alumno> getAlumnos(){
         try {
-            return jdbcTemplate.query("SELECT * FROM Alumno", new AlumnoRowMapper());
+            return jdbcTemplate.query("SELECT * FROM Alumnos", new AlumnoRowMapper());
         }catch (EmptyResultDataAccessException e){
             return new ArrayList<>();
         }
