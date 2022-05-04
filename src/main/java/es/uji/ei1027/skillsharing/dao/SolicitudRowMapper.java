@@ -22,6 +22,9 @@ public class SolicitudRowMapper implements RowMapper<Solicitud> {
         solicitud.setFecha_fin(rs.getObject("fecha_fin", LocalDate.class));
         solicitud.setActiva(rs.getBoolean("activa"));
         solicitud.setEstado(rs.getBoolean("estado"));
+        if (rs.wasNull()){
+            solicitud.setEstado(null);
+        }
 
         return solicitud;
     }
