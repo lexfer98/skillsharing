@@ -74,9 +74,11 @@ public class OfertaController {
                                    BindingResult bindingResult, HttpSession session) {
         session.setAttribute("alumno", session.getAttribute("alumno"));
         Alumno alumno = (Alumno) session.getAttribute("alumno");
-        oferta.setDniPropietario(alumno.getDni());
+        OfertaValidator ofertaValidator = new OfertaValidator();
+        ofertaValidator.validate(oferta,bindingResult);
         if (bindingResult.hasErrors())
             return "oferta/add";
+        oferta.setDniPropietario(alumno.getDni());
         ofertaDao.addOferta(oferta);
         return "redirect:list";
     }
