@@ -3,9 +3,40 @@
 <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link href="/static/style.css" rel="stylesheet">
 </head>
 <body>
-<h1 align="center">Mis solicitudes a otras ofertas ( ver si estoy aceptado o rechazado )</h1>
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+                <h2 class="heading-section">Mis solicitudes a otras ofertas ( ver si estoy aceptado o rechazado )</h2>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg ftco_navbar ftco-navbar-light" id="ftco-navbar">
+            <div class="container">
+                <a class="navbar-brand" href="/">Inicio</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa fa-bars"></span> Menu
+                </button>
+                <div class="collapse navbar-collapse" id="ftco-nav">
+                    <ul class="navbar-nav ml-auto mr-md-3">
+                        <li class="nav-item"><a href="/colaboracion/listpropias" class="nav-link">Mis colaboraciones</a></li>
+                        <li class="nav-item"><a href="/oferta/listpropias" class="nav-link">Mis ofertas</a></li>
+                        <li class="nav-item"><a href="/solicitud/listpropias" class="nav-link">Mis solicitudes</a></li>
+                        <li class="nav-item"><a href="/oferta/list" class="nav-link">Ver ofertas</a></li>
+                        <li class="nav-item"><a href="alumno/perfil" class="nav-link">Mi perfil</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Contactanos</a></li>
+                        <li class="nav-item"><a href="/logout" th:href="@{/logout}" class="nav-link">Cerrar sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- END nav -->
+    </div>
+</section>
 <table align="center">
     <thead>
     <tr>

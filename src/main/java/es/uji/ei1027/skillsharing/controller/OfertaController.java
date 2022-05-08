@@ -71,9 +71,10 @@ public class OfertaController {
 
     @RequestMapping(value="/add", method= RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("oferta") Oferta oferta,
-                                   BindingResult bindingResult, HttpSession session) {
+                                   BindingResult bindingResult, HttpSession session, Model model) {
         session.setAttribute("alumno", session.getAttribute("alumno"));
         Alumno alumno = (Alumno) session.getAttribute("alumno");
+        model.addAttribute("habilidades", habilidadDao.getHabilidades());
         OfertaValidator ofertaValidator = new OfertaValidator();
         ofertaValidator.validate(oferta,bindingResult);
         if (bindingResult.hasErrors())
