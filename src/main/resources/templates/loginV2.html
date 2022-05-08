@@ -14,13 +14,13 @@
     <form action="#" th:action="@{/loginV2}"
           th:object="${alumno}" method="post">
         <p>
-            <label>Nom d'usuari:</label>
-            <input class="form_control" type="text" th:field="${alumno.dni}"/>
+            <label>Nombre de usuario:</label>
+            <input  class="form_control" type="text" placeholder="Introduce tu dni" th:field="${alumno.dni}" />
         <div class="error" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div>
         </p>
         <p>
-            <label>Contrasenya:</label>
-            <input class="form_control" type="password" th:field="${alumno.contraseña}" minlength="6" maxlength="20"/>
+            <label>Contraseña:</label>
+            <input class="form_control" type="password" placeholder="Contraseña" th:field="${alumno.contraseña}" minlength="6" maxlength="20"/>
         <div class="error" th:if="${#fields.hasErrors('contraseña')}" th:errors="*{contraseña}"></div>
         </p>
         <input type="submit" value="Accedir" />
