@@ -9,11 +9,11 @@
     <link href="/static/style.css" rel="stylesheet">
 </head>
 <body>
-<section class="ftco-section">
+<section>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-6 text-center mb-5">
-                <h2 class="heading-section">Lista de ofertas</h2>
+            <div class="col-md-30 text-center mb-30">
+                <h2 style="font-size:60px;">Lista de ofertas</h2>
             </div>
         </div>
     </div>
@@ -40,7 +40,8 @@
         <!-- END nav -->
     </div>
 </section>
-<table align="center">
+<div class="container">
+    <table class="table table-striped">
     <thead>
     <tr>
         <th>Nombre Habilidad</th>
@@ -63,12 +64,13 @@
         <td th:text="${oferta.descripcion}"></td>
         <td th:text="${oferta.fechaIniciacion}"></td>
         <td th:text="${oferta.fechaFinalizacion}"></td>
-        <td><a th:href="@{/oferta/update/{idOferta}(idOferta=${oferta.idOferta})}">Edita</a>
-        <td><a th:href="@{/oferta/delete/{idOferta}(idOferta=${oferta.idOferta})}">Borrar</a>
-        <td><a th:href="@{/solicitud/listsolicitadas/{id_oferta}(id_oferta=${oferta.idOferta})}">Ver Solicitudes</a>
+        <td><a th:href="@{/oferta/update/{idOferta}(idOferta=${oferta.idOferta})}" type="button" class="btn btn-warning">Edita</a>
+        <td><a th:href="@{/oferta/delete/{idOferta}(idOferta=${oferta.idOferta})}" type="button" class="btn btn-danger">Borrar</a>
+        <td><a th:href="@{/solicitud/listsolicitadas/{id_oferta}(id_oferta=${oferta.idOferta})}" type="button" class="btn btn-success">Ver Solicitudes</a>
     </tr>
     </tbody>
 </table>
 <a href="add">Agrega una oferta</a>
+    </div>
 </body>
 </html>

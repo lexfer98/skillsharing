@@ -6,11 +6,11 @@
     <link href="/static/style.css" rel="stylesheet">
 </head>
 <body>
-<section class="ftco-section">
+<section>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-6 text-center mb-5">
-                <h2 class="heading-section">Lista de colaboraciones</h2>
+            <div class="col-md-30 text-center mb-30">
+                <h2 style="font-size:60px;">Lista de colaboraciones</h2>
             </div>
         </div>
     </div>
@@ -37,35 +37,37 @@
         <!-- END nav -->
     </div>
 </section>
-<table align="center">
-    <thead>
-    <tr>
-        <th>Id Colaboracion</th>
-        <th>idOferta</th>
-        <th>idSolicitud</th>
-        <th>Fecha Inicio</th>
-        <th>Fecha Finalizacion</th>
-        <th>Horas</th>
-        <th>Puntuacion</th>
-        <th>Opinión</th>
-        <th>Activo</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="colaboracion: ${colaboraciones}">
-        <td th:text="${colaboracion.id_colaboracion}"></td>
-        <td th:text="${colaboracion.idSolicitud}"></td>
-        <td th:text="${colaboracion.idOferta}"></td>
-        <td th:text="${colaboracion.fecha_inicio}"></td>
-        <td th:text="${colaboracion.fecha_fin}"></td>
-        <td th:text="${colaboracion.horas}"></td>
-        <td th:text="${colaboracion.puntuacion}"></td>
-        <td th:text="${colaboracion.opinion}"></td>
-        <td th:text="${colaboracion.activo}"></td>
-        <td><a th:href="@{/colaboracion/update/{id_colaboracion}(id_colaboracion=${colaboracion.id_colaboracion})}">Edita</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Id Colaboracion</th>
+            <th>idOferta</th>
+            <th>idSolicitud</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Finalizacion</th>
+            <th>Horas</th>
+            <th>Puntuacion</th>
+            <th>Opinión</th>
+            <th>Activo</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="colaboracion: ${colaboraciones}">
+            <td th:text="${colaboracion.id_colaboracion}"></td>
+            <td th:text="${colaboracion.idSolicitud}"></td>
+            <td th:text="${colaboracion.idOferta}"></td>
+            <td th:text="${colaboracion.fecha_inicio}"></td>
+            <td th:text="${colaboracion.fecha_fin}"></td>
+            <td th:text="${colaboracion.horas}"></td>
+            <td th:text="${colaboracion.puntuacion}"></td>
+            <td th:text="${colaboracion.opinion}"></td>
+            <td th:text="${colaboracion.activo}"></td>
+            <td><a th:href="@{/colaboracion/update/{id_colaboracion}(id_colaboracion=${colaboracion.id_colaboracion})}"class="btn btn-warning" role="button">Edita</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
 </body>
 </html>

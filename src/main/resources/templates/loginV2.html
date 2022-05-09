@@ -6,26 +6,28 @@
     <title>Login</title>
     <meta charset="UTF-8"/>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link href="/static/estilos.css" rel="stylesheet">
 
 </head>
 <body>
+<div class="login-page">
+    <div class="form">
 <div layout:fragment="content">
-    <h2>Accés</h2>
     <form action="#" th:action="@{/loginV2}"
-          th:object="${alumno}" method="post">
+          th:object="${alumno}" method="post" class="login-form">
         <p>
-            <label>Nombre de usuario:</label>
-            <input  class="form_control" type="text" placeholder="Introduce tu dni" th:field="${alumno.dni}" />
+            <input type="text" placeholder="Usuario (DNI)" th:field="${alumno.dni}" />
         <div class="error" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div>
         </p>
         <p>
-            <label>Contraseña:</label>
-            <input class="form_control" type="password" placeholder="Contraseña" th:field="${alumno.contraseña}" minlength="6" maxlength="20"/>
+            <input type="password" placeholder="Contraseña" th:field="${alumno.contraseña}" minlength="6" maxlength="20"/>
         <div class="error" th:if="${#fields.hasErrors('contraseña')}" th:errors="*{contraseña}"></div>
         </p>
-        <input type="submit" value="Accedir" />
-        <a href="/alumno/add">Registrate</a>
+        <button>Iniciar sesión</button>
+        <p class="message">¿No estás registrado? <a href="/alumno/add">Crea un nuevo usuario</a></p>
     </form>
+</div>
+    </div>
 </div>
 </body>
 </html>

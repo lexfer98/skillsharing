@@ -14,9 +14,10 @@ public class OfertaValidator implements Validator {
     @Override
     public void validate(Object obj, Errors errors) {
         Oferta oferta = (Oferta)obj;
+        System.out.println("SU");
         if (oferta.getNombre().trim().equals("") || oferta.getDescripcion().trim().equals("") ||
                 oferta.getFechaIniciacion() == null || oferta.getFechaFinalizacion() == null) {
-            errors.reject("error","Hay que rellenar todos los campos");
+            errors.rejectValue("oferta","badof","Hay que rellenar todos los campos");
         }
     }
 

@@ -8138,7 +8138,7 @@ body {
   line-height: 1.8;
   font-weight: normal;
   background: #fafafa;
-  color: gray; }
+}
 
 a {
   -webkit-transition: .3s all ease;
@@ -8162,7 +8162,7 @@ h1, h2, h3, h4, h5,
   background: #fec771 !important; }
 
 .ftco-section {
-  padding: 7em 0; }
+  padding: 3em 0; }
 
 .ftco-no-pt {
   padding-top: 0; }
@@ -8171,7 +8171,7 @@ h1, h2, h3, h4, h5,
   padding-bottom: 0; }
 
 .heading-section {
-  font-size: 28px;
+  font-size: 500px !important;
   color: #000; }
 
 .img {
