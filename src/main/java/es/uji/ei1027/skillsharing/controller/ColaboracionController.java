@@ -59,6 +59,7 @@ public class ColaboracionController {
 
     @RequestMapping(value="/update/{id_colaboracion}", method = RequestMethod.GET)
     public String editColaboracion(Model model, @PathVariable int id_colaboracion, HttpSession session) {
+        session.setAttribute("nextUrl", "redirect:colaboracion/update/"+id_colaboracion);
         session.setAttribute("alumno", session.getAttribute("alumno"));
         model.addAttribute("colaboracion", colaboracionDao.getColaboracion(id_colaboracion));
         return "colaboracion/update";

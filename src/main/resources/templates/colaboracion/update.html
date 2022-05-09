@@ -13,28 +13,13 @@
 <form action="#" th:action="@{/colaboracion/update}"
       th:object="${colaboracion}" method="post">
     <input type="hidden" th:field="*{id_colaboracion}" >
+    <input type="hidden" th:field="*{idOferta}" >
+    <input type="hidden" th:field="*{idSolicitud}" >
+    <input type="hidden" th:field="*{fecha_inicio}" >
+    <input type="hidden" th:field="*{fecha_fin}" >
+    <input type="hidden" th:field="*{activo}" >
     <table align="center">
         <tr>
-
-            <td><label>Id colaboracion</label></td>
-            <td><input type="text" th:field="*{id_colaboracion}" /></td>
-        </tr>
-        <tr>
-            <td><label>id solicitud</label></td>
-            <td><input type="text" th:field="*{id_solicitud}" /></td>
-        </tr>
-        <tr>
-            <td><label>id oferta</label></td>
-            <td><input type="text" th:field="*{id_oferta}" /></td>
-        </tr>
-        <tr>
-            <td><label>Fecha Iniciacion</label></td>
-            <td><input type="text" th:field="*{fecha_inic}" /></td>
-        </tr>
-        <tr>
-            <td><label>Fecha Fin</label></td>
-            <td><input type="text" th:field="*{fecha_fin}" /></td>
-        </tr>
         <tr>
             <td><label>Horas</label></td>
             <td><input type="text" th:field="*{horas}" /></td>
@@ -49,13 +34,7 @@
             <td><label>Opinion</label></td>
             <td><input type="text" th:field="*{opinion}" /></td>
         </tr>
-
         <tr>
-            <td><label>Activo</label></td>
-            <td><input type="text" th:field="*{activo}" /></td>
-        </tr>
-        <tr>
-            <td></td>
             <td colspan="2"><input type="submit" value="Modificar colaboracion" /></td>
         </tr>
     </table>

@@ -1,5 +1,7 @@
 package es.uji.ei1027.skillsharing.model;
 
+import org.springframework.lang.NonNull;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
