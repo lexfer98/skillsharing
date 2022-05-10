@@ -26,7 +26,8 @@ public class AlumnoRowMapper implements RowMapper<Alumno> {
         alumno.setBalanceHoras(rs.getInt("balance_horas"));
         alumno.setSkp(rs.getBoolean("isskp"));
         alumno.setContraseña(rs.getString("password"));
-
+        alumno.setBan(rs.getBoolean("banned"));
+        alumno.setMotivo(rs.getString("reason"));
         return alumno;
     }
 }

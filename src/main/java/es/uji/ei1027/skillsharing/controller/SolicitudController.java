@@ -65,7 +65,6 @@ public class SolicitudController {
     public String listTusSolicitudes(Model model, HttpSession session) {
         session.setAttribute("alumno", session.getAttribute("alumno"));
         Alumno alumno = (Alumno) session.getAttribute("alumno");
-        System.out.println(solicitudDao.getTusSolicitadas(alumno.getDni()));
         model.addAttribute("alumno", alumno);
         model.addAttribute("habilidades", habilidadDao.getHabilidades());
         model.addAttribute("solicitudes", solicitudDao.getTusSolicitadas(alumno.getDni()));
@@ -115,11 +114,11 @@ public class SolicitudController {
         return "redirect:list";
     }
 
-    @RequestMapping(value = "/delete/{id_solicitud}")
-    public String processDelete(@PathVariable int id_solicitud, HttpSession session) {
+    @RequestMapping(value = "/delete/{idSolicitud}")
+    public String processDelete(@PathVariable int idSolicitud, HttpSession session) {
         session.setAttribute("alumno", session.getAttribute("alumno"));
-        solicitudDao.deleteSolicitud(id_solicitud);
-        return "solicitud/listpropias";
+        solicitudDao.deleteSolicitud(idSolicitud);
+        return "redirect:/solicitud/listpropias/";
     }
 
     @RequestMapping(value = "/rechazar/{id_solicitud}")

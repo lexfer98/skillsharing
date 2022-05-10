@@ -20,6 +20,8 @@ public class Alumno {
     private int balanceHoras;
     private boolean isSkp;
     private String contraseña;
+    private boolean ban;
+    private String motivo;
 
 
 
@@ -41,6 +43,8 @@ public class Alumno {
                 ", balanceHoras='" + balanceHoras + '\'' +
                 ", isSkp='" + isSkp + '\'' +
                 ", contraseña='" + contraseña + '\'' +
+                ", ban="+ ban + '\'' +
+                ", motivo="+ motivo +
                 '}';
     }
 
@@ -154,6 +158,14 @@ public class Alumno {
         BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
         this.contraseña = passwordEncryptor.encryptPassword(this.contraseña);
     }
+
+    public boolean isBan(){ return ban;}
+
+    public void setBan(boolean ban){ this.ban = ban;}
+
+    public String getMotivo(){ return motivo;}
+
+    public void setMotivo(String motivo){ this.motivo = motivo;}
 
 
 }

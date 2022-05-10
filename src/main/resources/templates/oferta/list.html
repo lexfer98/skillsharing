@@ -49,8 +49,23 @@
         <!-- END nav -->
     </div>
 </section>
-<div class="container">
-    <table class="table table-striped">
+<!--<div class="container">-->
+    <div class="card" style="width: 18rem;" th:each="oferta: ${ofertas}" align="center">
+        <div class="card-body">
+            <h5 class="card-title"><b><a th:text="${oferta.nombre}"></a></b></h5>
+            <p class="card-text"><a th:text="${oferta.descripcion}"></a></p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><a th:each="habilidad: ${habilidades}" th:if="${habilidad.id_habilidad==oferta.idHabilidad}" th:text="${habilidad.nombre+' '+habilidad.nivel}"></a></li>
+            <li class="list-group-item">Inicio: <a th:text="${oferta.fechaIniciacion}"></a></li>
+            <li class="list-group-item">Fin: <a th:text="${oferta.fechaFinalizacion}"></a></li>
+        </ul>
+        <div class="card-body">
+            <a th:href="@{/solicitud/add/{id_oferta}(id_oferta=${oferta.idOferta})}" class="btn btn-warning" role="button">Solicitar</a>
+            <a th:href="@{/oferta/oferta/{id_oferta}(id_oferta=${oferta.idOferta})}" class="btn btn-warning" role="button">Más información</a>
+        </div>
+    </div>
+    <!--<table class="table table-striped">
         <thead>
         <tr>
             <th>Nombre Habilidad</th>
@@ -75,7 +90,8 @@
             </td>
         </tr>
         </tbody>
-    </table>
+    </table>-->
+
 </div>
 </body>
 </html>

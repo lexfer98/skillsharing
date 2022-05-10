@@ -35,7 +35,6 @@ public class OfertaDao {
             return new ArrayList<Oferta>();
         }
     }
-
     public List<Oferta> getTusOfertas(String dniPropietario) {
         try {
             return jdbcTemplate.query("SELECT * FROM Oferta where activa = true and dni_propietario=?",

@@ -1,6 +1,7 @@
 package es.uji.ei1027.skillsharing.controller;
 
 import es.uji.ei1027.skillsharing.dao.AlumnoDao;
+import es.uji.ei1027.skillsharing.dao.ColaboracionDao;
 import es.uji.ei1027.skillsharing.dao.HabilidadDao;
 import es.uji.ei1027.skillsharing.dao.OfertaDao;
 import es.uji.ei1027.skillsharing.model.Alumno;
@@ -23,6 +24,7 @@ public class OfertaController {
     private OfertaDao ofertaDao;
     private HabilidadDao habilidadDao;
     private AlumnoDao alumnoDao;
+    private ColaboracionDao colaboracionDao;
 
     @Autowired
     public void setOfertaDao(OfertaDao ofertaDao) {
@@ -34,6 +36,8 @@ public class OfertaController {
     }
     @Autowired
     public void setAlumnoDao(AlumnoDao alumnoDao){ this.alumnoDao=alumnoDao;}
+    @Autowired
+    public void setColaboracionDao(ColaboracionDao colaboracionDao){ this.colaboracionDao = colaboracionDao;}
 
     @RequestMapping("/listpropias")
     public String listOfertas(Model model, HttpSession session) {
@@ -109,6 +113,23 @@ public class OfertaController {
             return "oferta/update";
         ofertaDao.updateOferta(oferta);
         return "redirect:list";
+    }
+
+    @RequestMapping(value="/oferta/{idOferta}")
+    public String verOferta(Model model, @PathVariable int idOferta, HttpSession session) {
+        session.setAttribute("nextUrl", "redirect:oferta/update/"+idOferta);
+        if (session.getAttribute("alumno") == null)
+        {
+            model.addAttribute("alumno",new Alumno() );
+            return "loginV2";
+        }
+        Double valoracion = (colaboracionDao.getValoracionMedia(ofertaDao.getOferta(idOferta).getDniPropietario())==null ? -1 : colaboracionDao.getValoracionMedia(ofertaDao.getOferta(idOferta).getDniPropietario()));
+        session.setAttribute("alumno", session.getAttribute("alumno"));
+        model.addAttribute("habilidad", habilidadDao.getIdHabilidad(ofertaDao.getOferta(idOferta).getIdHabilidad()));
+        model.addAttribute("oferta", ofertaDao.getOferta(idOferta));
+        model.addAttribute("alumno", alumnoDao.getAlumno(ofertaDao.getOferta(idOferta).getDniPropietario()));
+        model.addAttribute("valoracion", valoracion);
+        return "oferta/oferta";
     }
 
     @RequestMapping(value="/delete/{idOferta}")

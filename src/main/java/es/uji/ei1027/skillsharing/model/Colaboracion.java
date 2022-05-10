@@ -15,6 +15,7 @@ public class Colaboracion {
     private int puntuacion;
     private String opinion;
     private boolean activo;
+    private boolean finalizada;
 
     @Override
     public String toString() {
@@ -28,6 +29,7 @@ public class Colaboracion {
                 ", puntuación=" + puntuacion +
                 ", opinion='" + opinion + '\'' +
                 ", activo=" + activo +
+                ", finalizada=" + finalizada +
                 '}';
     }
 
@@ -108,6 +110,10 @@ public class Colaboracion {
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
+
+    public boolean isFinalizada(){ return finalizada;}
+
+    public void setFinalizada(boolean finalizada){ this.finalizada = finalizada;}
 
     public void crearColaboracion(Solicitud solicitud){
         this.idOferta = solicitud.getId_oferta();

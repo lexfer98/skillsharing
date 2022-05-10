@@ -23,6 +23,7 @@ public class ColaboracionRowMapper implements RowMapper<Colaboracion> {
         colaboracion.setPuntuación(rs.getInt("puntuacion"));
         colaboracion.setOpinion(rs.getString("opinion"));
         colaboracion.setActivo(rs.getBoolean("activo"));
+        colaboracion.setFinalizada(rs.getBoolean("finalizada"));
         return colaboracion;
     }
 }

@@ -61,6 +61,7 @@
         <td th:text="${solicitud.descripcion}"></td>
         <td th:text="${solicitud.fecha_inic}"></td>
         <td th:text="${solicitud.fecha_fin}"></td>
+        <td><a th:href="@{/solicitud/delete/{idSolicitud}(idSolicitud=${solicitud.id_solicitud})}">Borrar</a>
 
 
         </td>

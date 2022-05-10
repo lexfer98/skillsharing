@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ver oferta</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"     href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<br>
+<br>
+<form action="#" th:action="@{/oferta/oferta}"
+      th:object="${oferta}" method="post">
+    <h2 align="center">Datos de la oferta</h2>
+    <table align="center">
+        <tr>
+            <td><label>Habilidad: </label></td>
+            <td><a th:text="${habilidad.nombre+' '+habilidad.nivel}"></a></td>
+        </tr>
+        <tr>
+            <td><label>Nombre: </label></td>
+            <td><a th:text="${oferta.nombre}"></a></td>
+        </tr>
+        <tr>
+            <td><label>Descripcion: </label></td>
+            <td><a th:text="${oferta.descripcion}"></a></td>
+        </tr>
+        <tr>
+            <td><label>Fecha Iniciacion: </label></td>
+            <td><a th:text="${oferta.fechaIniciacion}"></a></td>
+        </tr>
+        <tr>
+            <td><label>Fecha Finalizacion: </label></td>
+            <td><a th:text="${oferta.fechaFinalizacion}"></a></td>
+        </tr>
+    </table>
+    <br>
+    <br>
+    <br>
+    <h2 align="center">Detalles del propietario</h2>
+    <table align="center">
+        <tr>
+            <td><label>Nombre: </label></td>
+            <td><a th:text="${alumno.nombre+' '+alumno.apellidos}"></a></td>
+        </tr>
+        <tr>
+            <td><label>Correo electrónico: </label></td>
+            <td><a th:text="${alumno.email}"></a></td>
+        </tr>
+        <tr>
+            <td><label>Titulación: </label></td>
+            <td><a th:text="${alumno.curso+'º '+alumno.titulacion}"></a></td>
+        </tr>
+        <tr>
+            <td><label>Valoración media: </label></td>
+            <td><a th:text="${valoracion<0 ? 'Aún no hay reseñas' : valoracion+'/5'}"></a></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

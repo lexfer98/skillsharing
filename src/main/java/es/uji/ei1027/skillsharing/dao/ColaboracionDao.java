@@ -48,13 +48,13 @@ public class ColaboracionDao {
     }
 
     public void addColaboracion(Colaboracion colaboracion){
-        jdbcTemplate.update("INSERT INTO Colaboracion VALUES(default,?,?,?,?,null,null,null,true)",
+        jdbcTemplate.update("INSERT INTO Colaboracion VALUES(default,?,?,?,?,null,null,null,true,false)",
                 colaboracion.getIdSolicitud(),colaboracion.getIdOferta(),colaboracion.getFecha_inicio(),
                 colaboracion.getFecha_fin());
     }
 
     public void updateColaboracion(Colaboracion colaboracion){
-        jdbcTemplate.update("UPDATE Colaboracion SET horas = ?, puntuacion = ?, opinion = ?, activo = false WHERE id_colaboracion = ?"
+        jdbcTemplate.update("UPDATE Colaboracion SET horas = ?, puntuacion = ?, opinion = ?, finalizada = false WHERE id_colaboracion = ?"
                ,colaboracion.getHoras(),colaboracion.getPuntuacion(),colaboracion.getOpinion(),
                 colaboracion.getId_colaboracion());
     }
@@ -63,5 +63,11 @@ public class ColaboracionDao {
         jdbcTemplate.update("UPDATE Colaboracion SET activa = false WHERE id_colaboracion = ?", id_colaboracion);
     }
 
-
+    public Double getValoracionMedia(String dniPropietario){
+        try {
+            return jdbcTemplate.queryForObject("SELECT ROUND(AVG(c.puntuacion),2) FROM Colaboracion AS c JOIN Oferta AS o USING(id_oferta) WHERE finalizada = true and dni_propietario = ? GROUP BY dni_propietario", Double.class , dniPropietario);
+        }catch(EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
 }
