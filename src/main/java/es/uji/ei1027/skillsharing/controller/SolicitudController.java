@@ -126,7 +126,7 @@ public class SolicitudController {
     public String rechazar(@PathVariable int id_solicitud, HttpSession session) {
         session.setAttribute("alumno", session.getAttribute("alumno"));
         solicitudDao.rechazarSolicitud(id_solicitud);
-        return "solicitud/listsolicitadas/"+solicitudDao.getSolicitud(id_solicitud).getId_oferta();
+        return "redirect:/solicitud/listsolicitadas/"+solicitudDao.getSolicitud(id_solicitud).getId_oferta();
     }
 
 
