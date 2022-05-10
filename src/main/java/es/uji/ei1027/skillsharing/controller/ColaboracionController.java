@@ -74,7 +74,7 @@ public class ColaboracionController {
         if (bindingResult.hasErrors())
             return "colaboracion/update";
         colaboracionDao.updateColaboracion(colaboracion);
-        return "redirect:list";
+        return "redirect:listpropias";
     }
 
     @RequestMapping(value = "/add/{id_solicitud}")

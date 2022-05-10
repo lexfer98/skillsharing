@@ -24,7 +24,7 @@ public class ColaboracionDao {
 
     public List<Colaboracion> getColaboraciones(){
         try{
-            return jdbcTemplate.query("SELECT * FROM Colaboracion Where activa = true",new ColaboracionRowMapper());
+            return jdbcTemplate.query("SELECT * FROM Colaboracion Where activo = true",new ColaboracionRowMapper());
         }catch (EmptyResultDataAccessException e){
             return new ArrayList<>();
         }
