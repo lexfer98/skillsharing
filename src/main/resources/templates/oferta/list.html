@@ -93,7 +93,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        Estás seguro que quieres solicitar la oferta <a th:text="${oferta.nombre}"></a> de <a th:each="habilidad: ${habilidades}" th:if="${habilidad.id_habilidad==oferta.idHabilidad}" th:text="${habilidad.nombre+' '+habilidad.nivel}"></a>
+                        Estás seguro que quieres solicitar la oferta <a th:text="${oferta.nombre}"></a> de <a th:each="habilidad: ${habilidades}" th:if="${habilidad.id_habilidad==oferta.idHabilidad}" th:text="${habilidad.nombre+' '+habilidad.nivel}"></a>?
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
