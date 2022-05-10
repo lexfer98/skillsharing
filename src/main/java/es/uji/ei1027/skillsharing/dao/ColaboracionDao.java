@@ -39,11 +39,11 @@ public class ColaboracionDao {
         }
     }
 
-    public List<Colaboracion> getColaboracion(int id_colaboracion){
+    public Colaboracion getColaboracion(int id_colaboracion){
         try {
-            return jdbcTemplate.query("SELECT * FROM Colaboracion WHERE id_colaboracion = ? AND activo = true", new ColaboracionRowMapper(),id_colaboracion);
-        }catch (EmptyResultDataAccessException e){
-            return new ArrayList<>();
+            return jdbcTemplate.queryForObject("SELECT * FROM Colaboracion WHERE id_colaboracion = ? AND activo = true", new ColaboracionRowMapper(),id_colaboracion);
+        }catch(EmptyResultDataAccessException e) {
+            return null;
         }
     }
 
@@ -54,7 +54,7 @@ public class ColaboracionDao {
     }
 
     public void updateColaboracion(Colaboracion colaboracion){
-        jdbcTemplate.update("UPDATE Colaboracion horas = ?, puntuacion = ?, opinion = ?, activo = false WHERE id_colaboracion = ?"
+        jdbcTemplate.update("UPDATE Colaboracion SET horas = ?, puntuacion = ?, opinion = ?, activo = false WHERE id_colaboracion = ?"
                ,colaboracion.getHoras(),colaboracion.getPuntuacion(),colaboracion.getOpinion(),
                 colaboracion.getId_colaboracion());
     }
