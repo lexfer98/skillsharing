@@ -79,10 +79,8 @@ public class OfertaController {
         session.setAttribute("alumno", session.getAttribute("alumno"));
         Alumno alumno = (Alumno) session.getAttribute("alumno");
         model.addAttribute("habilidades", habilidadDao.getHabilidades());
-        /*
         OfertaValidator ofertaValidator = new OfertaValidator();
         ofertaValidator.validate(oferta,bindingResult);
-         */
         if (bindingResult.hasErrors())
             return "oferta/add";
         oferta.setDniPropietario(alumno.getDni());

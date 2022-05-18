@@ -18,19 +18,23 @@
         </tr>
         <tr>
             <td><label>Nombre</label></td>
-            <td><input type="text" th:field="${oferta.nombre}" /></td>
+            <td><input type="text" th:field="${oferta.nombre}"/></td>
+            <td th:if="${#fields.hasErrors('oferta.nombre')}" th:errors="*{oferta.nombre}" class="error"/>
         </tr>
         <tr>
             <td><label>Descripcion</label></td>
-            <td><input type="text" th:field="${oferta.descripcion}" /></td>
+            <td><input type="text" th:field="${oferta.descripcion}"/></td>
+            <td th:if="${#fields.hasErrors('oferta.descripcion')}" th:errors="*{oferta.descripcion}" class="error"/>
         </tr>
         <tr>
             <td><label>Fecha Iniciacion</label></td>
-            <td><input type="date" th:field="${oferta.fechaIniciacion}" /></td>
+            <td><input type="date" th:field="${oferta.fechaIniciacion}"/></td>
+            <td th:if="${#fields.hasErrors('oferta.fechaFinalizacion')}" th:errors="*{oferta.fechaIniciacion}" class="error"/>
         </tr>
         <tr>
             <td><label>Fecha Finalizacion</label></td>
-            <td><input type="date" th:field="${oferta.fechaFinalizacion}" /></td>
+            <td><input type="date" th:field="${oferta.fechaFinalizacion}"/></td>
+            <td th:if="${#fields.hasErrors('oferta.fechaIniciacion')}" th:errors="*{oferta.fechaFinalizacion}" class="error"/>
         </tr>
         <tr>
             <td colspan="2"><input type="submit" value="Añadir oferta" /></td>
