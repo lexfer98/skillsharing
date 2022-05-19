@@ -4,6 +4,7 @@
     <title>Modificar una colaboracion</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet"     href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+    <link href="/static/style.css" rel="stylesheet">
 </head>
 <body>
 <br>
@@ -20,19 +21,25 @@
     <input type="hidden" th:field="*{activo}" >
     <table align="center">
         <tr>
+
+
         <tr>
             <td><label>Horas</label></td>
             <td><input type="number" th:field="*{horas}" /></td>
+            <td th:if="${#fields.hasErrors('horas')}" th:errors="*{horas}" class="error"/>
         </tr>
 
         <tr>
             <td><label>Puntuacion</label></td>
             <td><input type="number" th:field="*{puntuacion}" minlength="1" maxlength="5" /></td>
+            <td th:if="${#fields.hasErrors('puntuacion')}" th:errors="*{puntuacion}" class="error"/>
         </tr>
+
 
         <tr>
             <td><label>Opinion</label></td>
             <td><input type="text" th:field="*{opinion}" /></td>
+            <td th:if="${#fields.hasErrors('opinion')}" th:errors="*{opinion}" class="error"/>
         </tr>
         <tr>
             <td colspan="2"><input type="submit" value="Finalizar colaboracion" /></td>

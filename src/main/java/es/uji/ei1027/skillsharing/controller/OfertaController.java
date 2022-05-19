@@ -132,7 +132,7 @@ public class OfertaController {
 
     @RequestMapping(value="/delete/{idOferta}")
     public String processDelete(@PathVariable int idOferta, HttpSession session, Model model) {
-        session.setAttribute("nextUrl", "redirect:oferta/list");
+        session.setAttribute("nextUrl", "redirect:oferta/listpropias");
         if (session.getAttribute("alumno") == null)
         {
             model.addAttribute("alumno",new Alumno() );
@@ -140,6 +140,6 @@ public class OfertaController {
         }
         session.setAttribute("alumno", session.getAttribute("alumno"));
         ofertaDao.deleteOferta(idOferta);
-        return "redirect:/list";
+        return "redirect:oferta/listpropias";
     }
 }

@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link href="/static/style.css" rel="stylesheet">
 </head>
 <body>
 <div class="container">
@@ -15,7 +16,8 @@
         <div class="form-group row">
             <label class="control-label col-sm-2" for="dni">Dni:</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" id="dni" th:field="*{dni}" />
+                <input type="text" class="form-control" id="dni" th:field="*{dni} " />
+                <div th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}" class="error"></div>
             </div>
         </div>
 
@@ -23,13 +25,16 @@
             <label class="control-label col-sm-2" for="nombre">Nombre:</label>
             <div class="col-sm-4">
                 <input type="text" class="form-control" id="nombre" th:field="*{nombre}"/>
+                <div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="error"></div>
             </div>
+
         </div>
 
         <div class="form-group row">
             <label class="control-label col-sm-2" for="apellidos">Apellidos:</label>
             <div class="col-sm-4">
                 <input type="text" class="form-control" id="apellidos" th:field="*{apellidos}" />
+                <div th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}" class="error"></div>
             </div>
         </div>
 
@@ -37,6 +42,7 @@
             <label class="control-label col-sm-2" for="email">Email:</label>
             <div class="col-sm-4">
                 <input type="text" class="form-control" id="email" th:field="*{email}" />
+                <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></div>
             </div>
         </div>
 
@@ -44,6 +50,7 @@
             <label class="control-label col-sm-2" for="titulacion">Titulación:</label>
             <div class="col-sm-4">
                 <input type="text" class="form-control" id="titulacion" th:field="*{titulacion}" />
+                <div th:if="${#fields.hasErrors('titulacion')}" th:errors="*{titulacion}" class="error"></div>
             </div>
         </div>
         <div class="form-group row">
@@ -74,7 +81,7 @@
         <div class="form-group row">
             <label class="control-label col-sm-2">Genero:</label>
             <select th:field="*{genero}">
-                <option th:value="'Masculito'" th:text="Masculino"></option>
+                <option th:value="'Masculino'" th:text="Masculino"></option>
                 <option th:value="'Feminino'" th:text="Feminino"></option>
                 <option th:value="'Otro'" th:text="Otro"></option>
             </select>
@@ -84,6 +91,7 @@
             <label class="control-label col-sm-2" for="edad">Edad:</label>
             <div class="col-sm-4">
                 <input type="number" class="form-control" id="edad" th:field="*{edad}" />
+                <div th:if="${#fields.hasErrors('edad')}" th:errors="*{edad}" class="error"></div>
             </div>
         </div>
 
@@ -91,6 +99,7 @@
             <label class="control-label col-sm-2" for="numTel">Número de telefono:</label>
             <div class="col-sm-4">
                 <input type="number" class="form-control" id="numTel" th:field="*{numTel}" />
+                <div th:if="${#fields.hasErrors('numTel')}" th:errors="*{numTel}" class="error"></div>
             </div>
         </div>
 
@@ -98,6 +107,7 @@
             <label class="control-label col-sm-2" for="contraseña">Contraseña:</label>
             <div class="col-sm-4">
                 <input type="password" class="form-control" id="contraseña" th:field="*{contraseña}" minlength="6" maxlength="20" />
+                <div th:if="${#fields.hasErrors('contraseña')}" th:errors="*{contraseña}" class="error"></div>
             </div>
         </div>
 

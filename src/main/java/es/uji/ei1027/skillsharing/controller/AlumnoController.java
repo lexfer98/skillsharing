@@ -59,6 +59,8 @@ public class AlumnoController{
     public String processAddSubmit(@ModelAttribute("alumno") Alumno alumno,
                                    BindingResult bindingResult, HttpSession session) {
         session.setAttribute("alumno", session.getAttribute("alumno"));
+        AlumnoAddValidator alumnoValidator = new AlumnoAddValidator();
+        alumnoValidator.validate(alumno,bindingResult);
         if (bindingResult.hasErrors())
         return "alumno/add";
         alumno.encriptarContraseña();

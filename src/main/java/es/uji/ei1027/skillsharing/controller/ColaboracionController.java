@@ -71,6 +71,10 @@ public class ColaboracionController {
             BindingResult bindingResult, HttpSession session) {
         session.setAttribute("alumno", session.getAttribute("alumno"));
         System.out.println(colaboracion);
+
+        ValorarColaboracionValidator colaboracionValidator = new ValorarColaboracionValidator();
+        colaboracionValidator.validate(colaboracion,bindingResult);
+
         if (bindingResult.hasErrors())
             return "colaboracion/update";
         colaboracionDao.updateColaboracion(colaboracion);
