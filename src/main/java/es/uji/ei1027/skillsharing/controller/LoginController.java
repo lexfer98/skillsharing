@@ -26,7 +26,7 @@ class AlumnoValidator implements Validator {
         // ...
         Alumno alumno = (Alumno) obj;
         if ((alumno.getDni().trim().equals("") )&& (alumno.getContraseña().trim().equals("") ))
-            errors.rejectValue("pass", "pass",
+            errors.rejectValue("contraseña", "contraseña",
                     "Cal introduir usuari y contrasenya");
     }
 }

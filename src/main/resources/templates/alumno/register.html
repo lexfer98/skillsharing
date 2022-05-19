@@ -46,18 +46,39 @@
                 <input type="text" class="form-control" id="titulacion" th:field="*{titulacion}" />
             </div>
         </div>
+
+        <div class="form-group row">
+            <label class="control-label col-sm-2">Curso:</label>
+            <select th:field="*{curso}">
+                <option th:value="'1'" th:text="Primero"></option>
+                <option th:value="'2'" th:text="Segundo"></option>
+                <option th:value="'3'" th:text="Tercera"></option>
+                <option th:value="'4'" th:text="Cuarto"></option>
+                <option th:value="'5'" th:text="Quinto"></option>
+                <option th:value="'6'" th:text="Sexto"></option>
+            </select>
+        </div>
+        <!--
         <div class="form-group row">
             <label class="control-label col-sm-2" for="curso">Curso:</label>
             <div class="col-sm-4">
                 <input type="number" class="form-control" id="curso" th:field="*{curso}" />
             </div>
         </div>
-
         <div class="form-group row">
             <label class="control-label col-sm-2" for="genero">Genero:</label>
             <div class="col-sm-4">
                 <input type="text" class="form-control" id="genero" th:field="*{genero}" />
             </div>
+        </div>
+        -->
+        <div class="form-group row">
+            <label class="control-label col-sm-2">Genero:</label>
+            <select th:field="*{genero}">
+                <option th:value="'Masculito'" th:text="Masculino"></option>
+                <option th:value="'Feminino'" th:text="Feminino"></option>
+                <option th:value="'Otro'" th:text="Otro"></option>
+            </select>
         </div>
 
         <div class="form-group row">
