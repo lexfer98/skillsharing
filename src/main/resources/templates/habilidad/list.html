@@ -3,6 +3,15 @@
 <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+
+    <div style="float:right" class="loggeduser" th:object="${session}">
+        <p th:if="*{alumno == null}">
+            No autenticat <a href="/login" th:href="@{/login}">Entrar</a>
+        </p>
+        <p th:unless="*{alumno == null}"><center><b>
+        Autenticado como <span th:text="*{alumno.nombre}"></span></b></center>
+        </p>
+    </div>
 </head>
 <body>
 <h1>Llista de habilidades</h1>
