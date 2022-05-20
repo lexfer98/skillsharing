@@ -1,8 +1,8 @@
 package es.uji.ei1027.skillsharing.controller;
 
 import es.uji.ei1027.skillsharing.dao.HabilidadDao;
-import es.uji.ei1027.skillsharing.model.Alumno;
 import es.uji.ei1027.skillsharing.model.Habilidad;
+import es.uji.ei1027.skillsharing.model.Oferta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,6 +43,8 @@ public class HabilidadController {
     public String processAddSubmit(@ModelAttribute("habilidad") Habilidad habilidad,
                                    BindingResult bindingResult, HttpSession session) {
         session.setAttribute("alumno", session.getAttribute("alumno"));
+        HabilidadValidatorAdd habilidadValidatorAdd = new HabilidadValidatorAdd();
+        habilidadValidatorAdd.validate(habilidad,bindingResult);
         if (bindingResult.hasErrors())
             return "habilidad/add";
         habilidadDao.addHabilidad(habilidad);
@@ -55,5 +57,12 @@ public class HabilidadController {
         model.addAttribute("habilidad", habilidadDao.getIdHabilidad(id_habilidad));
         return "habilidad/update";
     }
-
+    @RequestMapping(value="/update", method = RequestMethod.POST)
+    public String processUpdateSubmit(@ModelAttribute("habilidad") Habilidad habilidad, BindingResult bindingResult, HttpSession session) {
+        session.setAttribute("alumno", session.getAttribute("alumno"));
+        if (bindingResult.hasErrors())
+            return "oferta/update";
+        habilidadDao.updateHabilidad(habilidad);
+        return "redirect:list";
+    }
 }

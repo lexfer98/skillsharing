@@ -1,39 +1,86 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Actualiza la habilidad</title>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet"     href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+    <meta charset="UTF-8">
+    <title>USUARIO SKP</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+
+    <link href="/static/style.css" rel="stylesheet">
+
+    <div class="loggeduser" th:object="${session}">
+        <p th:if="*{alumno == null}">
+            No autenticat <a href="/login" th:href="@{/login}">Entrar</a>
+        </p>
+        <p th:unless="*{alumno == null}"><center><b>
+        Autenticado como <span th:text="*{alumno.nombre}"></span></b></center>
+        </p>
+    </div>
 </head>
+
 <body>
-<h2>Nueva habilidad</h2>
-<form action="#" th:action="@{/habilidad/add}"
-      th:object="${habilidad}" method="post">
-    <table>
-        <tr>
-            <td><label>IdHabilidad</label></td>
-            <td><input type="number" th:field="*{id_habilidad}" /></td>
-        </tr>
-        <tr>
-            <td><label>Nombre</label></td>
-            <td><input type="text" th:field="*{nombre}" /></td>
-        </tr>
-        <tr>
-            <td><label>Descripción</label></td>
-            <td><input type="text" th:field="*{descripcion}" /></td>
-        </tr>
-        <tr>
-            <td><label>Nivel</label></td>
-            <td><input type="text" th:field="*{nivel}" /></td>
-        </tr>
-        <tr>
-            <td><label>Activa</label></td>
-            <td><input type="text" th:field="*{activa}" /></td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Agrega habilidad" /></td>
-        </tr>
-    </table>
-</form>
+<section>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-30 text-center mb-30">
+                <h2 style="font-size:60px;">SKP MENU</h2>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg ftco_navbar ftco-navbar-light" id="ftco-navbar" >
+            <div class="container">
+                <a class="navbar-brand" href="/">Volver</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa fa-bars"></span> Menu
+                </button>
+                <div class="collapse navbar-collapse" id="ftco-nav">
+                    <ul class="navbar-nav ml-auto mr-md-3" id="menu">
+                        <li class="nav-item"><a href="/alumno/list" class="nav-link">Usuarios</a></li>
+                        <li class="nav-item"><a href="/habilidad/list" class="nav-link">Habilidades</a></li>
+                        <li class="nav-item"><a href="/colaboracionskp/list" class="nav-link">Colaboraciones</a></li>
+                        <li class="nav-item"><a href="/solicitud/list" class="nav-link">Solicitudes</a></li>
+                        <li class="nav-item"><a href="/logout" th:href="@{/logout}" class="nav-link">Cerrar sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- END nav -->
+    </div>
+</section>
+<div class="container">
+    <form action="#" th:action="@{/habilidad/update}" th:object="${habilidad}"method="post" style="margin: auto; width: 220px; margin-top: 50px";>
+        <input type="hidden" th:field="*{Id_habilidad}" >
+        <table>
+            <tr>
+                <td><label>Nombre</label></td>
+                <td><input type="text" th:field="*{nombre}" /></td>
+            </tr>
+            <tr>
+                <td><label>Descripción</label></td>
+                <td><input type="text" th:field="*{descripcion}" /></td>
+            </tr>
+            <tr>
+                <td><label>Nivel</label></td>
+                <td><select th:field="*{nivel}">
+                    <option value="experto">Experto</option>
+                    <option value="medio">Medio</option>
+                    <option value="novato">Novato</option>
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Estado</label></td>
+                <td><select th:field="*{activa}">
+                    <option value="true">Activada</option>
+                    <option value="false">Desactivada</option>
+                </select>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Actualizar habilidad" /></td>
+            </tr>
+        </table>
+    </form>
+</div>
 </body>
 </html>

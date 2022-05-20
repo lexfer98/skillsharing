@@ -44,9 +44,9 @@ public class HabilidadDao {
 
     public void updateHabilidad(Habilidad habilidad) {
         jdbcTemplate.update(
-                "UPDATE Habilidad SET id_habilidad = ? , nombre = ?, descripcion = ?, nivel = ? , activa = ?",
-                        habilidad.getId_habilidad(), habilidad.getNombre(),
-                habilidad.getDescripcion(), habilidad.getNivel().toString().toUpperCase(Locale.ROOT), habilidad.getActiva());
+                "UPDATE Habilidad SET nombre = ?, descripcion = ?, nivel = ? , activa = ? WHERE id_habilidad = ?",
+                        habilidad.getNombre(), habilidad.getDescripcion(),
+                habilidad.getNivel().toString().toUpperCase(Locale.ROOT), habilidad.getActiva(),habilidad.getId_habilidad());
     }
 
     public Habilidad getIdHabilidad(int habilidad) {

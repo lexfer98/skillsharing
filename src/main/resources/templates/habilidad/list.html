@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
+    <title>USUARIO SKP</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
 
-    <div style="float:right" class="loggeduser" th:object="${session}">
+    <link href="/static/style.css" rel="stylesheet">
+
+    <div class="loggeduser" th:object="${session}">
         <p th:if="*{alumno == null}">
             No autenticat <a href="/login" th:href="@{/login}">Entrar</a>
         </p>
@@ -13,28 +17,58 @@
         </p>
     </div>
 </head>
+
 <body>
-<h1>Llista de habilidades</h1>
-<table>
-    <thead>
-    <tr>
-        <th>Nombre</th>
-        <th>Descripción</th>
-        <th>Nivel</th>
-        <th></th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="habilidad: ${habilidades}">
-        <td th:text="${habilidad.nombre}"></td>
-        <td th:text="${habilidad.descripcion}"></td>
-        <td th:text="${habilidad.nivel}"></td>
-        <td><a th:href="@{/habilidad/update/{id_habilidad}(id_habilidad=${habilidad.id_habilidad})}">Edita</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
-<a href="add">Agrega una habilidad</a>
+<section>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-30 text-center mb-30">
+                <h2 style="font-size:60px;">SKP MENU</h2>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg ftco_navbar ftco-navbar-light" id="ftco-navbar" >
+            <div class="container">
+                <a class="navbar-brand" href="/">Volver</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa fa-bars"></span> Menu
+                </button>
+                <div class="collapse navbar-collapse" id="ftco-nav">
+                    <ul class="navbar-nav ml-auto mr-md-3" id="menu">
+                        <li class="nav-item"><a href="/alumno/list" class="nav-link">Usuarios</a></li>
+                        <li class="nav-item"><a href="/habilidad/list" class="nav-link">Habilidades</a></li>
+                        <li class="nav-item"><a href="/colaboracionskp/list" class="nav-link">Colaboraciones</a></li>
+                        <li class="nav-item"><a href="/solicitud/list" class="nav-link">Solicitudes</a></li>
+                        <li class="nav-item"><a href="/logout" th:href="@{/logout}" class="nav-link">Cerrar sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- END nav -->
+    </div>
+</section>
+<div class="container">
+    <a href="add">Agrega una habilidad</a>
+    <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Nivel</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="habilidad: ${habilidades}">
+                <td th:text="${habilidad.nombre}"></td>
+                <td th:text="${habilidad.descripcion}"></td>
+                <td th:text="${habilidad.nivel}"></td>
+                <td><a th:href="@{/habilidad/update/{id_habilidad}(id_habilidad=${habilidad.id_habilidad})}">Edita</a>
+                </td>
+            </tr>
+            </tbody>
+    </table>
+</div>
 </body>
 </html>

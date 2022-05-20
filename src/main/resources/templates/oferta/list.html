@@ -54,7 +54,10 @@
                             <li th:if="*{alumno != null}"class="nav-item"><a href="/solicitud/listpropias" class="nav-link">Mis solicitudes</a></li>
                             <li class="nav-item"><a href="list" class="nav-link">Ver ofertas</a></li>
                             <li th:if="*{alumno != null}"class="nav-item"><a href="alumno/perfil" class="nav-link">Mi perfil</a></li>
-                            <li class="nav-item"><a href="#" class="nav-link">Contactanos</a></li>
+                            <li class="nav-item" th:object="${session}">
+                                <a th:if="*{alumno.isSkp}" href="/skp/menu" class="nav-link">Menú SKP</a>
+                                <a th:unless="*{alumno.isSkp}" href="#" class="nav-link">Contactanos</a>
+                            </li>
                             <li th:if="*{alumno != null}"class="nav-item"><a href="/logout" th:href="@{/logout}" class="nav-link">Cerrar sesión</a></li>
                             <li th:if="*{alumno == null}"class="dropdown nav-item d-md-flex align-items-center">
                                 <a href="/alumno/users" class="dropdown-toggle nav-link d-flex align-items-center justify-content-center icon-cart p-0" id="dropdown04" data-toggle="dropdown" aria-expanded="false">
