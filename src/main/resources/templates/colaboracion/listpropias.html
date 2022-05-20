@@ -49,6 +49,24 @@
         <!-- END nav -->
     </div>
 </section>
+
+
+<div class="card" style="width: 18rem;" th:each="colaboracion: ${colaboraciones}" align="center">
+    <div class="card-body">
+        <h5 class="card-title"><b><a th:each="solicitud: ${solicitudes}" th:if="${colaboracion.idSolicitud==solicitud.id_solicitud}" th:text="${solicitud.nombre}"></a></b></h5>
+        <p class="card-text"><a th:each="solicitud: ${solicitudes}" th:if="${colaboracion.idSolicitud==solicitud.id_solicitud}" th:text="${solicitud.descripcion}"></a></p>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Inicio: <a th:text="${colaboracion.fecha_inicio}"></a></li>
+        <li class="list-group-item">Fin: <a th:text="${colaboracion.fecha_fin}"></a></li>
+    </ul>
+    <div class="card-body">
+        <a th:href="@{/colaboracion/update/{id_colaboracion}(id_colaboracion=${colaboracion.id_colaboracion})}" class="btn btn-danger" role="button">Finalizar</a>
+    </div>
+
+</div>
+
+<!--
 <div class="container">
     <table class="table table-striped">
         <thead>
@@ -81,5 +99,6 @@
         </tbody>
     </table>
     </div>
+    -->
 </body>
 </html>
