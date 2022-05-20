@@ -90,7 +90,7 @@
 }
 body {
   background: #76b852; /* fallback for old browsers */
-  background-image: linear-gradient(90deg, #cbffa8 0, #b4ffaf 8.33%, #9dffb6 16.67%, #84ffbb 25%, #6bfcbe 33.33%, #52edbe 41.67%, #38ddbc 50%, #1dccb8 58.33%, #00beb4 66.67%, #00b1b1 75%, #00a7ae 83.33%, #009eac 91.67%, #0097ab 100%);
+  background-image: linear-gradient(90deg, #1dccb8 58.33%, #00beb4 66.67%, #00b1b1 75%, #00a7ae 83.33%, #009eac 91.67%, #0097ab 100%);
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
