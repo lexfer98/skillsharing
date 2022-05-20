@@ -9,14 +9,6 @@
 
     <link href="/static/style.css" rel="stylesheet">
 
-    <div class="loggeduser" th:object="${session}">
-        <p th:if="*{alumno == null}">
-            No autenticat <a href="/login" th:href="@{/login}">Entrar</a>
-        </p>
-        <p th:unless="*{alumno == null}"><center><b>
-        Autenticado como <span th:text="*{alumno.nombre}"></span></b></center>
-        </p>
-    </div>
 </head>
 
 <body>
@@ -53,9 +45,56 @@
         </nav>
         <!-- END nav -->
     </div>
+    <div class="loggeduser" th:object="${session}">
+        <p th:if="*{alumno == null}">
+            No autenticat <a href="/login" th:href="@{/login}">Entrar</a>
+        </p>
+        <p th:unless="*{alumno == null}"><center><b>
+        Autenticado como <span th:text="*{alumno.nombre}"></span></b></center>
+        </p>
+    </div>
 
 
 </section>
+    <br>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Mis colaboraciones</h5>
+                    <p class="card-text">Mira las colaboraciones que tienes pendientes o que han sido aceptadas</p>
+                    <a href="/colaboracion/listpropias" class="btn btn-primary">Ver colaboraciones</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Mis ofertas</h5>
+                    <p class="card-text">Consulta las ofertas de solicitudes que tienes y crea nuevas colaboraciones</p>
+                    <a href="/oferta/listpropias" class="btn btn-primary">Ver mis ofertas</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Ver ofertas</h5>
+                    <p class="card-text">Consulta las ofertas disponibles y solicita colaborar</p>
+                    <a href="/oferta/list" class="btn btn-primary">Ver ofertas disponibles</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Mis solicitudes</h5>
+                    <p class="card-text">Comprueba si alguien te ha respondido a alguna solicitud</p>
+                    <a href="/solicitud/listpropias" class="btn btn-primary">Ver solicitudes</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>

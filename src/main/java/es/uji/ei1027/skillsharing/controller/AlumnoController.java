@@ -62,7 +62,7 @@ public class AlumnoController{
         AlumnoAddValidator alumnoValidator = new AlumnoAddValidator();
         alumnoValidator.validate(alumno,bindingResult);
         if (bindingResult.hasErrors())
-        return "alumno/add";
+            return "alumno/add";
         alumno.encriptarContraseña();
         alumnoDao.addAlumno(alumno);
         return "redirect:/";
