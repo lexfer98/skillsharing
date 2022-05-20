@@ -47,6 +47,8 @@
     </div>
 
 </section>
+
+<!--
 <div class="container">
     <table class="table table-striped">
     <thead>
@@ -79,5 +81,27 @@
     </tbody>
 </table>
 </div>
+-->
+
+<div class="card" style="width: 18rem;" th:each="solicitud: ${solicitudes}" align="center">
+    <div class="card-body">
+        <h5 class="card-title"><b><a th:text="${solicitud.dni_solicitud}"></a></b></h5>
+        <p class="card-text"><a th:each="alumno: ${alumnos}" th:if="${alumno.dni==solicitud.dni_solicitud}" th:text="${alumno.nombre+' '+alumno.apellidos}"></a></p>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Género: <a th:each="alumno: ${alumnos}" th:if="${alumno.dni==solicitud.dni_solicitud}" th:text="${alumno.genero}"></a></li>
+        <li class="list-group-item">Edad: <a th:each="alumno: ${alumnos}" th:if="${alumno.dni==solicitud.dni_solicitud}" th:text="${alumno.edad}"></a></li>
+        <li class="list-group-item">Teléfono: <a th:each="alumno: ${alumnos}" th:if="${alumno.dni==solicitud.dni_solicitud}" th:text="${alumno.numTel}"></a></li>
+    </ul>
+    <div class="card-body">
+        <a th:href="@{/colaboracion/add/{id_solicitud}(id_solicitud=${solicitud.id_solicitud})}" class="btn btn-success" role="button">Aceptar</a>
+
+        <a th:href="@{/solicitud/rechazar/{id_solicitud}(id_solicitud=${solicitud.id_solicitud})}" class="btn btn-danger" role="button">Rechazar</a>
+    </div>
+    <!-- Button trigger modal -->
+
+    <!-- Modal -->
+</div>
+
 </body>
 </html>
