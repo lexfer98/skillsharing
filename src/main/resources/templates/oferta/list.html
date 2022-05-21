@@ -74,6 +74,7 @@
     </div>
 </section>
 <!--<div class="container">-->
+<div class="card-columns" style="width: auto; margin: auto auto;">
     <div class="card" style="width: 18rem;" th:each="oferta: ${ofertas}" align="center">
         <div class="card-body">
             <h5 class="card-title"><b><a th:text="${oferta.nombre}"></a></b></h5>
@@ -86,10 +87,7 @@
         </ul>
         <div class="card-body">
             <!--<a th:href="@{/solicitud/add/{id_oferta}(id_oferta=${oferta.idOferta})}" class="btn btn-warning" role="button">Solicitar</a>-->
-            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModalCenter">
-                Solicitar
-            </button>
-
+            <a  role="button" class="btn btn-primary" th:href="@{/solicitud/add/{id_oferta}(id_oferta=${oferta.idOferta})}">Solicitar</a>
             <a th:href="@{/oferta/oferta/{id_oferta}(id_oferta=${oferta.idOferta})}" class="btn btn-warning" role="button">Más información</a>
         </div>
         <!-- Button trigger modal -->
@@ -115,6 +113,7 @@
             </div>
         </div>
     </div>
+</div>
     <!--<table class="table table-striped">
         <thead>
         <tr>
