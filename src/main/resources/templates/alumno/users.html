@@ -12,11 +12,59 @@
 </head>
 
 <body>
+
+<!-- -----------------COMENTADO EL MENU ORIGINAL PARA TESTEAR----------
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">SKILL SHARING</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+
+            <li class="nav-item">
+                <a href="/colaboracion/listpropias" class="nav-link">Mis colaboraciones</a>
+            </li>
+            <li class="nav-item">
+                <a href="/oferta/listpropias" class="nav-link">Mis ofertas</a>
+            </li>
+            <li class="nav-item">
+                <a href="/solicitud/listpropias" class="nav-link">Mis solicitudes</a>
+            </li>
+            <li class="nav-item ">
+                <a href="/oferta/list" class="nav-link">Ver ofertas</a>
+            </li>
+            <li class="nav-item">
+                <a href="alumno/perfil" class="nav-link">Mi perfil</a>
+            </li>
+            <li class="nav-item" th:object="${session}">
+                <a th:if="*{alumno.isSkp}" href="/skp/menu" class="nav-link">Menú SKP</a>
+
+            </li>
+            <li class="nav-item"><a href="/logout" th:href="@{/logout}" class="nav-link">Cerrar sesión</a></li>
+
+            <li class="nav-item">
+                <div class="loggeduser" th:object="${session}">
+                    <p th:if="*{alumno == null}">
+                        No autenticat <a href="/login" th:href="@{/login}">Entrar</a>
+                    </p>
+                    <p th:unless="*{alumno == null}"><b>
+                    Autenticado como <span th:text="*{alumno.nombre}"></span></b>
+                    </p>
+                </div>
+            </li>
+
+        </ul>
+
+    </div>
+</nav>
+-->
+
 <section>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-30 text-center mb-30">
-                <h2 style="font-size:60px;">SkillSharing</h2>
+                <h2 style="font-size:60px;">SKILL SHARING</h2>
             </div>
         </div>
     </div>
@@ -43,7 +91,7 @@
                 </div>
             </div>
         </nav>
-        <!-- END nav -->
+
     </div>
     <div class="loggeduser" th:object="${session}">
         <p th:if="*{alumno == null}">
@@ -54,47 +102,56 @@
         </p>
     </div>
 
-
 </section>
-    <br>
-    <div class="row">
-        <div class="col-sm-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Mis colaboraciones</h5>
-                    <p class="card-text">Mira las colaboraciones que tienes pendientes o que han sido aceptadas</p>
-                    <a href="/colaboracion/listpropias" class="btn btn-primary">Ver colaboraciones</a>
-                </div>
-            </div>
+
+<!--            TEST -->
+
+<div class="card-deck" style="width: auto; margin: auto auto;">
+    <div class="card">
+        <img src="https://2.bp.blogspot.com/-TO6S8qo6xFo/VgviO4QJLhI/AAAAAAAAbvM/0NtxfubM1WQ/s1600/EEF-Relaciones-interpersonales.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Mis colaboraciones</h5>
+            <p class="card-text">Mira tus colaboraciones</p>
         </div>
-        <div class="col-sm-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Mis ofertas</h5>
-                    <p class="card-text">Consulta las ofertas de solicitudes que tienes y crea nuevas colaboraciones</p>
-                    <a href="/oferta/listpropias" class="btn btn-primary">Ver mis ofertas</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Ver ofertas</h5>
-                    <p class="card-text">Consulta las ofertas disponibles y solicita colaborar</p>
-                    <a href="/oferta/list" class="btn btn-primary">Ver ofertas disponibles</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Mis solicitudes</h5>
-                    <p class="card-text">Comprueba si alguien te ha respondido a alguna solicitud</p>
-                    <a href="/solicitud/listpropias" class="btn btn-primary">Ver solicitudes</a>
-                </div>
-            </div>
+        <div class="card-footer">
+            <a href="/colaboracion/listpropias" class="btn btn-primary btn-lg btn-block">Ver colaboraciones</a>
         </div>
     </div>
+    <div class="card">
+        <img src="https://d3t4nwcgmfrp9x.cloudfront.net/upload/secretos-personas-siempre-obtienen-ofertas-trabajo.jpg" class="card-img-top" alt="...">
+        <div class="card-body" >
+            <h5 class="card-title">Mis solicitudes</h5>
+            <p class="card-text">Comprueba si alguien te han aceptado en alguna de tus solicitudes</p>
+        </div>
+        <div class="card-footer">
+            <a href="/solicitud/listpropias" class="btn btn-primary btn-lg btn-block">Ver solicitudes</a>
+        </div>
+    </div>
+    <div class="card">
+        <img src="https://2.bp.blogspot.com/-TO6S8qo6xFo/VgviO4QJLhI/AAAAAAAAbvM/0NtxfubM1WQ/s1600/EEF-Relaciones-interpersonales.jpg" class="card-img-top" alt="foto">
+        <div class="card-body">
+            <h5 class="card-title">Mis ofertas</h5>
+            <p class="card-text">Consulta las ofertas de solicitudes que tienes y crea nuevas colaboraciones</p>
+        </div>
+        <div class="card-footer">
+            <a href="/oferta/listpropias" class="btn btn-primary btn-lg btn-block">Ver mis ofertas</a>
+        </div>
+    </div>
+    <div class="card">
+        <img src="https://2.bp.blogspot.com/-TO6S8qo6xFo/VgviO4QJLhI/AAAAAAAAbvM/0NtxfubM1WQ/s1600/EEF-Relaciones-interpersonales.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Ver ofertas</h5>
+            <p class="card-text">Consulta las ofertas disponibles y solicita colaborar</p>
+        </div>
+        <div class="card-footer">
+            <a href="/oferta/list" class="btn btn-primary btn-lg btn-block">Ver ofertas disponibles</a>
+        </div>
+    </div>
+</div>
+
 
 </body>
+
+<button type="button" class="btn btn-primary btn-lg btn-block" style="width:100%; margin-bottom: 0px;">Añadir oferta</button>
+
 </html>
