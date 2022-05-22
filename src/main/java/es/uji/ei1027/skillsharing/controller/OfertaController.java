@@ -49,6 +49,7 @@ public class OfertaController {
         return "oferta/listpropias";
     }
 
+
     @RequestMapping("/list")
     public String listTusOfertas(Model model, HttpSession session) {
         session.setAttribute("alumno", session.getAttribute("alumno"));
@@ -57,6 +58,20 @@ public class OfertaController {
         model.addAttribute("ofertas", ofertaDao.getOfertas());
         return "oferta/list";
     }
+
+
+    @RequestMapping("/listarSkillsOfertas")
+    public String listTusOfertasSegunSkill(Model model,String habilidad, HttpSession session) {
+        session.setAttribute("alumno", session.getAttribute("alumno"));
+        model.addAttribute("habilidades", habilidadDao.getHabilidades());
+        model.addAttribute("alumnos", alumnoDao.getAlumnos());
+        model.addAttribute("ofertas", ofertaDao.getOfertasSegunSkill(habilidad));
+        System.out.println(habilidad);
+        System.out.println(ofertaDao.getOfertasSegunSkill(habilidad));
+        return "oferta/list";
+    }
+
+
 
     @RequestMapping(value="/add")
     public String addOferta(Model model, @ModelAttribute("alumno") Alumno alumno, HttpSession session) {

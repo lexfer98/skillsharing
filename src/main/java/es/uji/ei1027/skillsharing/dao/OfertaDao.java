@@ -45,6 +45,17 @@ public class OfertaDao {
         }
     }
 
+    //Ofertas globales segun skill
+    public List<Oferta> getOfertasSegunSkill(String nombreHabilidad) {
+        try {
+            return jdbcTemplate.query("SELECT o.* FROM oferta AS o JOIN habilidad AS h USING(id_habilidad) WHERE o.activa = true AND h.nombre=? ",
+                    new OfertaRowMapper(), nombreHabilidad);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Oferta>();
+        }
+    }
+
     public void updateOferta(Oferta oferta) {
         jdbcTemplate.update("UPDATE oferta SET nombre = ?, descripcion = ?, fecha_inic = ?, fecha_fin=? WHERE id_oferta = ? and activa = ?",
                 oferta.getNombre(), oferta.getDescripcion(), oferta.getFechaIniciacion(), oferta.getFechaFinalizacion(), oferta.getIdOferta(), oferta.isActiva());

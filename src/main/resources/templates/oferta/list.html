@@ -11,15 +11,6 @@
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link rel="stylesheet" type="text/css" href="style.css">
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false"></script>
-    <link href="bootstrap/js/bootstrap.min.js" rel="stylesheet" media="screen">
-    <link href="bootstrap/js/bootstrap-modal.js" rel="stylesheet" media="screen">
-    <link href="bootstrap/js/bootstrap-transition.js" rel="stylesheet" media="screen">
 
     <div style="float:right" class="loggeduser" th:object="${session}">
         <p th:if="*{alumno == null}">
@@ -72,75 +63,22 @@
         </nav>
         <!-- END nav -->
     </div>
+
+
+
+
 </section>
-<!--<div class="container">-->
-<div class="card-columns" style="width: auto; margin: auto auto;">
-    <div class="card" style="width: 18rem;" th:each="oferta: ${ofertas}" align="center">
-        <div class="card-body">
-            <h5 class="card-title"><b><a th:text="${oferta.nombre}"></a></b></h5>
-            <p class="card-text"><a th:text="${oferta.descripcion}"></a></p>
-        </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item"><a th:each="habilidad: ${habilidades}" th:if="${habilidad.id_habilidad==oferta.idHabilidad}" th:text="${habilidad.nombre+' '+habilidad.nivel}"></a></li>
-            <li class="list-group-item">Inicio: <a th:text="${oferta.fechaIniciacion}"></a></li>
-            <li class="list-group-item">Fin: <a th:text="${oferta.fechaFinalizacion}"></a></li>
-        </ul>
-        <div class="card-body">
-            <!--<a th:href="@{/solicitud/add/{id_oferta}(id_oferta=${oferta.idOferta})}" class="btn btn-warning" role="button">Solicitar</a>-->
-            <a  role="button" class="btn btn-primary" th:href="@{/solicitud/add/{id_oferta}(id_oferta=${oferta.idOferta})}">Solicitar</a>
-            <a th:href="@{/oferta/oferta/{id_oferta}(id_oferta=${oferta.idOferta})}" class="btn btn-warning" role="button">Más información</a>
-        </div>
-        <!-- Button trigger modal -->
 
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Solicitar la oferta <a th:text="${oferta.nombre}"></a></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Estás seguro que quieres solicitar la oferta <a th:text="${oferta.nombre}"></a> de <a th:each="habilidad: ${habilidades}" th:if="${habilidad.id_habilidad==oferta.idHabilidad}" th:text="${habilidad.nombre+' '+habilidad.nivel}"></a>?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <a role="button" class="btn btn-primary" th:href="@{/solicitud/add/{id_oferta}(id_oferta=${oferta.idOferta})}">Solicitar</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-    <!--<table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Nombre Habilidad</th>
-            <th>Nombre propietario</th>
-            <th>Nombre</th>
-            <th>Descripcion</th>
-            <th>Fecha Iniciacion</th>
-            <th>Fecha Finalizacion</th>
-            <th></th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="oferta: ${ofertas}" class="table-light">
-            <td th:each="habilidad: ${habilidades}" th:if="${habilidad.id_habilidad==oferta.idHabilidad}" th:text="${habilidad.nombre+' '+habilidad.nivel}"></td>
-            <td th:each="alumno: ${alumnos}" th:if="${alumno.dni==oferta.dniPropietario}" th:text="${alumno.nombre+' '+alumno.apellidos}"></td>
-            <td th:text="${oferta.nombre}"></td>
-            <td th:text="${oferta.descripcion}"></td>
-            <td th:text="${oferta.fechaIniciacion}"></td>
-            <td th:text="${oferta.fechaFinalizacion}"></td>
-            <td><a th:href="@{/solicitud/add/{id_oferta}(id_oferta=${oferta.idOferta})}" class="btn btn-warning" role="button">Solicitar</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>-->
+<form th:action="@{/oferta/listarSkillsOfertas}">
+    <select name="habilidad">
+        <option th:each="habilidad : ${habilidades}"
+                th:value="${habilidad.nombre}"
+                th:text="${habilidad.nombre}">
 
-</div>
+        </option>
+    </select>
+    <button> OK </button>
+</form>
+
 </body>
 </html>
