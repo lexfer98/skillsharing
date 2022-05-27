@@ -45,21 +45,6 @@ public class SolicitudController {
     @Autowired
     public void setAlumnoDao(AlumnoDao alumnoDao) { this.alumnoDao = alumnoDao; }
 
-    @RequestMapping("/list")
-    public String listSolicitudes(HttpSession session,Model model) {
-
-        session.setAttribute("nextUrl","solicitud/list");
-        if (session.getAttribute("alumno") == null){
-            model.addAttribute("alumno",new Alumno());
-            return "loginV2";
-        }
-        session.setAttribute("alumno", session.getAttribute("alumno"));
-        model.addAttribute("alumnos", alumnoDao.getAlumnos());
-        model.addAttribute("habilidades", habilidadDao.getHabilidades());
-        model.addAttribute("solicitudes", solicitudDao.getSolicitudes());
-        return "solicitud/list";
-    }
-
     //Lo que tu solicitas para saber si te la han aceptado o no
     @RequestMapping("/listpropias")
     public String listTusSolicitudes(Model model, HttpSession session) {

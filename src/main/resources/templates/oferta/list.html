@@ -45,7 +45,10 @@
                             <li th:if="*{alumno != null}"class="nav-item"><a href="/solicitud/listpropias" class="nav-link">Mis solicitudes</a></li>
                             <li class="nav-item"><a href="list" class="nav-link">Ver ofertas</a></li>
                             <li th:if="*{alumno != null}"class="nav-item"><a href="alumno/perfil" class="nav-link">Mi perfil</a></li>
-                            <li class="nav-item" th:object="${session}">
+                            <li th:if="*{alumno == null}" class="nav-item">
+                                <a href="#" class="nav-link">Contactanos</a>
+                            </li>
+                            <li th:unless="*{alumno == null}" class="nav-item">
                                 <a th:if="*{alumno.isSkp}" href="/skp/menu" class="nav-link">Menú SKP</a>
                                 <a th:unless="*{alumno.isSkp}" href="#" class="nav-link">Contactanos</a>
                             </li>
@@ -63,13 +66,9 @@
         </nav>
         <!-- END nav -->
     </div>
-
-
-
-
 </section>
 
-<form th:action="@{/oferta/listarSkillsOfertas}">
+<form th:action="@{/oferta/listarSkillsOfertas}"style="margin: auto; width: 220px; margin-top: 50px;">
     <select name="habilidad">
         <option th:each="habilidad : ${habilidades}"
                 th:value="${habilidad.nombre}"
@@ -91,9 +90,9 @@
             <li class="list-group-item">Inicio: <a th:text="${oferta.fechaIniciacion}"></a></li>
             <li class="list-group-item">Fin: <a th:text="${oferta.fechaFinalizacion}"></a></li>
         </ul>
-        <div class="card-body">
+        <div class="card-body" th:object="${session}">
             <!--<a th:href="@{/solicitud/add/{id_oferta}(id_oferta=${oferta.idOferta})}" class="btn btn-warning" role="button">Solicitar</a>-->
-            <a  role="button" class="btn btn-primary" th:href="@{/solicitud/add/{id_oferta}(id_oferta=${oferta.idOferta})}">Solicitar</a>
+            <a th:unless="*{alumno == null}" role="button" class="btn btn-primary" th:href="@{/solicitud/add/{id_oferta}(id_oferta=${oferta.idOferta})}">Solicitar</a>
             <a th:href="@{/oferta/oferta/{id_oferta}(id_oferta=${oferta.idOferta})}" class="btn btn-warning" role="button">Más información</a>
         </div>
     </div>

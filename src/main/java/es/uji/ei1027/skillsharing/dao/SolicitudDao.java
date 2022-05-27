@@ -23,7 +23,7 @@ public class SolicitudDao {
 
     public List<Solicitud> getSolicitudes(){
         try {
-            return jdbcTemplate.query("SELECT * FROM Solicitud where and activa = true", new SolicitudRowMapper());
+            return jdbcTemplate.query("SELECT * FROM Solicitud where activa = true", new SolicitudRowMapper());
         }catch (EmptyResultDataAccessException e){
             return new ArrayList<Solicitud>();
         }

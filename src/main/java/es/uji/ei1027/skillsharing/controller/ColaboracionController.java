@@ -42,13 +42,6 @@ public class ColaboracionController {
 
 
 
-    @RequestMapping("/list")
-    public String listColaboraciones(Model model, HttpSession session) {
-        session.setAttribute("alumno", session.getAttribute("alumno"));
-        model.addAttribute("colaboraciones", colaboracionDao.getColaboraciones());
-        return "colaboracion/list";
-    }
-
     @RequestMapping("/listpropias")
     public String listColaboracionesPropias(Model model, HttpSession session) {
         session.setAttribute("alumno", session.getAttribute("alumno"));
