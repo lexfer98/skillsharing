@@ -1,6 +1,7 @@
 package es.uji.ei1027.skillsharing.controller;
 
 import es.uji.ei1027.skillsharing.dao.HabilidadDao;
+import es.uji.ei1027.skillsharing.model.Alumno;
 import es.uji.ei1027.skillsharing.model.Habilidad;
 import es.uji.ei1027.skillsharing.model.Oferta;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,22 +28,44 @@ public class HabilidadController {
 
     @RequestMapping("/list")
     public String listHabilidades(Model model, HttpSession session) {
-        session.setAttribute("alumno", session.getAttribute("alumno"));
+        Alumno alumno = (Alumno) session.getAttribute("alumno");
+        if (alumno == null){
+            model.addAttribute("alumno",new Alumno());
+            return "loginV2";
+        }
+        session.setAttribute("alumno", alumno);
+        if(!alumno.isSkp())
+            return "alumno/users";
+
         model.addAttribute("habilidades", habilidadDao.getHabilidades());
         return "habilidad/list";
     }
 
     @RequestMapping(value="/add")
     public String addHabilidad(Model model, HttpSession session) {
-        session.setAttribute("alumno", session.getAttribute("alumno"));
+        Alumno alumno = (Alumno) session.getAttribute("alumno");
+        if (alumno == null){
+            model.addAttribute("alumno",new Alumno());
+            return "loginV2";
+        }
+        session.setAttribute("alumno", alumno);
+        if(!alumno.isSkp())
+            return "alumno/users";
         model.addAttribute("habilidad", new Habilidad());
         return "habilidad/add";
     }
 
     @RequestMapping(value="/add", method= RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("habilidad") Habilidad habilidad,
-                                   BindingResult bindingResult, HttpSession session) {
-        session.setAttribute("alumno", session.getAttribute("alumno"));
+                                   BindingResult bindingResult, HttpSession session, Model model) {
+        Alumno alumno = (Alumno) session.getAttribute("alumno");
+        if (alumno == null){
+            model.addAttribute("alumno",new Alumno());
+            return "loginV2";
+        }
+        session.setAttribute("alumno", alumno);
+        if(!alumno.isSkp())
+            return "alumno/users";
         HabilidadValidatorAdd habilidadValidatorAdd = new HabilidadValidatorAdd();
         habilidadValidatorAdd.validate(habilidad,bindingResult);
         if (bindingResult.hasErrors())
@@ -53,13 +76,27 @@ public class HabilidadController {
 
     @RequestMapping(value="/update/{id_habilidad}", method = RequestMethod.GET)
     public String editHabilidad(Model model, @PathVariable int id_habilidad, HttpSession session) {
-        session.setAttribute("alumno", session.getAttribute("alumno"));
+        Alumno alumno = (Alumno) session.getAttribute("alumno");
+        if (alumno == null){
+            model.addAttribute("alumno",new Alumno());
+            return "loginV2";
+        }
+        session.setAttribute("alumno", alumno);
+        if(!alumno.isSkp())
+            return "alumno/users";
         model.addAttribute("habilidad", habilidadDao.getIdHabilidad(id_habilidad));
         return "habilidad/update";
     }
     @RequestMapping(value="/update", method = RequestMethod.POST)
-    public String processUpdateSubmit(@ModelAttribute("habilidad") Habilidad habilidad, BindingResult bindingResult, HttpSession session) {
-        session.setAttribute("alumno", session.getAttribute("alumno"));
+    public String processUpdateSubmit(@ModelAttribute("habilidad") Habilidad habilidad, BindingResult bindingResult, HttpSession session, Model model) {
+        Alumno alumno = (Alumno) session.getAttribute("alumno");
+        if (alumno == null){
+            model.addAttribute("alumno",new Alumno());
+            return "loginV2";
+        }
+        session.setAttribute("alumno", alumno);
+        if(!alumno.isSkp())
+            return "alumno/users";
         if (bindingResult.hasErrors())
             return "oferta/update";
         habilidadDao.updateHabilidad(habilidad);

@@ -38,13 +38,14 @@ public class AlumnoController{
 
     @RequestMapping("/list")
     public String listarAlumnos(HttpSession session,Model model){
-        session.setAttribute("nextUrl","alumno/list");
-        if (session.getAttribute("alumno") == null){
+        Alumno alumno = (Alumno) session.getAttribute("alumno");
+        if (alumno == null){
             model.addAttribute("alumno",new Alumno());
             return "loginV2";
         }
-        session.setAttribute("alumno", session.getAttribute("alumno"));
-
+        session.setAttribute("alumno", alumno);
+        if(!alumno.isSkp())
+            return "alumno/users";
         return "alumno/list";
     }
 

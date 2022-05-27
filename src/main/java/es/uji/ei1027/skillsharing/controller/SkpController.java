@@ -48,14 +48,28 @@ public class SkpController {
     }
     @RequestMapping("/colaboracion/list")
     public String listColaboraciones(Model model, HttpSession session) {
-        session.setAttribute("alumno", session.getAttribute("alumno"));
+        Alumno alumno = (Alumno) session.getAttribute("alumno");
+        if (alumno == null){
+            model.addAttribute("alumno",new Alumno());
+            return "loginV2";
+        }
+        session.setAttribute("alumno", alumno);
+        if(!alumno.isSkp())
+            return "alumno/users";
         model.addAttribute("colaboraciones", colaboracionDao.getColaboraciones());
         return "skp/collist";
     }
     @RequestMapping("/solicitud/list")
     public String listSolicitudes(HttpSession session,Model model) {
 
-        session.setAttribute("alumno", session.getAttribute("alumno"));
+        Alumno alumno = (Alumno) session.getAttribute("alumno");
+        if (alumno == null){
+            model.addAttribute("alumno",new Alumno());
+            return "loginV2";
+        }
+        session.setAttribute("alumno", alumno);
+        if(!alumno.isSkp())
+            return "alumno/users";
         model.addAttribute("alumnos", alumnoDao.getAlumnos());
         model.addAttribute("habilidades", habilidadDao.getHabilidades());
         model.addAttribute("solicitudes", solicitudDao.getSolicitudes());
