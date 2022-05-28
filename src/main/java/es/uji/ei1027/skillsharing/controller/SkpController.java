@@ -75,5 +75,18 @@ public class SkpController {
         model.addAttribute("solicitudes", solicitudDao.getSolicitudes());
         return "skp/sollist";
     }
+    @RequestMapping("/alumnos/list")
+    public String listarAlumnos(HttpSession session,Model model){
+        Alumno alumno = (Alumno) session.getAttribute("alumno");
+        if (alumno == null){
+            model.addAttribute("alumno",new Alumno());
+            return "loginV2";
+        }
+        session.setAttribute("alumno", alumno);
+        if(!alumno.isSkp())
+            return "alumno/users";
+        model.addAttribute("alumnos",alumnoDao.getAlumnos());
+        return "skp/list";
+    }
 
 }

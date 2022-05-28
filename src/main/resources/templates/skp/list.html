@@ -32,7 +32,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="ftco-nav">
                     <ul class="navbar-nav ml-auto mr-md-3" id="menu">
-                        <li class="nav-item"><a href="/alumno/list" class="nav-link">Usuarios</a></li>
+                        <li class="nav-item"><a href="/skp/alumnos/list" class="nav-link">Usuarios</a></li>
                         <li class="nav-item"><a href="/habilidad/list" class="nav-link">Habilidades</a></li>
                         <li class="nav-item"><a href="/skp/colaboracion/list" class="nav-link">Colaboraciones</a></li>
                         <li class="nav-item"><a href="/skp/solicitud/list" class="nav-link">Solicitudes</a></li>
@@ -44,10 +44,36 @@
         <!-- END nav -->
     </div>
 </section>
+<div class="card-columns" style="width: auto; margin: auto auto;">
+    <div class="card" style="width: 18rem;" th:each="alumnos: ${alumnos}" align="center">
+        <div class="card-body">
+            <p>TEST</p>
+            <!--
+            <h5 class="card-title"><b><a th:each="solicitud: ${solicitudes}" th:if="${colaboracion.idSolicitud==solicitud.id_solicitud}" th:text="${solicitud.nombre}"></a></b></h5>
+            <p class="card-text"><a th:each="solicitud: ${solicitudes}" th:if="${colaboracion.idSolicitud==solicitud.id_solicitud}" th:text="${solicitud.descripcion}"></a></p>
+            -->
+        </div>
+        <ul class="list-group list-group-flush">
+            <p>TEST</p>
+            <!--
+            <li class="list-group-item">Inicio: <a th:text="${colaboracion.fecha_inicio}"></a></li>
+            <li class="list-group-item">Fin: <a th:text="${colaboracion.fecha_fin}"></a></li>
+            -->
+        </ul>
+        <div class="card-body">
+            <p>TEST</p>
+            <!--
+            <a th:href="@{/colaboracion/update/{id_colaboracion}(id_colaboracion=${colaboracion.id_colaboracion})}" class="btn btn-danger" role="button">Finalizar</a>
+            -->
+        </div>
+
+    </div>
+</div>
+<!--
 <div th:if="${#lists.isEmpty(alumnos)}"style="margin-top: 50px; text-align: center;">
     No hi ha usuaris
 </div>
-<table th:unless="${#lists.isEmpty(users)}"  class="table table-condensed" style="margin-top: 50px;">
+<table th:unless="${#lists.isEmpty(alumnos)}"  class="table table-condensed" style="margin-top: 50px;">
     <thead>
     <tr>
         <th>DNI</th>
@@ -62,3 +88,4 @@
 </table>
 </body>
 </html>
+-->

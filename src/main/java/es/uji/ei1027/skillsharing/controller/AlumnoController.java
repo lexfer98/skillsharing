@@ -36,19 +36,6 @@ public class AlumnoController{
         this.alumnoRegDao= alumnoRegDao;
     }
 
-    @RequestMapping("/list")
-    public String listarAlumnos(HttpSession session,Model model){
-        Alumno alumno = (Alumno) session.getAttribute("alumno");
-        if (alumno == null){
-            model.addAttribute("alumno",new Alumno());
-            return "loginV2";
-        }
-        session.setAttribute("alumno", alumno);
-        if(!alumno.isSkp())
-            return "alumno/users";
-        return "alumno/list";
-    }
-
     @RequestMapping(value="/add")
     public String addAlumno(Model model, HttpSession session) {
         session.setAttribute("alumno", session.getAttribute("alumno"));
