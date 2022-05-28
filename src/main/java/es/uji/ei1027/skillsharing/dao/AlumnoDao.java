@@ -51,6 +51,9 @@ public class AlumnoDao {
                 "balance_horas = ?, isSKP = ? WHERE dni = ?", alumno.getNombre(), alumno.getApellidos(), alumno.getEmail(), alumno.getTitulacion(),
                 alumno.getGenero(), alumno.getEdad(), alumno.getNumTel(), alumno.getBalanceHoras(), alumno.isSkp(), alumno.getDni());
     }
+    public void banearAlumno(Alumno alumno){
+        jdbcTemplate.update("UPDATE Alumnos SET banned = true, reason = ? WHERE dni = ?", alumno.getMotivo(), alumno.getDni());
+    }
 
     public void modificarHorasAlumno(int horas, String dniAlumno){
         jdbcTemplate.update("UPDATE Alumnos SET balance_horas = balance_horas + ? WHERE dni = ?", horas, dniAlumno);

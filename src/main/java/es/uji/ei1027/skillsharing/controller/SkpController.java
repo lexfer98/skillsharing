@@ -2,10 +2,14 @@ package es.uji.ei1027.skillsharing.controller;
 
 import es.uji.ei1027.skillsharing.dao.*;
 import es.uji.ei1027.skillsharing.model.Alumno;
+import es.uji.ei1027.skillsharing.model.Habilidad;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
 
@@ -88,5 +92,29 @@ public class SkpController {
         model.addAttribute("alumnos",alumnoDao.getAlumnos());
         return "skp/list";
     }
-
+    @RequestMapping(value="/ban/{dni}")
+    public String motivoBan(Model model, @PathVariable String dni, HttpSession session) {
+        if (session.getAttribute("alumno") == null)
+        {
+            model.addAttribute("alumno",new Alumno() );
+            return "loginV2";
+        }
+        model.addAttribute("alumnoban",alumnoDao.getAlumno(dni));
+        return "skp/ban";
+    }
+    @RequestMapping(value="/ban/{dni}", method = RequestMethod.POST)
+    public String banear(Model model, @PathVariable String dni, @ModelAttribute("alumnoBan") Alumno alumnoBan, HttpSession session) {
+        if (session.getAttribute("alumno") == null)
+        {
+            model.addAttribute("alumno",new Alumno() );
+            return "loginV2";
+        }
+        Alumno x = alumnoDao.getAlumno(dni);
+        if(!x.isSkp()){
+            x.setMotivo(alumnoBan.getMotivo());
+            alumnoDao.banearAlumno(x);
+        }
+        model.addAttribute("alumnos",alumnoDao.getAlumnos());
+        return "skp/list";
+    }
 }

@@ -50,7 +50,7 @@
     </div>
 </section>
 
-<div class="card-columns" style="width: auto; margin: auto auto;">
+<div class="card-columns" style="width: auto; margin: auto auto; margin-top: 50px;">
     <div class="card" style="width: 18rem;" th:each="colaboracion: ${colaboraciones}" align="center">
         <div th:each="solicitud: ${solicitudes}" th:if="${colaboracion.idSolicitud==solicitud.id_solicitud}">
             <div class="card-body">
