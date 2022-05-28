@@ -66,7 +66,7 @@
 </section>
 <br>
 <br>
-<form action="#" th:action="@{/oferta/oferta}"
+<form action="#" th:action="@{/oferta/confirmacionSolicitud}"
       th:object="${oferta}" method="post">
     <h2 align="center">Datos de la oferta</h2>
     <table align="center">
@@ -114,5 +114,8 @@
         </tr>
     </table>
 </form>
+
+<a role="button" align="center" class="btn btn-primary" th:href="@{/solicitud/add/{id_oferta}(id_oferta=${oferta.idOferta})}">Solicitar</a>
+
 </body>
 </html>

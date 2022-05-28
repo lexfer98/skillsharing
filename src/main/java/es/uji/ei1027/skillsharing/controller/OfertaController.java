@@ -178,6 +178,26 @@ public class OfertaController {
         return "oferta/oferta";
     }
 
+
+    @RequestMapping(value="/confirmacionSolicitud/{idOferta}")
+    public String solicitudOferta(Model model, @PathVariable int idOferta, HttpSession session) {
+        session.setAttribute("nextUrl", "redirect:oferta/update/"+idOferta);
+        if (session.getAttribute("alumno") == null)
+        {
+            model.addAttribute("alumno",new Alumno() );
+            return "loginV2";
+        }
+        Double valoracion = (colaboracionDao.getValoracionMedia(ofertaDao.getOferta(idOferta).getDniPropietario())==null ? -1 : colaboracionDao.getValoracionMedia(ofertaDao.getOferta(idOferta).getDniPropietario()));
+        session.setAttribute("alumno", session.getAttribute("alumno"));
+        model.addAttribute("habilidad", habilidadDao.getIdHabilidad(ofertaDao.getOferta(idOferta).getIdHabilidad()));
+        model.addAttribute("oferta", ofertaDao.getOferta(idOferta));
+        model.addAttribute("alumno", alumnoDao.getAlumno(ofertaDao.getOferta(idOferta).getDniPropietario()));
+        model.addAttribute("valoracion", valoracion);
+        return "oferta/confirmacionSolicitud";
+    }
+
+
+
     @RequestMapping(value="/delete/{idOferta}")
     public String processDelete(@PathVariable int idOferta, HttpSession session, Model model) {
         session.setAttribute("nextUrl", "redirect:oferta/listpropias");

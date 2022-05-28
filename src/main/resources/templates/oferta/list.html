@@ -92,7 +92,7 @@
         </ul>
         <div class="card-body" th:object="${session}">
             <!--<a th:href="@{/solicitud/add/{id_oferta}(id_oferta=${oferta.idOferta})}" class="btn btn-warning" role="button">Solicitar</a>-->
-            <a th:unless="*{alumno == null}" role="button" class="btn btn-primary" th:href="@{/solicitud/add/{id_oferta}(id_oferta=${oferta.idOferta})}">Solicitar</a>
+            <a th:href="@{/oferta/confirmacionSolicitud/{id_oferta}(id_oferta=${oferta.idOferta})}" class="btn btn-warning" role="button">Solicitar</a>
             <a th:href="@{/oferta/oferta/{id_oferta}(id_oferta=${oferta.idOferta})}" class="btn btn-warning" role="button">Más información</a>
         </div>
     </div>
