@@ -49,16 +49,18 @@
     </div>
 </section>
 <div class="container">
-    <form action="#" th:action="@{/habilidad/update}" th:object="${habilidad}"method="post" style="margin: auto; width: 220px; margin-top: 50px";>
+    <form action="#" th:action="@{/habilidad/update}" th:object="${habilidad}"method="post" style="margin: auto; width: 500px; margin-top: 50px";>
         <input type="hidden" th:field="*{Id_habilidad}" >
         <table>
             <tr>
                 <td><label>Nombre</label></td>
                 <td><input type="text" th:field="*{nombre}" /></td>
+                <td th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="error"/></td>
             </tr>
             <tr>
                 <td><label>Descripción</label></td>
                 <td><input type="text" th:field="*{descripcion}" /></td>
+                <td th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}" class="error"/></td>
             </tr>
             <tr>
                 <td><label>Nivel</label></td>

@@ -107,8 +107,10 @@ public class HabilidadController {
         session.setAttribute("alumno", alumno);
         if(!alumno.isSkp())
             return "alumno/users";
+        HabilidadValidatorUpdate habilidadValidatorUpdate = new HabilidadValidatorUpdate();
+        habilidadValidatorUpdate.validate(habilidad,bindingResult);
         if (bindingResult.hasErrors())
-            return "oferta/update";
+            return "habilidad/update";
         habilidadDao.updateHabilidad(habilidad);
         return "redirect:list";
     }
