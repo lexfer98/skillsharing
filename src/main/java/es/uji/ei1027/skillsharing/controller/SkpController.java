@@ -3,6 +3,7 @@ package es.uji.ei1027.skillsharing.controller;
 import es.uji.ei1027.skillsharing.dao.*;
 import es.uji.ei1027.skillsharing.model.Alumno;
 import es.uji.ei1027.skillsharing.model.Habilidad;
+import es.uji.ei1027.skillsharing.model.Oferta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -112,5 +113,18 @@ public class SkpController {
         System.out.println(alumnoBan);
         alumnoDao.banearAlumno(alumnoBan);
         return "redirect:alumnos/list";
+    }
+
+    @RequestMapping(value="/desbanear/{dni}")
+    public String processDesbanear(@PathVariable String dni, HttpSession session, Model model) {
+        session.setAttribute("nextUrl", "redirect:skp/menu");
+        if (session.getAttribute("alumno") == null)
+        {
+            model.addAttribute("alumno",new Alumno() );
+            return "loginV2";
+        }
+        System.out.println(dni);
+        alumnoDao.desbanearAlumno(dni);
+        return "redirect:../alumnos/list";
     }
 }

@@ -55,6 +55,10 @@ public class AlumnoDao {
         jdbcTemplate.update("UPDATE Alumnos SET banned = true, reason = ? WHERE dni = ?", alumno.getMotivo(), alumno.getDni());
     }
 
+    public void desbanearAlumno(String dni){
+        jdbcTemplate.update("UPDATE Alumnos SET banned = false, reason = ? WHERE dni = ?", new String(), dni);
+    }
+
     public void modificarHorasAlumno(int horas, String dniAlumno){
         jdbcTemplate.update("UPDATE Alumnos SET balance_horas = balance_horas + ? WHERE dni = ?", horas, dniAlumno);
     }
