@@ -36,7 +36,7 @@
                         <li class="nav-item"><a href="/oferta/listpropias" class="nav-link">Mis ofertas</a></li>
                         <li class="nav-item"><a href="/solicitud/listpropias" class="nav-link">Mis solicitudes</a></li>
                         <li class="nav-item"><a href="/oferta/list" class="nav-link">Ver ofertas</a></li>
-                        <li class="nav-item"><a href="alumno/perfil" class="nav-link">Mi perfil</a></li>
+                        <li class="nav-item"><a href="/alumno/perfil" class="nav-link">Mi perfil</a></li>
                         <li class="nav-item" th:object="${session}">
                             <a th:if="*{alumno.isSkp}" href="/skp/menu" class="nav-link">Menú SKP</a>
                             <a th:unless="*{alumno.isSkp}" href="#" class="nav-link">Contactanos</a>

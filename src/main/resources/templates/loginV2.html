@@ -18,6 +18,7 @@
         <p>
             <input type="text" placeholder="Usuario (DNI)" th:field="${alumno.dni}" />
         <div class="error" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div>
+        <div class="error" th:if="${#fields.hasErrors('ban')}" th:errors="*{ban}"></div>
         </p>
         <p>
             <input type="password" placeholder="Contraseña" th:field="${alumno.contraseña}" minlength="6" maxlength="20"/>

@@ -27,7 +27,8 @@ class AlumnoValidator implements Validator {
         Alumno alumno = (Alumno) obj;
         if ((alumno.getDni().trim().equals("") )&& (alumno.getContraseña().trim().equals("") ))
             errors.rejectValue("contraseña", "contraseña",
-                    "Cal introduir usuari y contrasenya");
+                    "Es necesario introducir usuario y contraseña");
+
     }
 }
 
@@ -58,6 +59,10 @@ public class LoginController {
         if (alumno == null) {
             bindingResult.rejectValue("contraseña", "badpw", "Usuario y contraseña incorrectos");
             return "loginV2";
+        }
+
+        if (alumno.isBan()){
+            return "/alumno/baneado";
         }
         // Autenticats correctament.
         // Guardem les dades de l'usuari autenticat a la sessió
