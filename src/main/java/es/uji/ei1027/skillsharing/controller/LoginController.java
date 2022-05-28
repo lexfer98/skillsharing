@@ -62,8 +62,9 @@ public class LoginController {
         }
 
         if (alumno.isBan()){
-            model.addAttribute("alumno", alumno);
-            return "/alumno/baneado";
+            bindingResult.rejectValue("contraseña", "badpw",
+                    alumno.getMotivo().trim().equals("") ? "Has sido baneado por un administrador" : "Has sido baneado por esta razón: " + alumno.getMotivo().trim());
+            return "loginV2";
         }
         // Autenticats correctament.
         // Guardem les dades de l'usuari autenticat a la sessió
