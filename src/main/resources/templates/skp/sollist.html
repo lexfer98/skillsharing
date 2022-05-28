@@ -55,7 +55,7 @@
     <tbody>
     <tr th:each="solicitud: ${solicitudes}">
         <td th:each="habilidad: ${habilidades}" th:if="${habilidad.id_habilidad==solicitud.id_habilidad}" th:text="${habilidad.nombre+' '+habilidad.nivel}"></td>
-        <td th:text="${solicitud.estado==null ?'Pendiente': solicitud.estado}"></td>
+        <td th:text="${solicitud.estado == null ?'Pendiente': (solicitud.estado== true ? 'Aceptado' : 'Denegado')}"></td>
         <td th:each="alumno: ${alumnos}" th:if="${alumno.dni==solicitud.dni_solicitud}" th:text="${alumno.nombre+' '+alumno.apellidos}"></td>
         <td th:text="${solicitud.nombre}"></td>
         <td th:text="${solicitud.descripcion}"></td>
