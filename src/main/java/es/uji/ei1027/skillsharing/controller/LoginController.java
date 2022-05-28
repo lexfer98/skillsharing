@@ -44,7 +44,7 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/loginV2", method = RequestMethod.POST)
-    public String checkLogin(@ModelAttribute("alumno") Alumno alumno, BindingResult bindingResult, HttpSession session) {
+    public String checkLogin(@ModelAttribute("alumno") Alumno alumno, BindingResult bindingResult, HttpSession session, Model model) {
 
         String url = "";
         AlumnoValidator alumnoValidator = new AlumnoValidator();
@@ -62,6 +62,7 @@ public class LoginController {
         }
 
         if (alumno.isBan()){
+            model.addAttribute("alumno", alumno);
             return "/alumno/baneado";
         }
         // Autenticats correctament.

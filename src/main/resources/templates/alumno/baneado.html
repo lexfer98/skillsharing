@@ -12,7 +12,9 @@
 </head>
 <body>
 <form action="#" th:action="@{/oferta/update}"
-      th:object="${oferta}" method="post"></form>
+      th:object="${alumno}" method="post">
+    <a th:text="*{motivo}"></a>
+</form>
 
 </body>
 <a href="/logout" class="btn btn-primary btn-lg btn-block">Volver</a>
