@@ -46,7 +46,7 @@ public class OfertaController {
         session.setAttribute("alumno", session.getAttribute("alumno"));
         Alumno alumno = (Alumno) session.getAttribute("alumno");
         model.addAttribute("alumno", alumno);
-        model.addAttribute("habilidades", habilidadDao.getHabilidades());
+        model.addAttribute("habilidades", habilidadDao.getTodasHabilidades());
         model.addAttribute("ofertas", ofertaDao.getTusOfertas(alumno.getDni()));
         return "oferta/listpropias";
     }
@@ -54,21 +54,23 @@ public class OfertaController {
 
     @RequestMapping("/list")
     public String listTusOfertas(Model model, HttpSession session) {
-        List<Habilidad> habilidades = habilidadDao.getHabilidades();
+        List<Habilidad> habilidades = habilidadDao.getTodasHabilidades();
         Habilidad noHabilidad = new Habilidad();
         noHabilidad.setNombre("Todas");
         habilidades.add(0, noHabilidad);
         session.setAttribute("alumno", session.getAttribute("alumno"));
+        Alumno alumno = (Alumno) session.getAttribute("alumno");
+        String dni = (alumno!=null ? alumno.getDni():"");
         model.addAttribute("habilidades", habilidades);
         model.addAttribute("alumnos", alumnoDao.getAlumnos());
-        model.addAttribute("ofertas", ofertaDao.getOfertas());
+        model.addAttribute("ofertas", ofertaDao.getOfertas(dni));
         return "oferta/list";
     }
 
 
     @RequestMapping("/listarSkillsOfertas")
     public String listTusOfertasSegunSkill(Model model,String habilidad, HttpSession session) {
-        List<Habilidad> habilidades = habilidadDao.getHabilidades();
+        List<Habilidad> habilidades = habilidadDao.getTodasHabilidades();
         Habilidad noHabilidad = new Habilidad();
         noHabilidad.setNombre("Todas");
         habilidades.add(0, noHabilidad);
@@ -76,7 +78,9 @@ public class OfertaController {
         model.addAttribute("habilidades", habilidades);
         model.addAttribute("alumnos", alumnoDao.getAlumnos());
         if (habilidad.equals("Todas")){
-            model.addAttribute("ofertas", ofertaDao.getOfertas());
+            Alumno alumno = (Alumno) session.getAttribute("alumno");
+            String dni = (alumno!=null ? alumno.getDni():"");
+            model.addAttribute("ofertas", ofertaDao.getOfertas(dni));
         }else {
             model.addAttribute("ofertas", ofertaDao.getOfertasSegunSkill(habilidad));
         }

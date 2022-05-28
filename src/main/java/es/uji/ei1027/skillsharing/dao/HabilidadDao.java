@@ -33,6 +33,17 @@ public class HabilidadDao {
         }
     }
 
+    public List<Habilidad> getTodasHabilidades() {
+        try {
+            return jdbcTemplate.query("SELECT * FROM Habilidad",
+                    new HabilidadRowMapper());
+
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Habilidad>();
+        }
+    }
+
     public void deleteHabilidad(Habilidad habilidad) {
         jdbcTemplate.update("UPDATE habilidad SET activa = false WHERE id_habilidad = ?",habilidad.getId_habilidad());
     }

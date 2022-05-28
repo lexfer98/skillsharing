@@ -26,10 +26,10 @@ public class OfertaDao {
                 oferta.getIdHabilidad(), oferta.getDniPropietario(), oferta.getNombre(), oferta.getDescripcion(), oferta.getFechaIniciacion(), oferta.getFechaFinalizacion());
     }
 
-    public List<Oferta> getOfertas() {
+    public List<Oferta> getOfertas(String dniUsuario) {
         try {
-            return jdbcTemplate.query("SELECT * FROM Oferta where activa = true",
-                    new OfertaRowMapper());
+            return jdbcTemplate.query("SELECT * FROM Oferta where activa = true and dni_propietario!=?",
+                    new OfertaRowMapper(), dniUsuario);
         }
         catch(EmptyResultDataAccessException e) {
             return new ArrayList<Oferta>();
