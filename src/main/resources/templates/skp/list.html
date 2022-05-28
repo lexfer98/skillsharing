@@ -6,8 +6,6 @@
     <!-- Afegim una fulla d'estil (Bootstrap) -->
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css"
-          th:href="@{/css/bootstrap.css}"/>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -44,28 +42,29 @@
         <!-- END nav -->
     </div>
 </section>
-<div class="card-columns" style="width: auto; margin: auto auto;">
-    <div class="card" style="width: 18rem;" th:each="alumnos: ${alumnos}" align="center">
+<div class="card-columns" style="width: auto; margin: auto auto; margin-top: 50px;">
+    <div class="card" style="width: 18rem;" th:each="alumno: ${alumnos}" align="center">
         <div class="card-body">
-            <p>TEST</p>
-            <!--
-            <h5 class="card-title"><b><a th:each="solicitud: ${solicitudes}" th:if="${colaboracion.idSolicitud==solicitud.id_solicitud}" th:text="${solicitud.nombre}"></a></b></h5>
-            <p class="card-text"><a th:each="solicitud: ${solicitudes}" th:if="${colaboracion.idSolicitud==solicitud.id_solicitud}" th:text="${solicitud.descripcion}"></a></p>
-            -->
+            <h5><a th:text="${alumno.nombre}"></a></h5>
+            <a th:text="${alumno.apellidos}"></a>
         </div>
         <ul class="list-group list-group-flush">
-            <p>TEST</p>
-            <!--
-            <li class="list-group-item">Inicio: <a th:text="${colaboracion.fecha_inicio}"></a></li>
-            <li class="list-group-item">Fin: <a th:text="${colaboracion.fecha_fin}"></a></li>
-            -->
+            <li class="list-group-item">Email: <a  th:text="${alumno.email}"></a></li>
+            <li class="list-group-item">Fecha de creación: <a  th:text="${alumno.fechaCreacion}"></a></li>
+            <li class="list-group-item">SKP: <a  th:text="${alumno.isSkp}"></a></li>
         </ul>
-        <div class="card-body">
-            <p>TEST</p>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Titulación: <a  th:text="${alumno.titulacion}"></a></li>
+            <li class="list-group-item">Curso: <a  th:text="${alumno.curso}"></a></li>
+            <li class="list-group-item">Genero: <a  th:text="${alumno.genero}"></a></li>
+            <li class="list-group-item">Num. Tel: <a  th:text="${alumno.numTel}"></a></li>
+            <a th:if="${alumno.isSkp}"class="btn btn-info" href="#" role="button">SKP</a>
+            <a th:if="${!alumno.isSkp and !alumno.ban}" href="#" class="btn btn-danger" role="button">Banear</a>
+            <a th:if="${alumno.ban}" href="#" class="btn btn-success" role="button">Desbanear</a>
             <!--
             <a th:href="@{/colaboracion/update/{id_colaboracion}(id_colaboracion=${colaboracion.id_colaboracion})}" class="btn btn-danger" role="button">Finalizar</a>
             -->
-        </div>
+        </ul>
 
     </div>
 </div>
