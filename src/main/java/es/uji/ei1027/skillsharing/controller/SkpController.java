@@ -111,6 +111,6 @@ public class SkpController {
         }
         System.out.println(alumnoBan);
         alumnoDao.banearAlumno(alumnoBan);
-        return "redirect:list";
+        return "redirect:alumnos/list";
     }
 }
