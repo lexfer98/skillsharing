@@ -83,8 +83,8 @@ public class ColaboracionController {
         Alumno alumno = (Alumno) session.getAttribute("alumno");
         Solicitud solicitud = solicitudDao.getSolicitud(colaboracion.getIdSolicitud());
         Oferta oferta = ofertaDao.getOferta(colaboracion.getIdOferta());
-        if (alumno.getDni() != solicitud.getDni_solicitud() && alumno.getDni() != oferta.getDniPropietario()){
-            return "redirect:alumno/users";
+        if (!alumno.getDni().equals(solicitud.getDni_solicitud()) && !alumno.getDni().equals(oferta.getDniPropietario())){
+            return "alumno/users";
         }
         ValorarColaboracionValidator colaboracionValidator = new ValorarColaboracionValidator();
         colaboracionValidator.validate(colaboracion,bindingResult);
@@ -106,8 +106,8 @@ public class ColaboracionController {
         }
         Alumno alumno = (Alumno) session.getAttribute("alumno");
         Oferta oferta = ofertaDao.getOferta(solicitud.getId_oferta());
-        if (oferta.getDniPropietario() != alumno.getDni()){
-            return "redirect:alumno/users";
+        if (!oferta.getDniPropietario().equals(alumno.getDni())){
+            return "alumno/users";
         }
         Colaboracion colaboracion = new Colaboracion();
         colaboracion.crearColaboracion(solicitud);

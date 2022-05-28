@@ -69,13 +69,13 @@
 </section>
 
 <form th:action="@{/oferta/listarSkillsOfertas}"style="margin: auto; width: 220px; margin-top: 50px;">
-    <select name="habilidad">
-        <option th:each="habilidad : ${habilidades}"
-                th:value="${habilidad.nombre}"
-                th:text="${habilidad.nombre}">
+        <select name="habilidad">
+            <option th:each="habilidad : ${habilidades}"
+                    th:value="${habilidad.nombre}"
+                    th:text="${habilidad.nombre}" type="button">
 
-        </option>
-    </select>
+            </option>
+        </select>
     <button> OK </button>
 </form>
 

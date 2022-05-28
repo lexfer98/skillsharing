@@ -73,8 +73,8 @@ public class SolicitudController {
         }
         Alumno alumno = (Alumno) session.getAttribute("alumno");
         Oferta oferta = ofertaDao.getOferta(id_oferta);
-        if (oferta.getDniPropietario() != alumno.getDni()){
-            return "redirect:alumno/users";
+        if (!oferta.getDniPropietario().equals(alumno.getDni())){
+            return "alumno/users";
         }
         model.addAttribute("habilidades", habilidadDao.getHabilidades());
         model.addAttribute("alumnos", alumnoDao.getAlumnos());
@@ -112,8 +112,8 @@ public class SolicitudController {
         }
         Alumno alumno = (Alumno) session.getAttribute("alumno");
         Solicitud solicitud = solicitudDao.getSolicitud(id_solicitud);
-        if (alumno.getDni() != solicitud.getDni_solicitud()){
-            return "redirect:alumno/users";
+        if (!alumno.getDni().equals(solicitud.getDni_solicitud())){
+            return "alumno/users";
         }
         model.addAttribute("solicitud", solicitudDao.getSolicitud(id_solicitud));
         session.setAttribute("alumno", session.getAttribute("alumno"));
@@ -133,8 +133,8 @@ public class SolicitudController {
             return "loginV2";
         }
         Alumno alumno = (Alumno) session.getAttribute("alumno");
-        if (alumno.getDni() != solicitud.getDni_solicitud()){
-            return "redirect:alumno/users";
+        if (!alumno.getDni().equals(solicitud.getDni_solicitud())){
+            return "alumno/users";
         }
         if (bindingResult.hasErrors())
             return "solicitud/update";
@@ -154,8 +154,8 @@ public class SolicitudController {
         }
         Alumno alumno = (Alumno) session.getAttribute("alumno");
         Solicitud solicitud = solicitudDao.getSolicitud(idSolicitud);
-        if (alumno.getDni() != solicitud.getDni_solicitud()){
-            return "redirect:alumno/users";
+        if (!alumno.getDni().equals(solicitud.getDni_solicitud())){
+            return "alumno/users";
         }
         solicitudDao.deleteSolicitud(idSolicitud);
         return "redirect:/solicitud/listpropias/";
@@ -173,8 +173,8 @@ public class SolicitudController {
         }
         Alumno alumno = (Alumno) session.getAttribute("alumno");
         Oferta oferta = ofertaDao.getOferta(solicitud.getId_oferta());
-        if (alumno.getDni() != oferta.getDniPropietario()){
-            return "redirect:alumno/users";
+        if (!alumno.getDni().equals(oferta.getDniPropietario())){
+            return "alumno/users";
         }
         solicitudDao.rechazarSolicitud(id_solicitud);
         return "redirect:/solicitud/listsolicitadas/"+solicitudDao.getSolicitud(id_solicitud).getId_oferta();

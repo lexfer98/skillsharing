@@ -5,6 +5,7 @@ import es.uji.ei1027.skillsharing.dao.ColaboracionDao;
 import es.uji.ei1027.skillsharing.dao.HabilidadDao;
 import es.uji.ei1027.skillsharing.dao.OfertaDao;
 import es.uji.ei1027.skillsharing.model.Alumno;
+import es.uji.ei1027.skillsharing.model.Habilidad;
 import es.uji.ei1027.skillsharing.model.Oferta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping("/oferta")
@@ -52,8 +54,12 @@ public class OfertaController {
 
     @RequestMapping("/list")
     public String listTusOfertas(Model model, HttpSession session) {
+        List<Habilidad> habilidades = habilidadDao.getHabilidades();
+        Habilidad noHabilidad = new Habilidad();
+        noHabilidad.setNombre("Todas");
+        habilidades.add(0, noHabilidad);
         session.setAttribute("alumno", session.getAttribute("alumno"));
-        model.addAttribute("habilidades", habilidadDao.getHabilidades());
+        model.addAttribute("habilidades", habilidades);
         model.addAttribute("alumnos", alumnoDao.getAlumnos());
         model.addAttribute("ofertas", ofertaDao.getOfertas());
         return "oferta/list";
@@ -62,18 +68,18 @@ public class OfertaController {
 
     @RequestMapping("/listarSkillsOfertas")
     public String listTusOfertasSegunSkill(Model model,String habilidad, HttpSession session) {
-        session.setAttribute("nextUrl", "redirect:oferta/listarSkillsOfertas");
-        if (session.getAttribute("alumno") == null)
-        {
-            model.addAttribute("alumno",new Alumno() );
-            return "loginV2";
-        }
+        List<Habilidad> habilidades = habilidadDao.getHabilidades();
+        Habilidad noHabilidad = new Habilidad();
+        noHabilidad.setNombre("Todas");
+        habilidades.add(0, noHabilidad);
         session.setAttribute("alumno", session.getAttribute("alumno"));
-        model.addAttribute("habilidades", habilidadDao.getHabilidades());
+        model.addAttribute("habilidades", habilidades);
         model.addAttribute("alumnos", alumnoDao.getAlumnos());
-        model.addAttribute("ofertas", ofertaDao.getOfertasSegunSkill(habilidad));
-        System.out.println(habilidad);
-        System.out.println(ofertaDao.getOfertasSegunSkill(habilidad));
+        if (habilidad.equals("Todas")){
+            model.addAttribute("ofertas", ofertaDao.getOfertas());
+        }else {
+            model.addAttribute("ofertas", ofertaDao.getOfertasSegunSkill(habilidad));
+        }
         return "oferta/list";
     }
 
@@ -125,8 +131,8 @@ public class OfertaController {
         }
         Alumno alumno = (Alumno) session.getAttribute("alumno");
         Oferta oferta = ofertaDao.getOferta(idOferta);
-        if (alumno.getDni() != oferta.getDniPropietario()){
-            return "redirect:alumno/users";
+        if (!alumno.getDni().equals(oferta.getDniPropietario())){
+            return "alumno/users";
         }
         session.setAttribute("alumno", session.getAttribute("alumno"));
         model.addAttribute("habilidades", habilidadDao.getHabilidades());
@@ -146,8 +152,8 @@ public class OfertaController {
             model.addAttribute("alumno",new Alumno() );
             return "loginV2";
         }
-        if (alumno.getDni() != oferta.getDniPropietario()){
-            return "redirect:alumno/users";
+        if (!alumno.getDni().equals(oferta.getDniPropietario())){
+            return "alumno/users";
         }
         if (bindingResult.hasErrors())
             return "oferta/update";
@@ -182,8 +188,8 @@ public class OfertaController {
         }
         Alumno alumno = (Alumno) session.getAttribute("alumno");
         Oferta oferta = ofertaDao.getOferta(idOferta);
-        if (oferta.getDniPropietario() != alumno.getDni()){
-            return "redirect:alumno/users";
+        if (!oferta.getDniPropietario().equals(alumno.getDni())){
+            return "alumno/users";
         }
         session.setAttribute("alumno", session.getAttribute("alumno"));
         ofertaDao.deleteOferta(idOferta);
