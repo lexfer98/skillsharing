@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -44,6 +45,16 @@ public class OfertaController {
     @RequestMapping("/listpropias")
     public String listOfertas(Model model, HttpSession session) {
         session.setAttribute("alumno", session.getAttribute("alumno"));
+        List<Habilidad> habilidades = habilidadDao.getTodasHabilidades();
+        Habilidad noHabilidad = new Habilidad();
+        List<String> nombres = new ArrayList<>();
+        noHabilidad.setNombre("Todas");
+        habilidades.add(0, noHabilidad);
+        for(Habilidad h : habilidades){
+            if (!nombres.contains(h.getNombre())){
+                nombres.add(h.getNombre());
+            }
+        }
         Alumno alumno = (Alumno) session.getAttribute("alumno");
         model.addAttribute("alumno", alumno);
         model.addAttribute("habilidades", habilidadDao.getTodasHabilidades());
@@ -56,11 +67,18 @@ public class OfertaController {
     public String listTusOfertas(Model model, HttpSession session) {
         List<Habilidad> habilidades = habilidadDao.getTodasHabilidades();
         Habilidad noHabilidad = new Habilidad();
+        List<String> nombres = new ArrayList<>();
         noHabilidad.setNombre("Todas");
         habilidades.add(0, noHabilidad);
+        for(Habilidad h : habilidades){
+            if (!nombres.contains(h.getNombre())){
+                nombres.add(h.getNombre());
+            }
+        }
         session.setAttribute("alumno", session.getAttribute("alumno"));
         Alumno alumno = (Alumno) session.getAttribute("alumno");
         String dni = (alumno!=null ? alumno.getDni():"");
+        model.addAttribute("nombres", nombres);
         model.addAttribute("habilidades", habilidades);
         model.addAttribute("alumnos", alumnoDao.getAlumnos());
         model.addAttribute("ofertas", ofertaDao.getOfertas(dni));
@@ -74,7 +92,14 @@ public class OfertaController {
         Habilidad noHabilidad = new Habilidad();
         noHabilidad.setNombre("Todas");
         habilidades.add(0, noHabilidad);
+        List<String> nombres = new ArrayList<>();
+        for(Habilidad h : habilidades){
+            if (!nombres.contains(h.getNombre())){
+                nombres.add(h.getNombre());
+            }
+        }
         session.setAttribute("alumno", session.getAttribute("alumno"));
+        model.addAttribute("nombres", nombres);
         model.addAttribute("habilidades", habilidades);
         model.addAttribute("alumnos", alumnoDao.getAlumnos());
         if (habilidad.equals("Todas")){
