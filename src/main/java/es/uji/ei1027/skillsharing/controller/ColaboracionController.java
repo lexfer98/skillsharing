@@ -25,6 +25,7 @@ public class ColaboracionController {
     private SolicitudDao solicitudDao;
     private OfertaDao ofertaDao;
     private AlumnoDao alumnoDao;
+    private HabilidadDao habilidadDao;
 
     @Autowired
     public void setColaboracionDao(ColaboracionDao colaboracionDao){
@@ -46,6 +47,9 @@ public class ColaboracionController {
         this.alumnoDao=alumnoDao;
     }
 
+    @Autowired
+    public void setHabilidadDao(HabilidadDao habilidadDao){ this.habilidadDao = habilidadDao; }
+
 
 
     @RequestMapping("/listpropias")
@@ -58,6 +62,9 @@ public class ColaboracionController {
         }
         session.setAttribute("alumno", session.getAttribute("alumno"));
         Alumno alumno = (Alumno) session.getAttribute("alumno");
+        model.addAttribute("solicitudes", solicitudDao.getTusSolicitadas(alumno.getDni()));
+        model.addAttribute("ofertas", ofertaDao.getTusOfertas(alumno.getDni()));
+        model.addAttribute("habilidades", habilidadDao.getTodasHabilidades());
         model.addAttribute("colaboraciones", colaboracionDao.getColaboracionesPropias(alumno.getDni()));
         return "colaboracion/listpropias";
     }

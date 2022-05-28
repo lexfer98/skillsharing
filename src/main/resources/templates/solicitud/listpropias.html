@@ -53,8 +53,8 @@
 <div class="card-columns" style="width: auto; margin: auto auto;">
     <div class="card" style="width: 18rem;" th:each="solicitud: ${solicitudes}" align="center">
         <div class="card-body">
-            <h5 class="card-title"><b><a a th:each="oferta: ${ofertas}" th:if="${oferta.idOferta==solicitud.id_oferta}" th:text="${oferta.nombre}"></a></b></h5>
-            <p class="card-text"><a a th:each="oferta: ${ofertas}" th:if="${oferta.idOferta==solicitud.id_oferta}" th:text="${oferta.descripcion}"></a></p>
+            <h5 class="card-title"><b><a th:text="${solicitud.nombre}"></a></b></h5>
+            <p class="card-text"><a th:text="${solicitud.descripcion}"></a></p>
         </div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item"><a th:each="habilidad: ${habilidades}" th:if="${habilidad.id_habilidad==solicitud.id_habilidad}" th:text="${habilidad.nombre+' '+habilidad.nivel}"></a></li>
