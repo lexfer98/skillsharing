@@ -24,6 +24,7 @@ public class ColaboracionController {
     private ColaboracionDao colaboracionDao;
     private SolicitudDao solicitudDao;
     private OfertaDao ofertaDao;
+    private AlumnoDao alumnoDao;
 
     @Autowired
     public void setColaboracionDao(ColaboracionDao colaboracionDao){
@@ -38,6 +39,11 @@ public class ColaboracionController {
     @Autowired
     public void setOfertaDao(OfertaDao ofertaDao){
         this.ofertaDao=ofertaDao;
+    }
+
+    @Autowired
+    public void setAlumnoDao(AlumnoDao alumnoDao){
+        this.alumnoDao=alumnoDao;
     }
 
 
@@ -88,9 +94,10 @@ public class ColaboracionController {
         }
         ValorarColaboracionValidator colaboracionValidator = new ValorarColaboracionValidator();
         colaboracionValidator.validate(colaboracion,bindingResult);
-
         if (bindingResult.hasErrors())
             return "colaboracion/update";
+        alumnoDao.modificarHorasAlumno(-(colaboracion.getHoras()), solicitud.getDni_solicitud());
+        alumnoDao.modificarHorasAlumno(colaboracion.getHoras(), oferta.getDniPropietario());
         colaboracionDao.updateColaboracion(colaboracion);
         return "redirect:listpropias";
     }

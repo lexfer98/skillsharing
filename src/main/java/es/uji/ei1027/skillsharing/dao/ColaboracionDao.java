@@ -54,7 +54,7 @@ public class ColaboracionDao {
     }
 
     public void updateColaboracion(Colaboracion colaboracion){
-        jdbcTemplate.update("UPDATE Colaboracion SET horas = ?, puntuacion = ?, opinion = ?, finalizada = false WHERE id_colaboracion = ?"
+        jdbcTemplate.update("UPDATE Colaboracion SET horas = ?, puntuacion = ?, opinion = ?, finalizada = true WHERE id_colaboracion = ?"
                ,colaboracion.getHoras(),colaboracion.getPuntuacion(),colaboracion.getOpinion(),
                 colaboracion.getId_colaboracion());
     }

@@ -52,6 +52,10 @@ public class AlumnoDao {
                 alumno.getGenero(), alumno.getEdad(), alumno.getNumTel(), alumno.getBalanceHoras(), alumno.isSkp(), alumno.getDni());
     }
 
+    public void modificarHorasAlumno(int horas, String dniAlumno){
+        jdbcTemplate.update("UPDATE Alumnos SET balance_horas = balance_horas + ? WHERE dni = ?", horas, dniAlumno);
+    }
+
     public void deleteAlumno(Alumno alumno){
         jdbcTemplate.update("DELETE FROM Alumnos WHERE = ?", alumno.getDni());
     }
