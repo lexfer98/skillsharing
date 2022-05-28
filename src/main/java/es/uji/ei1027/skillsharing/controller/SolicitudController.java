@@ -180,6 +180,18 @@ public class SolicitudController {
         return "redirect:/solicitud/listsolicitadas/"+solicitudDao.getSolicitud(id_solicitud).getId_oferta();
     }
 
+    @RequestMapping(value="/confirmarAceptarSolicitud/{id_solicitud}")
+    public String solicitudOferta(Model model, @PathVariable int id_solicitud, HttpSession session) {
+        session.setAttribute("nextUrl", "redirect:solicitud/update/"+id_solicitud);
+        if (session.getAttribute("alumno") == null)
+        {
+            model.addAttribute("alumno",new Alumno() );
+            return "loginV2";
+        }
+        session.setAttribute("alumno", session.getAttribute("alumno"));
+        model.addAttribute("oferta", ofertaDao.getOferta(id_solicitud));
+        return "oferta/confirmacionSolicitud";
+    }
 
 
 

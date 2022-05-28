@@ -2,27 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
     <link href="/static/style.css" rel="stylesheet">
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link rel="stylesheet" type="text/css" href="style.css">
-
-
-    <div style="float:right" class="loggeduser" th:object="${session}">
-        <p th:if="*{alumno == null}">
-            No autenticat <a href="/login" th:href="@{/login}">Entrar</a>
-        </p>
-        <p th:unless="*{alumno == null}"><center><b>
-        Autenticado como <span th:text="*{alumno.nombre}"></span></b></center>
-        </p>
-    </div>
 </head>
-<body>
 
+<body>
 <section>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-30 text-center mb-30">
-                <h2 style="font-size:60px;">FINALIZAR COLABORACIÓN</h2>
+                <h2 style="font-size:60px;">MI PERFIL</h2>
             </div>
         </div>
     </div>
@@ -39,7 +29,7 @@
                         <li class="nav-item"><a href="/oferta/listpropias" class="nav-link">Mis ofertas</a></li>
                         <li class="nav-item"><a href="/solicitud/listpropias" class="nav-link">Mis solicitudes</a></li>
                         <li class="nav-item"><a href="/oferta/list" class="nav-link">Ver ofertas</a></li>
-                        <li class="nav-item"><a href="alumno/perfil" class="nav-link">Mi perfil</a></li>
+                        <li class="nav-item"><a href="/alumno/perfil" class="nav-link">Mi perfil</a></li>
                         <li class="nav-item" th:object="${session}">
                             <a th:if="*{alumno.isSkp}" href="/skp/menu" class="nav-link">Menú SKP</a>
                             <a th:unless="*{alumno.isSkp}" href="#" class="nav-link">Contactanos</a>
@@ -59,46 +49,6 @@
         Autenticado como <span th:text="*{alumno.nombre}"></span></b></center>
         </p>
     </div>
-
 </section>
-<br>
-<h2 align="center">Colaboracion</h2>
-<br>
-<br>
-<form action="#" th:action="@{/colaboracion/update}"
-      th:object="${colaboracion}" method="post">
-    <input type="hidden" th:field="*{id_colaboracion}" >
-    <input type="hidden" th:field="*{idOferta}" >
-    <input type="hidden" th:field="*{idSolicitud}" >
-    <input type="hidden" th:field="*{fecha_inicio}" >
-    <input type="hidden" th:field="*{fecha_fin}" >
-    <input type="hidden" th:field="*{activo}" >
-    <table align="center">
-        <tr>
-
-
-        <tr>
-            <td><label>Horas</label></td>
-            <td><input type="number" th:field="*{horas}" /></td>
-            <td th:if="${#fields.hasErrors('horas')}" th:errors="*{horas}" class="error"/>
-        </tr>
-
-        <tr>
-            <td><label>Puntuacion</label></td>
-            <td><input type="number" th:field="*{puntuacion}" minlength="1" maxlength="5"/></td>
-            <td th:if="${#fields.hasErrors('puntuacion')}" th:errors="*{puntuacion}" class="error"/>
-        </tr>
-
-
-        <tr>
-            <td><label>Opinion</label></td>
-            <td><input type="text" th:field="*{opinion}" /></td>
-            <td th:if="${#fields.hasErrors('opinion')}" th:errors="*{opinion}" class="error"/>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Finalizar colaboracion" /></td>
-        </tr>
-    </table>
-</form>
 </body>
 </html>

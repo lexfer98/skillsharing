@@ -61,6 +61,7 @@ public class ColaboracionController {
             return "loginV2";
         }
         session.setAttribute("alumno", session.getAttribute("alumno"));
+        session.setAttribute("solicitud", session.getAttribute("alumno"));
         Alumno alumno = (Alumno) session.getAttribute("alumno");
         model.addAttribute("solicitudes", solicitudDao.getTusSolicitadas(alumno.getDni()));
         model.addAttribute("ofertas", ofertaDao.getTusOfertas(alumno.getDni()));

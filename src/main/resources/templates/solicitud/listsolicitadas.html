@@ -20,7 +20,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-30 text-center mb-30">
-                <h2 style="font-size:60px;">Mis solicitudesa de ofertas ( aceptar/rechazar )</h2>
+                <h2 style="font-size:60px;">SOLICITUDES A OFERTA</h2>
             </div>
         </div>
     </div>
@@ -94,7 +94,7 @@
             <li class="list-group-item">Teléfono: <a th:each="alumno: ${alumnos}" th:if="${alumno.dni==solicitud.dni_solicitud}" th:text="${alumno.numTel}"></a></li>
         </ul>
         <div class="card-body">
-            <a th:href="@{/colaboracion/add/{id_solicitud}(id_solicitud=${solicitud.id_solicitud})}" class="btn btn-success" role="button">Aceptar</a>
+            <a th:href="@{/solicitud/confirmarAceptarSolicitud/{id_solicitud}(id_solicitud=${solicitud.id_solicitud})}" class="btn btn-success" role="button">Aceptar</a>
 
             <a th:href="@{/solicitud/rechazar/{id_solicitud}(id_solicitud=${solicitud.id_solicitud})}" class="btn btn-danger" role="button">Rechazar</a>
         </div>

@@ -8122,6 +8122,38 @@ a.text-dark:hover, a.text-dark:focus {
     min-width: 992px !important; }
   .container {
     min-width: 992px !important; }
+
+    .container {  display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+      gap: 0px 0px;
+      grid-auto-flow: row;
+      grid-template-areas:
+        "DNI\: DNI\: DNI\: Nombre\: Nombre\: Apellidos\: Apellidos\:"
+        "Género\: Género\: Telefóno\: Telefóno\: Curso\: Curso\: Curso\:"
+        "Correo-electrónico\: Correo-electrónico\: Correo-electrónico\: Fecha-creación\: Balance-horas\: SKP\: SKP\:";
+    }
+
+    .DNI\: { grid-area: DNI\:; }
+
+    .Nombre\: { grid-area: Nombre\:; }
+
+    .Apellidos\: { grid-area: Apellidos\:; }
+
+    .Género\: { grid-area: Género\:; }
+
+    .Telefóno\: { grid-area: Telefóno\:; }
+
+    .Curso\: { grid-area: Curso\:; }
+
+    .Correo-electrónico\: { grid-area: Correo-electrónico\:; }
+
+    .Fecha-creación\: { grid-area: Fecha-creación\:; }
+
+    .Balance-horas\: { grid-area: Balance-horas\:; }
+
+    .SKP\: { grid-area: SKP\:; }
+
   .navbar {
     display: none; }
   .badge {
