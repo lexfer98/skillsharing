@@ -29,8 +29,10 @@ public class HabilidadController {
     @RequestMapping("/list")
     public String listHabilidades(Model model, HttpSession session) {
         Alumno alumno = (Alumno) session.getAttribute("alumno");
-        if (alumno == null){
-            model.addAttribute("alumno",new Alumno());
+        session.setAttribute("nextUrl", "redirect:habilidad/list");
+        if (session.getAttribute("alumno") == null)
+        {
+            model.addAttribute("alumno",new Alumno() );
             return "loginV2";
         }
         session.setAttribute("alumno", alumno);
@@ -44,8 +46,10 @@ public class HabilidadController {
     @RequestMapping(value="/add")
     public String addHabilidad(Model model, HttpSession session) {
         Alumno alumno = (Alumno) session.getAttribute("alumno");
-        if (alumno == null){
-            model.addAttribute("alumno",new Alumno());
+        session.setAttribute("nextUrl", "redirect:habilidad/add");
+        if (session.getAttribute("alumno") == null)
+        {
+            model.addAttribute("alumno",new Alumno() );
             return "loginV2";
         }
         session.setAttribute("alumno", alumno);
@@ -59,8 +63,10 @@ public class HabilidadController {
     public String processAddSubmit(@ModelAttribute("habilidad") Habilidad habilidad,
                                    BindingResult bindingResult, HttpSession session, Model model) {
         Alumno alumno = (Alumno) session.getAttribute("alumno");
-        if (alumno == null){
-            model.addAttribute("alumno",new Alumno());
+        session.setAttribute("nextUrl", "redirect:habilidad/add");
+        if (session.getAttribute("alumno") == null)
+        {
+            model.addAttribute("alumno",new Alumno() );
             return "loginV2";
         }
         session.setAttribute("alumno", alumno);
@@ -77,8 +83,10 @@ public class HabilidadController {
     @RequestMapping(value="/update/{id_habilidad}", method = RequestMethod.GET)
     public String editHabilidad(Model model, @PathVariable int id_habilidad, HttpSession session) {
         Alumno alumno = (Alumno) session.getAttribute("alumno");
-        if (alumno == null){
-            model.addAttribute("alumno",new Alumno());
+        session.setAttribute("nextUrl", "redirect:habilidad/update/"+id_habilidad);
+        if (session.getAttribute("alumno") == null)
+        {
+            model.addAttribute("alumno",new Alumno() );
             return "loginV2";
         }
         session.setAttribute("alumno", alumno);
@@ -90,8 +98,10 @@ public class HabilidadController {
     @RequestMapping(value="/update", method = RequestMethod.POST)
     public String processUpdateSubmit(@ModelAttribute("habilidad") Habilidad habilidad, BindingResult bindingResult, HttpSession session, Model model) {
         Alumno alumno = (Alumno) session.getAttribute("alumno");
-        if (alumno == null){
-            model.addAttribute("alumno",new Alumno());
+        session.setAttribute("nextUrl", "redirect:habilidad/update/"+habilidad.getId_habilidad());
+        if (session.getAttribute("alumno") == null)
+        {
+            model.addAttribute("alumno",new Alumno() );
             return "loginV2";
         }
         session.setAttribute("alumno", alumno);

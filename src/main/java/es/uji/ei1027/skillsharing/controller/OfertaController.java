@@ -62,6 +62,12 @@ public class OfertaController {
 
     @RequestMapping("/listarSkillsOfertas")
     public String listTusOfertasSegunSkill(Model model,String habilidad, HttpSession session) {
+        session.setAttribute("nextUrl", "redirect:oferta/listarSkillsOfertas");
+        if (session.getAttribute("alumno") == null)
+        {
+            model.addAttribute("alumno",new Alumno() );
+            return "loginV2";
+        }
         session.setAttribute("alumno", session.getAttribute("alumno"));
         model.addAttribute("habilidades", habilidadDao.getHabilidades());
         model.addAttribute("alumnos", alumnoDao.getAlumnos());
@@ -92,6 +98,12 @@ public class OfertaController {
     public String processAddSubmit(@ModelAttribute("oferta") Oferta oferta,
                                    BindingResult bindingResult, HttpSession session, Model model) {
         session.setAttribute("alumno", session.getAttribute("alumno"));
+        session.setAttribute("nextUrl", "redirect:oferta/add");
+        if (session.getAttribute("alumno") == null)
+        {
+            model.addAttribute("alumno",new Alumno() );
+            return "loginV2";
+        }
         Alumno alumno = (Alumno) session.getAttribute("alumno");
         model.addAttribute("habilidades", habilidadDao.getHabilidades());
         OfertaValidator ofertaValidator = new OfertaValidator();
@@ -111,6 +123,11 @@ public class OfertaController {
             model.addAttribute("alumno",new Alumno() );
             return "loginV2";
         }
+        Alumno alumno = (Alumno) session.getAttribute("alumno");
+        Oferta oferta = ofertaDao.getOferta(idOferta);
+        if (alumno.getDni() != oferta.getDniPropietario()){
+            return "redirect:alumno/users";
+        }
         session.setAttribute("alumno", session.getAttribute("alumno"));
         model.addAttribute("habilidades", habilidadDao.getHabilidades());
         model.addAttribute("oferta", ofertaDao.getOferta(idOferta));
@@ -120,8 +137,18 @@ public class OfertaController {
     @RequestMapping(value="/update", method = RequestMethod.POST)
     public String processUpdateSubmit(
             @ModelAttribute("oferta") Oferta oferta,
-            BindingResult bindingResult, HttpSession session) {
+            BindingResult bindingResult, HttpSession session, Model model) {
         session.setAttribute("alumno", session.getAttribute("alumno"));
+        Alumno alumno = (Alumno) session.getAttribute("alumno");
+        session.setAttribute("nextUrl", "redirect:oferta/update/"+oferta.getIdOferta());
+        if (session.getAttribute("alumno") == null)
+        {
+            model.addAttribute("alumno",new Alumno() );
+            return "loginV2";
+        }
+        if (alumno.getDni() != oferta.getDniPropietario()){
+            return "redirect:alumno/users";
+        }
         if (bindingResult.hasErrors())
             return "oferta/update";
         ofertaDao.updateOferta(oferta);
@@ -152,6 +179,11 @@ public class OfertaController {
         {
             model.addAttribute("alumno",new Alumno() );
             return "loginV2";
+        }
+        Alumno alumno = (Alumno) session.getAttribute("alumno");
+        Oferta oferta = ofertaDao.getOferta(idOferta);
+        if (oferta.getDniPropietario() != alumno.getDni()){
+            return "redirect:alumno/users";
         }
         session.setAttribute("alumno", session.getAttribute("alumno"));
         ofertaDao.deleteOferta(idOferta);

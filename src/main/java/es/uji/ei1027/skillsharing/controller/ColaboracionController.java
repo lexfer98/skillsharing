@@ -44,6 +44,12 @@ public class ColaboracionController {
 
     @RequestMapping("/listpropias")
     public String listColaboracionesPropias(Model model, HttpSession session) {
+        session.setAttribute("nextUrl", "redirect:colaboracion/listpropias");
+        if (session.getAttribute("alumno") == null)
+        {
+            model.addAttribute("alumno",new Alumno() );
+            return "loginV2";
+        }
         session.setAttribute("alumno", session.getAttribute("alumno"));
         Alumno alumno = (Alumno) session.getAttribute("alumno");
         model.addAttribute("colaboraciones", colaboracionDao.getColaboracionesPropias(alumno.getDni()));
@@ -53,6 +59,11 @@ public class ColaboracionController {
     @RequestMapping(value="/update/{id_colaboracion}", method = RequestMethod.GET)
     public String editColaboracion(Model model, @PathVariable int id_colaboracion, HttpSession session) {
         session.setAttribute("nextUrl", "redirect:colaboracion/update/"+id_colaboracion);
+        if (session.getAttribute("alumno") == null)
+        {
+            model.addAttribute("alumno",new Alumno() );
+            return "loginV2";
+        }
         session.setAttribute("alumno", session.getAttribute("alumno"));
         model.addAttribute("colaboracion", colaboracionDao.getColaboracion(id_colaboracion));
         return "colaboracion/update";
@@ -61,10 +72,20 @@ public class ColaboracionController {
     @RequestMapping(value="/update", method = RequestMethod.POST)
     public String processUpdateSubmit(
             @ModelAttribute("colaboracion")Colaboracion colaboracion,
-            BindingResult bindingResult, HttpSession session) {
+            BindingResult bindingResult, HttpSession session, Model model) {
+        session.setAttribute("nextUrl", "redirect:colaboracion/update/"+colaboracion.getId_colaboracion());
+        if (session.getAttribute("alumno") == null)
+        {
+            model.addAttribute("alumno",new Alumno() );
+            return "loginV2";
+        }
         session.setAttribute("alumno", session.getAttribute("alumno"));
-        System.out.println(colaboracion);
-
+        Alumno alumno = (Alumno) session.getAttribute("alumno");
+        Solicitud solicitud = solicitudDao.getSolicitud(colaboracion.getIdSolicitud());
+        Oferta oferta = ofertaDao.getOferta(colaboracion.getIdOferta());
+        if (alumno.getDni() != solicitud.getDni_solicitud() && alumno.getDni() != oferta.getDniPropietario()){
+            return "redirect:alumno/users";
+        }
         ValorarColaboracionValidator colaboracionValidator = new ValorarColaboracionValidator();
         colaboracionValidator.validate(colaboracion,bindingResult);
 
@@ -75,14 +96,21 @@ public class ColaboracionController {
     }
 
     @RequestMapping(value = "/add/{id_solicitud}")
-    public String processAddSubmit(@PathVariable int id_solicitud,HttpSession session) {
-        if (session.getAttribute("alumno") == null){
-            return "../loginV2";
-        }
+    public String processAddSubmit(@PathVariable int id_solicitud,HttpSession session, Model model) {
         Solicitud solicitud = solicitudDao.getSolicitud(id_solicitud);
+        session.setAttribute("nextUrl", "redirect:solicitud/listsolicitadas/"+solicitud.getId_oferta());
+        if (session.getAttribute("alumno") == null)
+        {
+            model.addAttribute("alumno",new Alumno() );
+            return "loginV2";
+        }
+        Alumno alumno = (Alumno) session.getAttribute("alumno");
+        Oferta oferta = ofertaDao.getOferta(solicitud.getId_oferta());
+        if (oferta.getDniPropietario() != alumno.getDni()){
+            return "redirect:alumno/users";
+        }
         Colaboracion colaboracion = new Colaboracion();
         colaboracion.crearColaboracion(solicitud);
-        Alumno alumno = (Alumno) session.getAttribute("alumno");
         session.setAttribute("alumno", session.getAttribute("alumno"));
         solicitudDao.aceptarSolicitud(id_solicitud);
         colaboracionDao.addColaboracion(colaboracion);
