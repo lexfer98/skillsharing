@@ -102,19 +102,15 @@ public class SkpController {
         model.addAttribute("alumnoban",alumnoDao.getAlumno(dni));
         return "skp/ban";
     }
-    @RequestMapping(value="/ban/{dni}", method = RequestMethod.POST)
-    public String banear(Model model, @PathVariable String dni, @ModelAttribute("alumnoBan") Alumno alumnoBan, HttpSession session) {
+    @RequestMapping(value="/ban", method = RequestMethod.POST)
+    public String banearsubmmit(Model model,  @ModelAttribute("alumnoBan") Alumno alumnoBan, HttpSession session) {
         if (session.getAttribute("alumno") == null)
         {
             model.addAttribute("alumno",new Alumno() );
             return "loginV2";
         }
-        Alumno x = alumnoDao.getAlumno(dni);
-        if(!x.isSkp()){
-            x.setMotivo(alumnoBan.getMotivo());
-            alumnoDao.banearAlumno(x);
-        }
-        model.addAttribute("alumnos",alumnoDao.getAlumnos());
-        return "skp/list";
+        System.out.println(alumnoBan);
+        alumnoDao.banearAlumno(alumnoBan);
+        return "redirect:list";
     }
 }

@@ -42,49 +42,20 @@
         <!-- END nav -->
     </div>
 </section>
-<div class="card-columns" style="width: auto; margin: auto auto; margin-top: 50px;">
-    <div class="card" style="width: 18rem;" th:each="alumno: ${alumnos}" align="center">
-        <div class="card-body">
-            <h5><a th:text="${alumno.nombre}"></a></h5>
-            <a th:text="${alumno.apellidos}"></a>
-        </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">Email: <a  th:text="${alumno.email}"></a></li>
-            <li class="list-group-item">Balance de horas: <a  th:text="${alumno.balanceHoras}"></a></li>
-            <li class="list-group-item">Fecha de creación: <a  th:text="${alumno.fechaCreacion}"></a></li>
-            <li class="list-group-item">SKP: <a  th:text="${alumno.isSkp}"></a></li>
-        </ul>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">Titulación: <a  th:text="${alumno.titulacion}"></a></li>
-            <li class="list-group-item">Curso: <a  th:text="${alumno.curso}"></a></li>
-            <li class="list-group-item">Genero: <a  th:text="${alumno.genero}"></a></li>
-            <li class="list-group-item">Num. Tel: <a  th:text="${alumno.numTel}"></a></li>
-            <a th:if="${alumno.isSkp}"class="btn btn-info" href="#" role="button">SKP</a>
-            <a th:if="${!alumno.isSkp and !alumno.ban}" th:href="@{/skp/ban/{dni}(dni=${alumno.dni})}" class="btn btn-danger" role="button">Banear</a>
-            <a th:if="${alumno.ban}" href="#" class="btn btn-success" role="button">Desbanear</a>
-            <!--
-            <a th:href="@{/colaboracion/update/{id_colaboracion}(id_colaboracion=${colaboracion.id_colaboracion})}" class="btn btn-danger" role="button">Finalizar</a>
-            -->
-        </ul>
-
-    </div>
-</div>
-<!--
-<div th:if="${#lists.isEmpty(alumnos)}"style="margin-top: 50px; text-align: center;">
-    No hi ha usuaris
-</div>
-<table th:unless="${#lists.isEmpty(alumnos)}"  class="table table-condensed" style="margin-top: 50px;">
-    <thead>
-    <tr>
-        <th>DNI</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    <tr th:each="alumno: ${alumnos}">
-        <td th:text="${alumno.dni}"></td>
-    </tr>
-    </tbody>
-</table>-->
+<form action="#" th:action="@{/skp/ban}" style="margin: auto; width: 500px; margin-top: 50px"  th:object="${alumnoban}" method="post">
+    <input type="hidden" th:field="*{dni}" />
+    <table>
+        <td><b>Nombre a banear: </b></td>
+        <td><a th:text="${nombre}"> </a><a th:text="${apellidos}"></a></td>
+        </tr>
+        <tr>
+            <td>Motivo: </td>
+            <td><input type="text" th:field="*{motivo}" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Banear" /></td>
+        </tr>
+    </table>
+</form>
 </body>
 </html>
