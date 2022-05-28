@@ -60,7 +60,7 @@
             <li class="list-group-item"><a th:each="habilidad: ${habilidades}" th:if="${habilidad.id_habilidad==solicitud.id_habilidad}" th:text="${habilidad.nombre+' '+habilidad.nivel}"></a></li>
             <li class="list-group-item">Inicio: <a th:text="${solicitud.fecha_inic}" ></a></li>
             <li class="list-group-item">Fin: <a th:text="${solicitud.fecha_fin}"></a></li>
-            <li class="list-group-item">Estado: <a th:text="${solicitud.estado == null ?'Pendiente': (solicitud.estado== true ? 'Aceptado' : 'Denegado')}">"></a></li>
+            <li class="list-group-item">Estado: <a th:text="${solicitud.estado == null ?'Pendiente': (solicitud.estado== true ? 'Aceptado' : 'Denegado')}"></a></li>
 
 
         </ul>
