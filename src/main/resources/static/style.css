@@ -8123,7 +8123,7 @@ a.text-dark:hover, a.text-dark:focus {
   .container {
     min-width: 992px !important; }
 
-    .container {  display: grid;
+    .container-2 {  display: grid;
       grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
       grid-template-rows: 1fr 1fr 1fr;
       gap: 0px 0px;

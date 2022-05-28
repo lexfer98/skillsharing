@@ -50,5 +50,35 @@
         </p>
     </div>
 </section>
+
+<form action="#" th:action="@{/alumno/perfil}"
+      th:object="${alumno}" method="post">
+    <h2 align="center">Datos del alumno</h2>
+    <table align="center">
+        <tr>
+            <td><label>Nombre y apellidos: </label></td>
+            <td><a th:text="${alumno.nombre+' '+alumno.apellidos}"></a></td>
+        </tr>
+
+        <tr>
+            <td><label>DNI: </label></td>
+            <td><a th:text="${alumno.dni}"></a></td>
+        </tr>
+
+        <tr>
+            <td><label>Número de teléfono: </label></td>
+            <td><a th:text="${alumno.numTel}"></a></td>
+        </tr>
+
+        <tr>
+            <td><label>Correo electrónico: </label></td>
+            <td><a th:text="${alumno.email}"></a></td>
+        </tr>
+        <tr>
+            <td><label>Titulación: </label></td>
+            <td><a th:text="${alumno.curso+'º '+alumno.titulacion}"></a></td>
+        </tr>
+    </table>
+</form>
 </body>
 </html>

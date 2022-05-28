@@ -67,4 +67,15 @@ public class AlumnoController{
         return "alumno/users";
     }
 
+    @RequestMapping("/perfil")
+    public String llevarPerfil(HttpSession session,Model model) {
+
+        session.setAttribute("nextUrl","alumno/users");
+        if (session.getAttribute("alumno") == null){
+            model.addAttribute("alumno",new Alumno());
+            return "loginV2";
+        }
+        return "alumno/perfil";
+    }
+
 }
