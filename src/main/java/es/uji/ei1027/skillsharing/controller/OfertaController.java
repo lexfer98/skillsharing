@@ -74,6 +74,7 @@ public class OfertaController {
         Habilidad noHabilidad = new Habilidad();
         noHabilidad.setNombre("Todas");
         habilidades.add(0, noHabilidad);
+
         session.setAttribute("alumno", session.getAttribute("alumno"));
         model.addAttribute("habilidades", habilidades);
         model.addAttribute("alumnos", alumnoDao.getAlumnos());
@@ -82,7 +83,9 @@ public class OfertaController {
             String dni = (alumno!=null ? alumno.getDni():"");
             model.addAttribute("ofertas", ofertaDao.getOfertas(dni));
         }else {
-            model.addAttribute("ofertas", ofertaDao.getOfertasSegunSkill(habilidad));
+            Alumno alumno = (Alumno) session.getAttribute("alumno");
+            String dni = (alumno!=null ? alumno.getDni():"");
+            model.addAttribute("ofertas", ofertaDao.getOfertasSegunSkill(habilidad,dni));
         }
         return "oferta/list";
     }
