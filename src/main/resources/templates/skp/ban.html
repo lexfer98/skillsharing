@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Llista de alumnes del sistema</title>
+    <meta charset="UTF-8"/>
+    <!-- Afegim una fulla d'estil (Bootstrap) -->
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"/>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+
+    <link href="/static/style.css" rel="stylesheet">
+</head>
+
+<body>
+<section>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-30 text-center mb-30">
+                <h2 style="font-size:60px;">SKP MENU</h2>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg ftco_navbar ftco-navbar-light" id="ftco-navbar" >
+            <div class="container">
+                <a class="navbar-brand" href="/">Volver</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa fa-bars"></span> Menu
+                </button>
+                <div class="collapse navbar-collapse" id="ftco-nav">
+                    <ul class="navbar-nav ml-auto mr-md-3" id="menu">
+                        <li class="nav-item"><a href="/skp/alumnos/list" class="nav-link">Usuarios</a></li>
+                        <li class="nav-item"><a href="/habilidad/list" class="nav-link">Habilidades</a></li>
+                        <li class="nav-item"><a href="/skp/colaboracion/list" class="nav-link">Colaboraciones</a></li>
+                        <li class="nav-item"><a href="/skp/solicitud/list" class="nav-link">Solicitudes</a></li>
+                        <li class="nav-item"><a href="/logout" th:href="@{/logout}" class="nav-link">Cerrar sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- END nav -->
+    </div>
+</section>
+<form action="#" th:action="@{/skp/ban/{alumnoban.dni}(alumnoban.dni=${alumnoban.dni})}" method="post" style="margin: auto; width: 500px; margin-top: 50px";>
+    <table>
+        <td><b>Nombre a banear: </b></td>
+        <td><a th:text="${alumnoban.nombre}"> </a><a th:text="${alumnoban.apellidos}"></a></td>
+        </tr>
+        <tr>
+            <td>Motivo: </td>
+            <td><input type="text" th:field="*{alumnoban.motivo}" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Banear" /></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
