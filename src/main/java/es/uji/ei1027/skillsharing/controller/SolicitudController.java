@@ -49,6 +49,12 @@ public class SolicitudController {
     @RequestMapping("/listpropias")
     public String listTusSolicitudes(Model model, HttpSession session) {
         session.setAttribute("alumno", session.getAttribute("alumno"));
+        session.setAttribute("nextUrl", "redirect:solicitud/listpropias");
+        if (session.getAttribute("alumno") == null)
+        {
+            model.addAttribute("alumno",new Alumno() );
+            return "loginV2";
+        }
         Alumno alumno = (Alumno) session.getAttribute("alumno");
         model.addAttribute("alumno", alumno);
         model.addAttribute("habilidades", habilidadDao.getHabilidades());
@@ -59,6 +65,17 @@ public class SolicitudController {
     @RequestMapping("/listsolicitadas/{id_oferta}")
     public String listSolicitudesDeCadaOferta(Model model, @PathVariable int id_oferta, HttpSession session) {
         session.setAttribute("alumno", session.getAttribute("alumno"));
+        session.setAttribute("nextUrl", "redirect:solicitud/listsolicitadas/"+id_oferta);
+        if (session.getAttribute("alumno") == null)
+        {
+            model.addAttribute("alumno",new Alumno() );
+            return "loginV2";
+        }
+        Alumno alumno = (Alumno) session.getAttribute("alumno");
+        Oferta oferta = ofertaDao.getOferta(id_oferta);
+        if (oferta.getDniPropietario() != alumno.getDni()){
+            return "redirect:alumno/users";
+        }
         model.addAttribute("habilidades", habilidadDao.getHabilidades());
         model.addAttribute("alumnos", alumnoDao.getAlumnos());
         model.addAttribute("solicitudes", solicitudDao.getSolicitudesDeCadaOferta(id_oferta));
@@ -67,9 +84,13 @@ public class SolicitudController {
 
 
     @RequestMapping(value = "/add/{id_oferta}")
-    public String processAddSubmit(@PathVariable int id_oferta, HttpSession session) {
-        if (session.getAttribute("alumno") == null){
-            return "../loginV2";
+    public String processAddSubmit(@PathVariable int id_oferta, HttpSession session, Model model) {
+        session.setAttribute("alumno", session.getAttribute("alumno"));
+        session.setAttribute("nextUrl", "redirect:../../oferta/list");
+        if (session.getAttribute("alumno") == null)
+        {
+            model.addAttribute("alumno",new Alumno() );
+            return "loginV2";
         }
         Solicitud solicitud = new Solicitud();
         Alumno alumno = (Alumno) session.getAttribute("alumno");
@@ -82,6 +103,18 @@ public class SolicitudController {
 
     @RequestMapping(value = "/update/{id_solicitud}", method = RequestMethod.GET)
     public String editSolicitud(Model model, @PathVariable int id_solicitud, HttpSession session) {
+        session.setAttribute("alumno", session.getAttribute("alumno"));
+        session.setAttribute("nextUrl", "redirect:solictud/update/"+id_solicitud);
+        if (session.getAttribute("alumno") == null)
+        {
+            model.addAttribute("alumno",new Alumno() );
+            return "loginV2";
+        }
+        Alumno alumno = (Alumno) session.getAttribute("alumno");
+        Solicitud solicitud = solicitudDao.getSolicitud(id_solicitud);
+        if (alumno.getDni() != solicitud.getDni_solicitud()){
+            return "redirect:alumno/users";
+        }
         model.addAttribute("solicitud", solicitudDao.getSolicitud(id_solicitud));
         session.setAttribute("alumno", session.getAttribute("alumno"));
         return "solictud/update";
@@ -91,7 +124,18 @@ public class SolicitudController {
     public String processUpdateSubmit(
             @ModelAttribute("solicitud") Solicitud solicitud,
             BindingResult bindingResult,
-            HttpSession session) {
+            HttpSession session, Model model) {
+        session.setAttribute("alumno", session.getAttribute("alumno"));
+        session.setAttribute("nextUrl", "redirect:solictud/update/"+solicitud.getId_solicitud());
+        if (session.getAttribute("alumno") == null)
+        {
+            model.addAttribute("alumno",new Alumno() );
+            return "loginV2";
+        }
+        Alumno alumno = (Alumno) session.getAttribute("alumno");
+        if (alumno.getDni() != solicitud.getDni_solicitud()){
+            return "redirect:alumno/users";
+        }
         if (bindingResult.hasErrors())
             return "solicitud/update";
         solicitudDao.updateSolicitud(solicitud);
@@ -100,15 +144,38 @@ public class SolicitudController {
     }
 
     @RequestMapping(value = "/delete/{idSolicitud}")
-    public String processDelete(@PathVariable int idSolicitud, HttpSession session) {
+    public String processDelete(@PathVariable int idSolicitud, HttpSession session, Model model) {
         session.setAttribute("alumno", session.getAttribute("alumno"));
+        session.setAttribute("nextUrl", "redirect:solicitud/listpropias/");
+        if (session.getAttribute("alumno") == null)
+        {
+            model.addAttribute("alumno",new Alumno() );
+            return "loginV2";
+        }
+        Alumno alumno = (Alumno) session.getAttribute("alumno");
+        Solicitud solicitud = solicitudDao.getSolicitud(idSolicitud);
+        if (alumno.getDni() != solicitud.getDni_solicitud()){
+            return "redirect:alumno/users";
+        }
         solicitudDao.deleteSolicitud(idSolicitud);
         return "redirect:/solicitud/listpropias/";
     }
 
     @RequestMapping(value = "/rechazar/{id_solicitud}")
-    public String rechazar(@PathVariable int id_solicitud, HttpSession session) {
+    public String rechazar(@PathVariable int id_solicitud, HttpSession session, Model model) {
         session.setAttribute("alumno", session.getAttribute("alumno"));
+        Solicitud solicitud = solicitudDao.getSolicitud(id_solicitud);
+        session.setAttribute("nextUrl", "redirect:solicitud/listsolicitadas/"+solicitud.getId_oferta());
+        if (session.getAttribute("alumno") == null)
+        {
+            model.addAttribute("alumno",new Alumno() );
+            return "loginV2";
+        }
+        Alumno alumno = (Alumno) session.getAttribute("alumno");
+        Oferta oferta = ofertaDao.getOferta(solicitud.getId_oferta());
+        if (alumno.getDni() != oferta.getDniPropietario()){
+            return "redirect:alumno/users";
+        }
         solicitudDao.rechazarSolicitud(id_solicitud);
         return "redirect:/solicitud/listsolicitadas/"+solicitudDao.getSolicitud(id_solicitud).getId_oferta();
     }
