@@ -107,7 +107,9 @@ public class OfertaController {
             String dni = (alumno!=null ? alumno.getDni():"");
             model.addAttribute("ofertas", ofertaDao.getOfertas(dni));
         }else {
-            model.addAttribute("ofertas", ofertaDao.getOfertasSegunSkill(habilidad));
+            Alumno alumno = (Alumno) session.getAttribute("alumno");
+            String dni = (alumno!=null ? alumno.getDni():"");
+            model.addAttribute("ofertas", ofertaDao.getOfertasSegunSkill(habilidad,dni));
         }
         return "oferta/list";
     }

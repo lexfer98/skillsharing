@@ -46,10 +46,10 @@ public class OfertaDao {
     }
 
     //Ofertas globales segun skill
-    public List<Oferta> getOfertasSegunSkill(String nombreHabilidad) {
+    public List<Oferta> getOfertasSegunSkill(String nombreHabilidad,String dni) {
         try {
-            return jdbcTemplate.query("SELECT o.* FROM oferta AS o JOIN habilidad AS h USING(id_habilidad) WHERE o.activa = true AND h.nombre=? ",
-                    new OfertaRowMapper(), nombreHabilidad);
+            return jdbcTemplate.query("SELECT o.* FROM oferta AS o JOIN habilidad AS h USING(id_habilidad) WHERE o.activa = true AND h.nombre=? AND dni_propietario!=?",
+                    new OfertaRowMapper(), nombreHabilidad,dni);
         }
         catch(EmptyResultDataAccessException e) {
             return new ArrayList<Oferta>();
