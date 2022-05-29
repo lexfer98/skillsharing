@@ -80,18 +80,22 @@
         <tr>
             <td><label>Nombre</label></td>
             <td><input type="text" th:field="*{nombre}" /></td>
+            <td th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="error"/>
         </tr>
         <tr>
             <td><label>Descripcion</label></td>
             <td><input type="text" th:field="*{descripcion}" /></td>
+            <td th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}" class="error"/>
         </tr>
         <tr>
             <td><label>Fecha Iniciacion</label></td>
-            <td><input type="text" th:field="*{fechaIniciacion}" /></td>
+            <td><input type="date" th:field="*{fechaIniciacion}" /></td>
+            <td th:if="${#fields.hasErrors('fechaFinalizacion')}" th:errors="*{fechaIniciacion}" class="error"/>
         </tr>
         <tr>
             <td><label>Fecha Finalizacion</label></td>
-            <td><input type="text" th:field="*{fechaFinalizacion}" /></td>
+            <td><input type="date" th:field="*{fechaFinalizacion}" /></td>
+            <td th:if="${#fields.hasErrors('fechaIniciacion')}" th:errors="*{fechaFinalizacion}" class="error"/>
         </tr>
 
         <tr>

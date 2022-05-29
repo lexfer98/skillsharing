@@ -1,6 +1,7 @@
 package es.uji.ei1027.skillsharing.controller;
 
 import es.uji.ei1027.skillsharing.controller.validators.OfertaValidator;
+import es.uji.ei1027.skillsharing.controller.validators.OfertaValidatorUpdate;
 import es.uji.ei1027.skillsharing.dao.AlumnoDao;
 import es.uji.ei1027.skillsharing.dao.ColaboracionDao;
 import es.uji.ei1027.skillsharing.dao.HabilidadDao;
@@ -187,6 +188,8 @@ public class OfertaController {
         if (!alumno.getDni().equals(oferta.getDniPropietario())){
             return "alumno/users";
         }
+        OfertaValidatorUpdate ofertaValidatorUpdate = new OfertaValidatorUpdate();
+        ofertaValidatorUpdate.validate(oferta,bindingResult);
         if (bindingResult.hasErrors())
             return "oferta/update";
         ofertaDao.updateOferta(oferta);
