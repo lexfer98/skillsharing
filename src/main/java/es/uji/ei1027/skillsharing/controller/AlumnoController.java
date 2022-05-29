@@ -1,6 +1,7 @@
 package es.uji.ei1027.skillsharing.controller;
 
 import es.uji.ei1027.skillsharing.controller.validators.AlumnoAddValidator;
+import es.uji.ei1027.skillsharing.controller.validators.AlumnoUpdateValidator;
 import es.uji.ei1027.skillsharing.dao.AlumnoDao;
 import es.uji.ei1027.skillsharing.dao.AlumnoRegDao;
 import es.uji.ei1027.skillsharing.model.Alumno;
@@ -125,6 +126,8 @@ public class AlumnoController{
         if (!alumno.getDni().equals(usuario.getDni())){
             return "alumno/users";
         }
+        AlumnoUpdateValidator alumnoUpdateValidator = new AlumnoUpdateValidator();
+        alumnoUpdateValidator.validate(usuario,bindingResult);
         if (bindingResult.hasErrors())
             return "alumno/update";
         usuario.setSkp(alumno.isSkp());

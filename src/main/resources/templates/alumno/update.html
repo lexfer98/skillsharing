@@ -23,7 +23,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-30 text-center mb-30">
-                <h2 style="font-size:60px;">ACTUALIZAR OFERTA</h2>
+                <h2 style="font-size:60px;">EDITAR PERFIL</h2>
             </div>
         </div>
     </div>
@@ -40,7 +40,7 @@
                         <li class="nav-item"><a href="/oferta/listpropias" class="nav-link">Mis ofertas</a></li>
                         <li class="nav-item"><a href="/solicitud/listpropias" class="nav-link">Mis solicitudes</a></li>
                         <li class="nav-item"><a href="/oferta/list" class="nav-link">Ver ofertas</a></li>
-                        <li class="nav-item"><a href="alumno/perfil" class="nav-link">Mi perfil</a></li>
+                        <li class="nav-item"><a href="/alumno/perfil" class="nav-link">Mi perfil</a></li>
                         <li class="nav-item" th:object="${session}">
                             <a th:if="*{alumno.isSkp}" href="/skp/menu" class="nav-link">Menú SKP</a>
                             <a th:unless="*{alumno.isSkp}" href="#" class="nav-link">Contactanos</a>
@@ -78,14 +78,17 @@
         <tr>
             <td><label>Nombre: </label></td>
             <td><input type="text" class="form-control" id="nombre" th:field="*{nombre}"/></td>
+            <td th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="error"></td>
         </tr>
         <tr>
             <td><label>Apellidos: </label></td>
             <td><input type="text" class="form-control" id="apellidos" th:field="*{apellidos}" /></td>
+            <td th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}" class="error"></td>
         </tr>
         <tr>
             <td><label>Edad</label></td>
-            <td><input type="number" class="form-control" id="edad" th:field="*{edad}" /></td>
+            <td><input min="0" type="number" class="form-control" id="edad" th:field="*{edad}" /></td>
+            <td th:if="${#fields.hasErrors('edad')}" th:errors="*{edad}" class="error"></td>
         </tr>
         <tr>
             <td><label>Género</label></td>
@@ -97,11 +100,13 @@
         </tr>
         <tr>
             <td><label>Teléfono</label></td>
-            <td><input type="number" class="form-control" id="numTel" th:field="*{numTel}" /></td>
+            <td><input min="0" type="number" class="form-control" id="numTel" th:field="*{numTel}" /></td>
+            <td th:if="${#fields.hasErrors('numTel')}" th:errors="*{numTel}" class="error"></td>
         </tr>
         <tr>
             <td><label>Correo Electrónico</label></td>
             <td><input type="text" class="form-control" id="email" th:field="*{email}" /></td>
+            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></td>
         </tr>
         <tr>
             <td><label>Titulación</label></td>
@@ -113,7 +118,20 @@
                 <option th:value="'5'" th:text="Quinto"></option>
                 <option th:value="'6'" th:text="Sexto"></option>
             </select></td>
-            <td><input type="text" class="form-control" id="titulacion" th:field="*{titulacion}" /></td>
+            <td>
+                <select th:field="*{titulacion}">
+                    <option th:value="'Ingeniería_Informática'" >Ingeniería_Informática</option>
+                    <option th:value="'Ingeniería_Mecánica'" >Ingeniería_Mecánica</option>
+                    <option th:value="'Magisterio_Infantil'" >Magisterio_Infantil</option>
+                    <option th:value="'Derecho'" >Derecho</option>
+                    <option th:value="'Medicina'" >Medicina</option>
+                    <option th:value="'Enfermeria'">Enfermeria</option>
+                    <option th:value="'Biologia'">Biologia</option>
+                    <option th:value="'ADE'">ADE</option>
+                    <option th:value="'Arquitectura'">Arquitectura</option>
+                    <option th:value="'Diseño_industrial'">Diseño_industrial</option>
+                </select>
+            </td>
         </tr>
         <tr>
             <td></td>
