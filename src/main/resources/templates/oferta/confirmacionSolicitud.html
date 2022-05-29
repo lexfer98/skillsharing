@@ -111,10 +111,12 @@
             <td><label>Valoración media: </label></td>
             <td><a th:text="${valoracion<0 ? 'Aún no hay reseñas' : valoracion+'/5'}"></a></td>
         </tr>
+        <tr>
+            <td><a role="button" class="btn btn-primary" th:href="@{/solicitud/add/{id_oferta}(id_oferta=${oferta.idOferta})}">Solicitar</a></td>
+        </tr>
     </table>
-</form>
 
-<a role="button" align="center" class="btn btn-primary" th:href="@{/solicitud/add/{id_oferta}(id_oferta=${oferta.idOferta})}">Solicitar</a>
+</form>
 
 </body>
 </html>
