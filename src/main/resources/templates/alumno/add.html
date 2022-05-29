@@ -47,12 +47,21 @@
         </div>
 
         <div class="form-group row">
-            <label class="control-label col-sm-2" for="titulacion">Titulación:</label>
-            <div class="col-sm-4">
-                <input type="text" class="form-control" id="titulacion" th:field="*{titulacion}" />
-                <div th:if="${#fields.hasErrors('titulacion')}" th:errors="*{titulacion}" class="error"></div>
-            </div>
+            <label class="control-label col-sm-2">Titulación:</label>
+            <select th:field="*{titulacion}">
+                <option th:value="'Ingeniería_Informática'" >Ingeniería_Informática</option>
+                <option th:value="'Ingeniería_Mecánica'" >Ingeniería_Mecánica</option>
+                <option th:value="'Magisterio_Infantil'" >Magisterio_Infantil</option>
+                <option th:value="'Derecho'" >Derecho</option>
+                <option th:value="'Medicina'" >Medicina</option>
+                <option th:value="'Enfermeria'">Enfermeria</option>
+                <option th:value="'Biologia'">Biologia</option>
+                <option th:value="'ADE'">ADE</option>
+                <option th:value="'Arquitectura'">Arquitectura</option>
+                <option th:value="'Diseño_industrial'">Diseño_industrial</option>
+            </select>
         </div>
+
         <div class="form-group row">
             <label class="control-label col-sm-2">Curso:</label>
             <select th:field="*{curso}">
