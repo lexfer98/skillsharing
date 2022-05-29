@@ -3,10 +3,7 @@ package es.uji.ei1027.skillsharing.controller;
 
 import es.uji.ei1027.skillsharing.controller.validators.ValorarColaboracionValidator;
 import es.uji.ei1027.skillsharing.dao.*;
-import es.uji.ei1027.skillsharing.model.Alumno;
-import es.uji.ei1027.skillsharing.model.Colaboracion;
-import es.uji.ei1027.skillsharing.model.Oferta;
-import es.uji.ei1027.skillsharing.model.Solicitud;
+import es.uji.ei1027.skillsharing.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -132,6 +129,31 @@ public class ColaboracionController {
         solicitudDao.aceptarSolicitud(id_solicitud);
         colaboracionDao.addColaboracion(colaboracion);
         return "redirect:../../solicitud/listsolicitadas/"+solicitud.getId_oferta();
+    }
+
+    @RequestMapping(value = "/colaboracionVerValoracion/{id_colaboracion}")
+    public String datosColaboracion(Model model,@PathVariable int id_colaboracion ,HttpSession session) {
+        session.setAttribute("alumno", session.getAttribute("alumno"));
+        Alumno alumno = (Alumno) session.getAttribute("alumno");
+        if (alumno == null){
+            model.addAttribute("alumno",new Alumno());
+            return "loginV2";
+        }
+
+        Colaboracion colaboracion = colaboracionDao.getColaboracion(id_colaboracion);
+        Solicitud solicitud = solicitudDao.getSolicitudIndiferente(colaboracion.getIdSolicitud());
+        Oferta oferta = ofertaDao.getOfertaIndiferente(colaboracion.getIdOferta());
+        Habilidad habilidad = habilidadDao.getIdHabilidad(solicitud.getId_habilidad());
+        Alumno propietario = alumnoDao.getAlumno(oferta.getDniPropietario());
+        Alumno solicitante = alumnoDao.getAlumno(solicitud.getDni_solicitud());
+        model.addAttribute("colaboracion", colaboracion);
+        model.addAttribute("solicitud", solicitud);
+        model.addAttribute("oferta", oferta);
+        model.addAttribute("habilidad", habilidad);
+        model.addAttribute("propietario", propietario);
+        model.addAttribute("solicitante", solicitante);
+        model.addAttribute("valoracion", colaboracionDao.getValoracionMedia(propietario.getDni()));
+        return "colaboracion/colaboracionVerValoracion";
     }
 
 }

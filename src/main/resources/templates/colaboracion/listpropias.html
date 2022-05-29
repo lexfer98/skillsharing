@@ -68,6 +68,7 @@
             </div>
             <div class="card-body">
                 <a th:if="alumno.dni==solicitud.dni_solicitante" th:href="@{/colaboracion/update/{id_colaboracion}(id_colaboracion=${colaboracion.id_colaboracion})}" class="btn btn-danger" role="button">Finalizar</a>
+                <a th:if="alumno.dni!=solicitud.dni_solicitante" th:href="@{/colaboracion/colaboracionVerValoracion/{id_colaboracion}(id_colaboracion=${colaboracion.id_colaboracion})}" class="btn btn-warning" role="button">Estado</a>
             </div>
         </div>
     </div>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link href="/static/style.css" rel="stylesheet">
+
+    <div style="float:right" class="loggeduser" th:object="${session}">
+        <p th:if="*{alumno == null}">
+            No autenticat <a href="/login" th:href="@{/login}">Entrar</a>
+        </p>
+        <p th:unless="*{alumno == null}"><center><b>
+        Autenticado como <span th:text="*{alumno.nombre}"></span></b></center>
+        </p>
+    </div>
+</head>
+<body>
+<section>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-30 text-center mb-30">
+                <h2 style="font-size:60px;">MIS COLABORACIONES</h2>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg ftco_navbar ftco-navbar-light" id="ftco-navbar">
+            <div class="container">
+                <a class="navbar-brand" href="/">Inicio</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa fa-bars"></span> Menu
+                </button>
+                <div class="collapse navbar-collapse" id="ftco-nav">
+                    <ul class="navbar-nav ml-auto mr-md-3">
+                        <li class="nav-item"><a href="/colaboracion/listpropias" class="nav-link">Mis colaboraciones</a></li>
+                        <li class="nav-item"><a href="/oferta/add" class="nav-link">Añadir oferta</a></li>
+                        <li class="nav-item"><a href="/oferta/listpropias" class="nav-link">Mis ofertas</a></li>
+                        <li class="nav-item"><a href="/solicitud/listpropias" class="nav-link">Mis solicitudes</a></li>
+                        <li class="nav-item"><a href="/oferta/list" class="nav-link">Ver ofertas</a></li>
+                        <li class="nav-item"><a href="/alumno/perfil" class="nav-link">Mi perfil</a></li>
+                        <li class="nav-item" th:object="${session}">
+                            <a th:if="*{alumno.isSkp}" href="/skp/menu" class="nav-link">Menú SKP</a>
+                            <a th:unless="*{alumno.isSkp}" href="#" class="nav-link">Contactanos</a>
+                        </li>
+                        <li class="nav-item"><a href="/logout" th:href="@{/logout}" class="nav-link">Cerrar sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- END nav -->
+    </div>
+</section>
+<h2 align="center" style="margin-top: 50px;">Datos de la oferta</h2>
+<table align="center" style="margin-top: 50px;">
+    <tr>
+        <td><label>Nombre: </label></td>
+        <td><a th:text="${solicitud.nombre}"></a></td>
+    </tr>
+    <tr>
+        <td><label>Descripción: </label></td>
+        <td><a th:text="${solicitud.descripcion}"></a></td>
+    </tr>
+    <tr>
+        <td><label>habilidad: </label></td>
+        <td><a th:text="${habilidad.nombre+' '+habilidad.nivel}"></a></td>
+    </tr>
+    <tr>
+        <td><label>Fecha de Inicio: </label></td>
+        <td><a th:text="${colaboracion.fecha_inicio}"></a></td>
+    </tr>
+    <tr>
+        <td><label>Fecha de Finalización: </label></td>
+        <td><a th:text="${colaboracion.fecha_fin}"></a></td>
+    </tr>
+    <tr>
+        <td><label>Horas: </label></td>
+        <td><a th:text="${(colaboracion.finalizada?colaboracion.horas:'Aún por finalizar')}"></a></td>
+    </tr>
+    <tr>
+        <td><label>Puntuación: </label></td>
+        <td><a th:text="${(colaboracion.finalizada?colaboracion.puntuacion:'Aún por finalizar')}"></a></td>
+    </tr>
+    <tr>
+        <td><label>Opinión: </label></td>
+        <td><a th:text="${(colaboracion.finalizada?colaboracion.opinion:'Aún por finalizar')}"></a></td>
+    </tr>
+    <tr>
+        <td><label>Estado: </label></td>
+        <td><a th:text="${(colaboracion.activo?'Activa':'Desactivada')}"></a></td>
+    </tr>
+    <tr>
+        <td><label>Finalizada: </label></td>
+        <td><a th:text="${colaboracion.finalizada?'Sí':'No'}"></a></td>
+    </tr>
+</table>
+</body>
+</html>
