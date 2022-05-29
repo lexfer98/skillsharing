@@ -68,8 +68,8 @@
             <li class="list-group-item">Estado: <a th:text="${habilidad.activa == null ?'Activada': 'Desactivada'}"></a></li>
         </ul>
         <div class="card-body" th:object="${session}">
-            <a th:if="${habilidad.activa}" th:href="@{/habilidad/desactivar/{idHabilidad}(idHabilidad=${habilidad.id_habilidad})}" class="btn btn-warning" role="button">Desactivar</a>
-            <a th:if="${!habilidad.activa}" th:href="@{/habilidad/activar/{idHabilidad}(idHabilidad=${habilidad.id_habilidad})}" class="btn btn-warning" role="button">Activar</a>
+            <a th:if="${habilidad.activa}" th:href="@{/habilidad/desactivar/{idHabilidad}(idHabilidad=${habilidad.id_habilidad})}" class="btn btn-danger"role="button">Desactivar</a>
+            <a th:if="${!habilidad.activa}" th:href="@{/habilidad/activar/{idHabilidad}(idHabilidad=${habilidad.id_habilidad})}" class="btn btn-success" role="button">Activar</a>
             <a class="btn btn-warning" th:href="@{/habilidad/update/{idHabilidad}(idHabilidad=${habilidad.id_habilidad})}" role="button">Editar</a>
         </div>
     </div>
