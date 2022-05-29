@@ -30,7 +30,6 @@
                     </button>
                     <div class="collapse navbar-collapse" id="ftco-nav">
                         <ul class="navbar-nav ml-auto mr-md-3">
-                            <li class="nav-item"><a href="oferta/list" class="nav-link">Ver ofertas</a></li>
                             <li class="nav-item"><a href="/alumno/add" class="nav-link">Registrate</a></li>
                             <li class="dropdown nav-item d-md-flex align-items-center">
                                 <a href="alumno/users" class="dropdown-toggle nav-link d-flex align-items-center justify-content-center icon-cart p-0" id="dropdown04" data-toggle="dropdown" aria-expanded="false">
@@ -43,6 +42,10 @@
                 </div>
             </nav>
         </div>
+        <br>
+        <p style="text-align:center">
+            Bienvenido a la aplicación SkillSharing, si deseas realizar alguna solicitud debes <a href="/loginV2" th:href="@{/loginV2}">iniciar sesión</a>
+        </p>
     </section>
     <form th:action="@{/oferta/listarSkillsOfertas}"style="margin: auto; width: 220px; margin-top: 50px;">
         <select name="habilidad">
