@@ -1,9 +1,10 @@
 package es.uji.ei1027.skillsharing.controller;
 
+import es.uji.ei1027.skillsharing.controller.validators.HabilidadValidatorAdd;
+import es.uji.ei1027.skillsharing.controller.validators.HabilidadValidatorUpdate;
 import es.uji.ei1027.skillsharing.dao.HabilidadDao;
 import es.uji.ei1027.skillsharing.model.Alumno;
 import es.uji.ei1027.skillsharing.model.Habilidad;
-import es.uji.ei1027.skillsharing.model.Oferta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @RequestMapping("/habilidad")

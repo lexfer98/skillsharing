@@ -1,5 +1,6 @@
 package es.uji.ei1027.skillsharing.controller;
 
+import es.uji.ei1027.skillsharing.controller.validators.OfertaValidator;
 import es.uji.ei1027.skillsharing.dao.AlumnoDao;
 import es.uji.ei1027.skillsharing.dao.ColaboracionDao;
 import es.uji.ei1027.skillsharing.dao.HabilidadDao;
