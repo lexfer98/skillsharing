@@ -14,7 +14,7 @@
 
     <div style="float:right" class="loggeduser" th:object="${session}">
         <p th:if="*{alumno == null}">
-            No autenticat <a href="/login" th:href="@{/login}">Entrar</a>
+            No autenticat <a href="/loginV2" th:href="@{/loginV2}">Entrar</a>
         </p>
         <p th:unless="*{alumno == null}"><center><b>
         Autenticado como <span th:text="*{alumno.nombre}"></span></b></center>
