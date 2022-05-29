@@ -1,4 +1,4 @@
-package es.uji.ei1027.skillsharing.controller;
+package es.uji.ei1027.skillsharing.controller.validators;
 
 import es.uji.ei1027.skillsharing.model.Habilidad;
 import org.springframework.validation.Errors;

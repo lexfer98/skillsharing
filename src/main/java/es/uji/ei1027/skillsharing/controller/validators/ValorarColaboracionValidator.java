@@ -1,4 +1,4 @@
-package es.uji.ei1027.skillsharing.controller;
+package es.uji.ei1027.skillsharing.controller.validators;
 
 import es.uji.ei1027.skillsharing.model.Colaboracion;
 import es.uji.ei1027.skillsharing.model.Oferta;
