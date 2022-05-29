@@ -39,32 +39,23 @@
         <!-- END nav -->
     </div>
 </section>
-<table align="center" class="table table-striped" style="margin-top: 50px;">
-    <thead>
-    <tr>
-        <th>Id Habilidad</th>
-        <th>Estado</th>
-        <th>DNI solicitud</th>
-        <th>Nombre</th>
-        <th>Descripcion</th>
-        <th>Fecha Iniciacion</th>
-        <th>Fecha Finalizacion</th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="solicitud: ${solicitudes}">
-        <td th:each="habilidad: ${habilidades}" th:if="${habilidad.id_habilidad==solicitud.id_habilidad}" th:text="${habilidad.nombre+' '+habilidad.nivel}"></td>
-        <td th:text="${solicitud.estado == null ?'Pendiente': (solicitud.estado== true ? 'Aceptado' : 'Denegado')}"></td>
-        <td th:each="alumno: ${alumnos}" th:if="${alumno.dni==solicitud.dni_solicitud}" th:text="${alumno.nombre+' '+alumno.apellidos}"></td>
-        <td th:text="${solicitud.nombre}"></td>
-        <td th:text="${solicitud.descripcion}"></td>
-        <td th:text="${solicitud.fecha_inic}"></td>
-        <td th:text="${solicitud.fecha_fin}"></td>
-        <td><a th:href="@{/solicitud/update/{id_solicitud}(id_solicitud=${solicitud.id_solicitud})}">Edita</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+<div class="card-columns" style="width: auto; margin: auto auto; margin-top: 50px;">
+    <div class="card" style="width: 18rem;" th:each="solicitud: ${solicitudes}" align="center">
+        <div class="card-body">
+            <h5 class="card-title"><b><a th:text="${solicitud.nombre}"></a></b></h5>
+            <p class="card-text"><a th:text="${solicitud.descripcion}"></a></p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><a th:each="habilidad: ${habilidades}" th:if="${habilidad.id_habilidad==solicitud.id_habilidad}" th:text="${habilidad.nombre+' '+habilidad.nivel}"></a></li>
+            <li class="list-group-item">Estado: <a th:text="${solicitud.estado == null ?'Pendiente': (solicitud.estado== true ? 'Aceptado' : 'Denegado')}"></a></li>
+            <li class="list-group-item">Solicitante: <a th:each="alumno: ${alumnos}" th:if="${alumno.dni==solicitud.dni_solicitud}" th:text="${alumno.nombre+' '+alumno.apellidos}"></a></li>
+            <li class="list-group-item">Inicio: <a th:text="${solicitud.fecha_inic}"></a></li>
+            <li class="list-group-item">Fin: <a th:text="${solicitud.fecha_fin}"></a></li>
+        </ul>
+        <div class="card-body">
+            <a th:href="@{/skp/borrarSolicitud/{id_solicitud}(id_solicitud=${solicitud.id_solicitud})}" class="btn btn-danger" role="button">Borrar</a>
+        </div>
+    </div>
+</div>
 </body>
 </html>

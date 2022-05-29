@@ -86,10 +86,26 @@ public class SkpController {
         if(!alumno.isSkp())
             return "alumno/users";
         model.addAttribute("alumnos", alumnoDao.getAlumnos());
-        model.addAttribute("habilidades", habilidadDao.getHabilidades());
+        model.addAttribute("habilidades", habilidadDao.getTodasHabilidades());
         model.addAttribute("solicitudes", solicitudDao.getSolicitudes());
         return "skp/sollist";
     }
+
+    @RequestMapping(value = "/borrarSolicitud/{id_solicitud}")
+    public String solicitudBorrar(Model model,@PathVariable int id_solicitud ,HttpSession session) {
+        session.setAttribute("alumno", session.getAttribute("alumno"));
+        Alumno alumno = (Alumno) session.getAttribute("alumno");
+        if (alumno == null){
+            model.addAttribute("alumno",new Alumno());
+            return "loginV2";
+        }
+        if(!alumno.isSkp())
+            return "alumno/users";
+
+        solicitudDao.deleteSolicitud(id_solicitud);
+        return "redirect:../solicitud/list";
+    }
+
     @RequestMapping("/alumnos/list")
     public String listarAlumnos(HttpSession session,Model model){
         session.setAttribute("alumno", session.getAttribute("alumno"));
