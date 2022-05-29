@@ -55,6 +55,16 @@ public class SolicitudDao {
         }
     }
 
+    public List<Solicitud> getTodasTusSolicitadas(String dniSolicitante) {
+        try {
+            return jdbcTemplate.query("SELECT * FROM Solicitud where dni_solicitante=?",
+                    new SolicitudRowMapper(), dniSolicitante);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Solicitud>();
+        }
+    }
+
     //La lista de solicitudes respecto a cada oferta
     public List<Solicitud> getSolicitudesDeCadaOferta(int idOferta) {
         try {

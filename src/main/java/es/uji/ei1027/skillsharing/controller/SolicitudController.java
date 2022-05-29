@@ -57,7 +57,7 @@ public class SolicitudController {
         }
         Alumno alumno = (Alumno) session.getAttribute("alumno");
         model.addAttribute("alumno", alumno);
-        model.addAttribute("habilidades", habilidadDao.getHabilidades());
+        model.addAttribute("habilidades", habilidadDao.getTodasHabilidades());
         model.addAttribute("solicitudes", solicitudDao.getTusSolicitadas(alumno.getDni()));
         return "solicitud/listpropias";
     }
@@ -182,15 +182,16 @@ public class SolicitudController {
 
     @RequestMapping(value="/confirmarAceptarSolicitud/{id_solicitud}")
     public String solicitudOferta(Model model, @PathVariable int id_solicitud, HttpSession session) {
-        session.setAttribute("nextUrl", "redirect:solicitud/update/"+id_solicitud);
+        session.setAttribute("nextUrl", "redirect:solicitud/confirmarAceptarSolicitud/"+id_solicitud);
         if (session.getAttribute("alumno") == null)
         {
             model.addAttribute("alumno",new Alumno() );
             return "loginV2";
         }
         session.setAttribute("alumno", session.getAttribute("alumno"));
-        model.addAttribute("oferta", ofertaDao.getOferta(id_solicitud));
-        return "oferta/confirmacionSolicitud";
+        model.addAttribute("solicitud", solicitudDao.getSolicitud(id_solicitud));
+        model.addAttribute("alumno", alumnoDao.getAlumno(solicitudDao.getSolicitud(id_solicitud).getDni_solicitud()));
+        return "solicitud/confirmarAceptarSolicitud";
     }
 
 

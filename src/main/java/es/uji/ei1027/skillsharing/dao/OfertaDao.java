@@ -56,6 +56,16 @@ public class OfertaDao {
         }
     }
 
+    public List<Oferta> getTodasTusOfertas(String dniPropietario) {
+        try {
+            return jdbcTemplate.query("SELECT * FROM Oferta where dni_propietario=?",
+                    new OfertaRowMapper(), dniPropietario);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Oferta>();
+        }
+    }
+
     //Ofertas globales segun skill
     public List<Oferta> getOfertasSegunSkill(String nombreHabilidad,String dni) {
         try {

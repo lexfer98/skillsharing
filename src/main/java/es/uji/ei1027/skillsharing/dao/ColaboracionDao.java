@@ -32,8 +32,8 @@ public class ColaboracionDao {
 
     public List<Colaboracion> getColaboracionesPropias(String dni){
         try{
-            return jdbcTemplate.query("SELECT c.* FROM Colaboracion AS c JOIN oferta AS o USING(id_oferta) JOIN solicitud AS s USING(id_solicitud) WHERE o.dni_propietario=? OR s.dni_solicitante = ? AND c.activo = true",
-                    new ColaboracionRowMapper(), dni, dni);
+            return jdbcTemplate.query("SELECT c.* FROM Colaboracion AS c JOIN solicitud AS s USING(id_solicitud) WHERE s.dni_solicitante = ? AND c.activo = true",
+                    new ColaboracionRowMapper(), dni);
         }catch (EmptyResultDataAccessException e){
             return new ArrayList<>();
         }
@@ -54,7 +54,7 @@ public class ColaboracionDao {
     }
 
     public void updateColaboracion(Colaboracion colaboracion){
-        jdbcTemplate.update("UPDATE Colaboracion SET horas = ?, puntuacion = ?, opinion = ?, finalizada = true WHERE id_colaboracion = ?"
+        jdbcTemplate.update("UPDATE Colaboracion SET horas = ?, puntuacion = ?, opinion = ?, finalizada = true , activo = false WHERE id_colaboracion = ?"
                ,colaboracion.getHoras(),colaboracion.getPuntuacion(),colaboracion.getOpinion(),
                 colaboracion.getId_colaboracion());
     }

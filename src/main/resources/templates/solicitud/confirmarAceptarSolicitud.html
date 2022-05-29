@@ -84,11 +84,14 @@
             <td><label>Titulación: </label></td>
             <td><a th:text="${alumno.curso+' '+alumno.titulacion}"></a></td>
         </tr>
+        <tr>
+            <td></td>
+            <td><a th:href="@{/colaboracion/add/{id_solicitud}(id_solicitud=${solicitud.id_solicitud})}" class="btn btn-success" role="button">Aceptar</a></td>
+        </tr>
 
     </table>
 </form>
 
-<a th:href="@{/colaboracion/add/{id_solicitud}(id_solicitud=${solicitud.id_solicitud})}" class="btn btn-success" role="button">Aceptar</a>
 
 </body>
 </html>
