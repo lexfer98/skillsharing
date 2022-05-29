@@ -114,7 +114,6 @@ public class SkpController {
             model.addAttribute("alumno",new Alumno());
             return "loginV2";
         }
-        session.setAttribute("alumno", alumno);
         if(!alumno.isSkp())
             return "alumno/users";
         model.addAttribute("alumnos",alumnoDao.getAlumnos());
