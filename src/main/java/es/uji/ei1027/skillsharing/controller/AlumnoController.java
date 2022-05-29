@@ -78,11 +78,20 @@ public class AlumnoController{
 
         Alumno alumno = (Alumno) session.getAttribute("alumno");
         String dni = (alumno!=null ? alumno.getDni():"");
-        System.out.println(dni);
-        System.out.println(alumnoDao.getAlumno(dni));
+
         model.addAttribute("alumnos", alumnoDao.getAlumno(dni));
         return "alumno/perfil";
     }
 
+    @RequestMapping("/contactanos")
+    public String llevarContactanos(HttpSession session,Model model) {
+
+        session.setAttribute("nextUrl","alumno/contactanos");
+        if (session.getAttribute("alumno") == null){
+            model.addAttribute("alumno",new Alumno());
+            return "loginV2";
+        }
+        return "alumno/contactanos";
+    }
 
 }

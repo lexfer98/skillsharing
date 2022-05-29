@@ -8123,36 +8123,7 @@ a.text-dark:hover, a.text-dark:focus {
   .container {
     min-width: 992px !important; }
 
-    .container-2 {  display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-      grid-template-rows: 1fr 1fr 1fr;
-      gap: 0px 0px;
-      grid-auto-flow: row;
-      grid-template-areas:
-        "DNI\: DNI\: DNI\: Nombre\: Nombre\: Apellidos\: Apellidos\:"
-        "Género\: Género\: Telefóno\: Telefóno\: Curso\: Curso\: Curso\:"
-        "Correo-electrónico\: Correo-electrónico\: Correo-electrónico\: Fecha-creación\: Balance-horas\: SKP\: SKP\:";
-    }
 
-    .DNI\: { grid-area: DNI\:; }
-
-    .Nombre\: { grid-area: Nombre\:; }
-
-    .Apellidos\: { grid-area: Apellidos\:; }
-
-    .Género\: { grid-area: Género\:; }
-
-    .Telefóno\: { grid-area: Telefóno\:; }
-
-    .Curso\: { grid-area: Curso\:; }
-
-    .Correo-electrónico\: { grid-area: Correo-electrónico\:; }
-
-    .Fecha-creación\: { grid-area: Fecha-creación\:; }
-
-    .Balance-horas\: { grid-area: Balance-horas\:; }
-
-    .SKP\: { grid-area: SKP\:; }
 
   .navbar {
     display: none; }
@@ -8189,7 +8160,7 @@ a {
   -webkit-transition: .3s all ease;
   -o-transition: .3s all ease;
   transition: .3s all ease;
-  color: #fec771; }
+  color: #0097ab; }
   a:hover, a:focus {
     text-decoration: none !important;
     outline: none !important;
@@ -8204,7 +8175,7 @@ h1, h2, h3, h4, h5,
   color: #000; }
 
 .bg-primary {
-  background: #fec771 !important; }
+  background: #0097ab !important; }
 
 .ftco-section {
   padding: 3em 0; }
@@ -8262,7 +8233,7 @@ h1, h2, h3, h4, h5,
     letter-spacing: 1px;
     opacity: 1 !important; }
     .ftco-navbar-light .navbar-nav > .nav-item > .nav-link:hover {
-      color: #fec771; }
+      color: #0097ab; }
     @media (max-width: 991.98px) {
       .ftco-navbar-light .navbar-nav > .nav-item > .nav-link {
         padding-left: 0;
@@ -8273,12 +8244,12 @@ h1, h2, h3, h4, h5,
         .ftco-navbar-light .navbar-nav > .nav-item > .nav-link:hover {
           color: #fff; } }
     .ftco-navbar-light .navbar-nav > .nav-item > .nav-link.icon-cart {
-      border: 1px solid #fec771;
+      border: 1px solid #0097ab;
       width: 40px;
       height: 40px;
       border-radius: 50%; }
       .ftco-navbar-light .navbar-nav > .nav-item > .nav-link.icon-cart .fa {
-        color: #fec771; }
+        color: #0097ab; }
   .ftco-navbar-light .navbar-nav > .nav-item .dropdown-menu {
     border: none;
     background: #fff;
@@ -8291,11 +8262,11 @@ h1, h2, h3, h4, h5,
       font-size: 12px;
       color: #000; }
       .ftco-navbar-light .navbar-nav > .nav-item .dropdown-menu .dropdown-item:hover, .ftco-navbar-light .navbar-nav > .nav-item .dropdown-menu .dropdown-item:focus {
-        background: #fec771;
+        background: #0097ab;
         color: #fff; }
   .ftco-navbar-light .navbar-nav > .nav-item.cta > a {
     color: #fff;
-    background: #fec771;
+    background: #0097ab;
     border-radius: 0px; }
     @media (max-width: 767.98px) {
       .ftco-navbar-light .navbar-nav > .nav-item.cta > a {
@@ -8304,10 +8275,10 @@ h1, h2, h3, h4, h5,
     @media (max-width: 991.98px) {
       .ftco-navbar-light .navbar-nav > .nav-item.cta > a {
         color: #fff;
-        background: #fec771;
+        background: #0097ab;
         border-radius: 4px; } }
   .ftco-navbar-light .navbar-nav > .nav-item.active > a {
-    color: #fec771; }
+    color: #0097ab; }
     @media (max-width: 991.98px) {
       .ftco-navbar-light .navbar-nav > .nav-item.active > a {
         color: #fff; } }
