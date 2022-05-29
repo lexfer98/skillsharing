@@ -93,7 +93,7 @@
             <li class="list-group-item">Teléfono: <a th:each="alumno: ${alumnos}" th:if="${alumno.dni==solicitud.dni_solicitud}" th:text="${alumno.numTel}"></a></li>
         </ul>
         <div class="card-body">
-            <a th:href="@{/solicitud/confirmarAceptarSolicitud/{id_solicitud}(id_solicitud=${solicitud.id_solicitud})}" class="btn btn-success" role="button">Aceptar</a>
+            <a th:href="@{/solicitud/confirmarAceptarSolicitud/{id_solicitud}(id_solicitud=${solicitud.id_solicitud})}" class="btn btn-secondary" role="button">Aceptar</a>
 
             <a th:href="@{/solicitud/rechazar/{id_solicitud}(id_solicitud=${solicitud.id_solicitud})}" class="btn btn-danger" role="button">Rechazar</a>
         </div>

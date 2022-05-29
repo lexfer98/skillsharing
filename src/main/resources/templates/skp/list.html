@@ -27,6 +27,7 @@
                     <ul class="navbar-nav ml-auto mr-md-3" id="menu">
                         <li class="nav-item"><a href="/skp/alumnos/list" class="nav-link">Usuarios</a></li>
                         <li class="nav-item"><a href="/habilidad/list" class="nav-link">Habilidades</a></li>
+                        <li class="nav-item"><a href="/habilidad/add" class="nav-link">Crear Habilidad</a></li>
                         <li class="nav-item"><a href="/skp/colaboracion/list" class="nav-link">Colaboraciones</a></li>
                         <li class="nav-item"><a href="/skp/solicitud/list" class="nav-link">Solicitudes</a></li>
                         <li class="nav-item"><a href="/logout" th:href="@{/logout}" class="nav-link">Cerrar sesión</a></li>
@@ -56,7 +57,7 @@
             <li class="list-group-item">Num. Tel: <a  th:text="${alumno.numTel}"></a></li>
             <a th:if="${alumno.isSkp}"class="btn btn-info" href="#" role="button">SKP</a>
             <a th:if="${!alumno.isSkp and !alumno.ban}" th:href="@{/skp/ban/{dni}(dni=${alumno.dni})}" class="btn btn-danger" role="button">Banear</a>
-            <a th:if="${alumno.ban}" href="#" class="btn btn-success" th:href="@{/skp/desbanear/{dni}(dni=${alumno.dni})}" role="button">Desbanear</a>
+            <a th:if="${alumno.ban}" href="#" class="btn btn-secondary" th:href="@{/skp/desbanear/{dni}(dni=${alumno.dni})}" role="button">Desbanear</a>
             <!--
             <a th:href="@{/colaboracion/update/{id_colaboracion}(id_colaboracion=${colaboracion.id_colaboracion})}" class="btn btn-danger" role="button">Finalizar</a>
             -->
