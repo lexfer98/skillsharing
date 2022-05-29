@@ -60,7 +60,7 @@ public class ColaboracionDao {
     }
 
     public void deleteColaboracion(int id_colaboracion){
-        jdbcTemplate.update("UPDATE Colaboracion SET activa = false WHERE id_colaboracion = ?", id_colaboracion);
+        jdbcTemplate.update("UPDATE Colaboracion SET activo = false WHERE id_colaboracion = ?", id_colaboracion);
     }
 
     public Double getValoracionMedia(String dniPropietario){

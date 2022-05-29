@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta charset="UTF-8" />
+    <link href="/static/style.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+
+    <div style="float:right" class="loggeduser" th:object="${session}">
+        <p th:if="*{alumno == null}">
+            No autenticat <a href="/login" th:href="@{/login}">Entrar</a>
+        </p>
+        <p th:unless="*{alumno == null}"><center><b>
+        Autenticado como <span th:text="*{alumno.nombre}"></span></b></center>
+        </p>
+    </div>
+</head>
+<body>
+
+<section>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-30 text-center mb-30">
+                <h2 style="font-size:60px;">SKP MENU</h2>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg ftco_navbar ftco-navbar-light" id="ftco-navbar" >
+            <div class="container">
+                <a class="navbar-brand" href="/">Volver</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa fa-bars"></span> Menu
+                </button>
+                <div class="collapse navbar-collapse" id="ftco-nav">
+                    <ul class="navbar-nav ml-auto mr-md-3" id="menu">
+                        <li class="nav-item"><a href="/skp/alumnos/list" class="nav-link">Usuarios</a></li>
+                        <li class="nav-item"><a href="/habilidad/list" class="nav-link">Habilidades</a></li>
+                        <li class="nav-item"><a href="/skp/colaboracion/list" class="nav-link">Colaboraciones</a></li>
+                        <li class="nav-item"><a href="/skp/solicitud/list" class="nav-link">Solicitudes</a></li>
+                        <li class="nav-item"><a href="/logout" th:href="@{/logout}" class="nav-link">Cerrar sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- END nav -->
+    </div>
+</section>
+<br>
+<br>
+<form action="#" th:action="@{/skp/colaboracion}"
+      th:object="${colaboracion}" method="post">
+    <h2 align="center">Datos de la Colaboracion</h2>
+    <table align="center">
+        <tr>
+            <td><label>Nombre: </label></td>
+            <td><a th:text="${solicitud.nombre}"></a></td>
+        </tr>
+        <tr>
+            <td><label>Descripción: </label></td>
+            <td><a th:text="${solicitud.descripcion}"></a></td>
+        </tr>
+        <tr>
+            <td><label>habilidad: </label></td>
+            <td><a th:text="${habilidad.nombre+' '+habilidad.nivel}"></a></td>
+        </tr>
+        <tr>
+            <td><label>Fecha de Inicio: </label></td>
+            <td><a th:text="${colaboracion.fecha_inicio}"></a></td>
+        </tr>
+        <tr>
+            <td><label>Fecha de Finalización: </label></td>
+            <td><a th:text="${colaboracion.fecha_fin}"></a></td>
+        </tr>
+        <tr>
+            <td><label>Horas: </label></td>
+            <td><a th:text="${(colaboracion.finalizada?colaboracion.horas:'Aún por finalizar')}"></a></td>
+        </tr>
+        <tr>
+            <td><label>Puntuación: </label></td>
+            <td><a th:text="${(colaboracion.finalizada?colaboracion.puntuacion:'Aún por finalizar')}"></a></td>
+        </tr>
+        <tr>
+            <td><label>Opinión: </label></td>
+            <td><a th:text="${(colaboracion.finalizada?colaboracion.opinion:'Aún por finalizar')}"></a></td>
+        </tr>
+        <tr>
+            <td><label>Estado: </label></td>
+            <td><a th:text="${(colaboracion.activo?'Activa':'Desactivada')}"></a></td>
+        </tr>
+        <tr>
+            <td><label>Finalizada: </label></td>
+            <td><a th:text="${colaboracion.finalizada?'Sí':'No'}"></a></td>
+        </tr>
+    </table>
+    <br>
+    <br>
+    <br>
+    <h2 align="center">Detalles del propietario</h2>
+    <table align="center">
+        <tr>
+            <td><label>DNI: </label></td>
+            <td><a th:text="${propietario.dni}"></a></td>
+        </tr>
+        <tr>
+            <td><label>Nombre: </label></td>
+            <td><a th:text="${propietario.nombre+' '+propietario.apellidos}"></a></td>
+        </tr>
+        <tr>
+            <td><label>Correo electrónico: </label></td>
+            <td><a th:text="${propietario.email}"></a></td>
+        </tr>
+        <tr>
+            <td><label>Titulación: </label></td>
+            <td><a th:text="${propietario.curso+'º '+propietario.titulacion}"></a></td>
+        </tr>
+        <tr>
+            <td><label>Valoración media: </label></td>
+            <td><a th:text="${valoracion<0 ? 'Aún no hay reseñas' : valoracion+'/5'}"></a></td>
+        </tr>
+        <tr>
+            <td><label>Balance de horas: </label></td>
+            <td><a th:text="${propietario.balanceHoras}"></a></td>
+        </tr>
+        <tr>
+            <td><label>SKP: </label></td>
+            <td><a th:text="${propietario.isSkp?'Sí':'No'}"></a></td>
+        </tr>
+    </table>
+    <br>
+    <br>
+    <br>
+    <h2 align="center">Detalles del solicitante</h2>
+    <table align="center">
+        <tr>
+            <td><label>DNI: </label></td>
+            <td><a th:text="${solicitante.dni}"></a></td>
+        </tr>
+        <tr>
+            <td><label>Nombre: </label></td>
+            <td><a th:text="${solicitante.nombre+' '+solicitante.apellidos}"></a></td>
+        </tr>
+        <tr>
+            <td><label>Correo electrónico: </label></td>
+            <td><a th:text="${solicitante.email}"></a></td>
+        </tr>
+        <tr>
+            <td><label>Titulación: </label></td>
+            <td><a th:text="${solicitante.curso+'º '+solicitante.titulacion}"></a></td>
+        </tr>
+        <tr>
+            <td><label>Balance de horas: </label></td>
+            <td><a th:text="${solicitante.balanceHoras}"></a></td>
+        </tr>
+        <tr>
+            <td><label>SKP: </label></td>
+            <td><a th:text="${solicitante.isSkp?'Sí':'No'}"></a></td>
+        </tr>
+    </table>
+    <br>
+    <br>
+    <table align="center">
+        <tr>
+            <td><a href="/skp/colaboracion/list" class="btn btn-warning" role="button">Volver</a></td>
+            <td>   </td>
+            <td><a th:href="@{/skp/colaboracionBorrar/{id_colaboracion}(id_colaboracion=${colaboracion.id_colaboracion})}" class="btn btn-danger" role="button">Borrar</a></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

@@ -41,8 +41,6 @@ public class IndexController {
                 nombres.add(h.getNombre());
             }
         }
-        System.out.println("Hola");
-        System.out.println(nombres.toString());
         if (session.getAttribute("alumno") == null){
             model.addAttribute("nombres", nombres);
             model.addAttribute("habilidades", habilidades);

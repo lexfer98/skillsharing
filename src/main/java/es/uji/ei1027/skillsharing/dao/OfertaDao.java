@@ -35,6 +35,17 @@ public class OfertaDao {
             return new ArrayList<Oferta>();
         }
     }
+
+    public List<Oferta> getTodasOfertas() {
+        try {
+            return jdbcTemplate.query("SELECT * FROM Oferta",
+                    new OfertaRowMapper());
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Oferta>();
+        }
+    }
+
     public List<Oferta> getTusOfertas(String dniPropietario) {
         try {
             return jdbcTemplate.query("SELECT * FROM Oferta where activa = true and dni_propietario=?",
@@ -69,6 +80,17 @@ public class OfertaDao {
     public Oferta getOferta(int idOferta) {
         try {
             return jdbcTemplate.queryForObject("SELECT * FROM oferta WHERE id_oferta = ? and activa = true",
+                    new OfertaRowMapper(),
+                    idOferta);
+
+        }
+        catch(EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+    public Oferta getOfertaIndiferente(int idOferta) {
+        try {
+            return jdbcTemplate.queryForObject("SELECT * FROM oferta WHERE id_oferta = ?",
                     new OfertaRowMapper(),
                     idOferta);
 

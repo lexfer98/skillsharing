@@ -29,8 +29,19 @@ public class SolicitudDao {
         }
     }
 
+    public List<Solicitud> getTodasSolicitudes(){
+        try {
+            return jdbcTemplate.query("SELECT * FROM Solicitud", new SolicitudRowMapper());
+        }catch (EmptyResultDataAccessException e){
+            return new ArrayList<Solicitud>();
+        }
+    }
+
     public Solicitud getSolicitud(int id_solicitud){
             return jdbcTemplate.queryForObject("SELECT * FROM Solicitud WHERE id_solicitud = ? and activa = true", new SolicitudRowMapper(),id_solicitud);
+    }
+    public Solicitud getSolicitudIndiferente(int id_solicitud){
+        return jdbcTemplate.queryForObject("SELECT * FROM Solicitud WHERE id_solicitud = ?", new SolicitudRowMapper(),id_solicitud);
     }
 
     // Lo que tu solicitas

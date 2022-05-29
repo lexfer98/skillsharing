@@ -39,36 +39,34 @@
         <!-- END nav -->
     </div>
 </section>
-<table align="center" class="table table-striped" style="margin-top: 50px;">
-    <thead>
-    <tr>
-        <th>Id Colaboracion</th>
-        <th>idOferta</th>
-        <th>idSolicitud</th>
-        <th>Fecha Inicio</th>
-        <th>Fecha Finalizacion</th>
-        <th>Horas</th>
-        <th>Puntuacion</th>
-        <th>Opinión</th>
-        <th>Activo</th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="colaboracion: ${colaboraciones}">
-        <td th:text="${colaboracion.id_colaboracion}"></td>
-        <td th:text="${colaboracion.idSolicitud}"></td>
-        <td th:text="${colaboracion.idOferta}"></td>
-        <td th:text="${colaboracion.fecha_inicio}"></td>
-        <td th:text="${colaboracion.fecha_fin}"></td>
-        <td th:text="${colaboracion.horas}"></td>
-        <td th:text="${colaboracion.puntuacion}"></td>
-        <td th:text="${colaboracion.opinion}"></td>
-        <td th:text="${colaboracion.finalizada}"></td>
-        <td><a th:href="@{/colaboracion/update/{id_colaboracion}(id_colaboracion=${colaboracion.id_colaboracion})}">Edita</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+<div class="card-columns" style="width: auto; margin: auto auto; margin-top: 50px;">
+    <div class="card" style="width: 18rem;" th:each="colaboracion: ${colaboraciones}" align="center">
+        <div th:each="solicitud: ${solicitudes}" th:if="${colaboracion.idSolicitud==solicitud.id_solicitud}">
+            <div class="card-body">
+                <h5 class="card-title"><b><a th:text="${solicitud.nombre}"></a></b></h5>
+                <p class="card-text"><a th:text="${solicitud.descripcion}"></a></p>
+            </div>
+            <div th:each="habilidad: ${habilidades}" th:if="${habilidad.id_habilidad==solicitud.id_habilidad}">
+                <div th:each="oferta: ${ofertas}" th:if="${oferta.idOferta==solicitud.id_oferta}">
+                    <div th:each="alumno: ${alumnos}" th:if="${alumno.dni==oferta.dniPropietario}">
+                        <div th:each="alumno2: ${alumnos}" th:if="${alumno2.dni==solicitud.dni_solicitud}">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Propietario: <a th:text="${alumno.nombre+' '+alumno.apellidos}"></a></li>
+                                <li class="list-group-item">Solicitante: <a th:text="${alumno2.nombre+' '+alumno2.apellidos}"></a></li>
+                                <li class="list-group-item">Habilidad: <a th:text="${habilidad.nombre+' '+habilidad.nivel}"></a></li>
+                                <li class="list-group-item">Inicio: <a th:text="${colaboracion.fecha_inicio}"></a></li>
+                                <li class="list-group-item">Fin: <a th:text="${colaboracion.fecha_fin}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <a th:href="@{/skp/colaboracion/{id_colaboracion}(id_colaboracion=${colaboracion.id_colaboracion})}" class="btn btn-warning" role="button">Ver Colaboración</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
