@@ -4,12 +4,14 @@ import es.uji.ei1027.skillsharing.dao.AlumnoDao;
 import es.uji.ei1027.skillsharing.dao.AlumnoRegDao;
 import es.uji.ei1027.skillsharing.model.Alumno;
 import es.uji.ei1027.skillsharing.model.Habilidad;
+import es.uji.ei1027.skillsharing.model.Oferta;
 import org.jasypt.util.password.BasicPasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -92,6 +94,47 @@ public class AlumnoController{
             return "loginV2";
         }
         return "alumno/contactanos";
+    }
+
+    @RequestMapping(value="/update/{dniAlumno}")
+    public String editOferta(Model model, @PathVariable String dniAlumno, HttpSession session) {
+        session.setAttribute("alumno", session.getAttribute("alumno"));
+        session.setAttribute("nextUrl", "redirect:alumno/update/"+dniAlumno);
+        if (session.getAttribute("alumno") == null)
+        {
+            model.addAttribute("alumno",new Alumno() );
+            return "loginV2";
+        }
+        Alumno alumno = (Alumno) session.getAttribute("alumno");
+        if (!alumno.getDni().equals(dniAlumno)){
+            return "alumno/users";
+        }
+        model.addAttribute("alumno", alumnoDao.getAlumno(dniAlumno));
+        return "alumno/update";
+    }
+
+    @RequestMapping(value="/update", method = RequestMethod.POST)
+    public String processUpdateSubmit(
+            @ModelAttribute("alumno") Alumno usuario,
+            BindingResult bindingResult, HttpSession session, Model model) {
+        session.setAttribute("alumno", session.getAttribute("alumno"));
+        Alumno alumno = (Alumno) session.getAttribute("alumno");
+        session.setAttribute("nextUrl", "redirect:alumno/update/"+usuario.getDni());
+        if (session.getAttribute("alumno") == null)
+        {
+            model.addAttribute("alumno",new Alumno() );
+            return "loginV2";
+        }
+        if (!alumno.getDni().equals(usuario.getDni())){
+            return "alumno/users";
+        }
+        if (bindingResult.hasErrors())
+            return "alumno/update";
+        usuario.setSkp(alumno.isSkp());
+        System.out.println(usuario);
+        System.out.println(alumno);
+        alumnoDao.updateAlumno(usuario);
+        return "redirect:perfil";
     }
 
 }

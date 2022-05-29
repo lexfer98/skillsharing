@@ -77,7 +77,7 @@
         </tr>
         <tr>
             <td><label>Titulación: </label></td>
-            <td><a th:text="${alumnos.curso+' '+alumnos.titulacion}"></a></td>
+            <td><a th:text="${alumnos.curso+'º '+alumnos.titulacion}"></a></td>
         </tr>
 
         <tr>
@@ -98,6 +98,10 @@
         <tr>
             <td><label>SKP: </label></td>
             <td><a th:text="${alumnos.isSkp == true ? 'Eres SKP' : 'Eres un usuario normal'}"></a></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><a th:href="@{/alumno/update/{dniAlumno}(dniAlumno=${alumnos.dni})}" class="btn btn-warning">Edita Perfil</a></td>
         </tr>
 
 

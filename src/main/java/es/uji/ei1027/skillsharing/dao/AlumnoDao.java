@@ -48,8 +48,8 @@ public class AlumnoDao {
 
     public void updateAlumno(Alumno alumno){
         jdbcTemplate.update("UPDATE Alumnos SET nombre = ?, apellidos = ?, email = ?, titulacion = ?, genero = ?, edad = ?, num_tel = ?, " +
-                "balance_horas = ?, isSKP = ? WHERE dni = ?", alumno.getNombre(), alumno.getApellidos(), alumno.getEmail(), alumno.getTitulacion(),
-                alumno.getGenero(), alumno.getEdad(), alumno.getNumTel(), alumno.getBalanceHoras(), alumno.isSkp(), alumno.getDni());
+                "balance_horas = ?, isSKP = ?, curso = ? WHERE dni = ?", alumno.getNombre(), alumno.getApellidos(), alumno.getEmail(), alumno.getTitulacion(),
+                alumno.getGenero(), alumno.getEdad(), alumno.getNumTel(), alumno.getBalanceHoras(), alumno.isSkp(),alumno.getCurso() ,alumno.getDni());
     }
     public void banearAlumno(Alumno alumno){
         jdbcTemplate.update("UPDATE Alumnos SET banned = true, reason = ? WHERE dni = ?", alumno.getMotivo(), alumno.getDni());
