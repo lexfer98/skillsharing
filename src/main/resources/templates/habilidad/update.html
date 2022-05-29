@@ -50,6 +50,7 @@
 <div class="container">
     <form action="#" th:action="@{/habilidad/update}" th:object="${habilidad}"method="post" style="margin: auto; width: 500px; margin-top: 50px";>
         <input type="hidden" th:field="*{Id_habilidad}" >
+        <input type="hidden" th:field="*{activa}" >
         <table>
             <tr>
                 <td><label>Nombre</label></td>

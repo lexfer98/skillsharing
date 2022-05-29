@@ -27,6 +27,7 @@
                     <div class="collapse navbar-collapse" id="ftco-nav">
                         <ul class="navbar-nav ml-auto mr-md-3">
                             <li th:if="*{alumno != null}"class="nav-item"><a href="/colaboracion/listpropias" class="nav-link">Mis colaboraciones</a></li>
+                            <li th:if="*{alumno != null}"class="nav-item"><a href="/oferta/add" class="nav-link">Añadir oferta</a></li>
                             <li th:if="*{alumno != null}"class="nav-item"><a href="/oferta/listpropias" class="nav-link">Mis ofertas</a></li>
                             <li th:if="*{alumno != null}"class="nav-item"><a href="/solicitud/listpropias" class="nav-link">Mis solicitudes</a></li>
                             <li class="nav-item"><a href="list" class="nav-link">Ver ofertas</a></li>
@@ -50,9 +51,9 @@
         <!-- END nav -->
     </div>
 </section>
-<h2 align="center">Nueva Oferta</h2>
+<h2 align="center" style="margin-top: 50px;">Nueva Oferta</h2>
 <form action="#" th:action="@{/oferta/add}"
-       method="post">
+       method="post" style="margin-top: 50px;">
     <table align="center">
         <tr>
             <td><label>Id Habilidad</label></td>
