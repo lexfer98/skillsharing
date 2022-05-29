@@ -3,6 +3,7 @@ package es.uji.ei1027.skillsharing.controller;
 import es.uji.ei1027.skillsharing.dao.AlumnoDao;
 import es.uji.ei1027.skillsharing.dao.AlumnoRegDao;
 import es.uji.ei1027.skillsharing.model.Alumno;
+import es.uji.ei1027.skillsharing.model.Habilidad;
 import org.jasypt.util.password.BasicPasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/alumno")
@@ -69,13 +68,21 @@ public class AlumnoController{
 
     @RequestMapping("/perfil")
     public String llevarPerfil(HttpSession session,Model model) {
+        session.setAttribute("nextUrl","alumno/perfil");
 
-        session.setAttribute("nextUrl","alumno/users");
+        session.setAttribute("alumno", session.getAttribute("alumno"));
         if (session.getAttribute("alumno") == null){
             model.addAttribute("alumno",new Alumno());
             return "loginV2";
         }
+
+        Alumno alumno = (Alumno) session.getAttribute("alumno");
+        String dni = (alumno!=null ? alumno.getDni():"");
+        System.out.println(dni);
+        System.out.println(alumnoDao.getAlumno(dni));
+        model.addAttribute("alumnos", alumnoDao.getAlumno(dni));
         return "alumno/perfil";
     }
+
 
 }

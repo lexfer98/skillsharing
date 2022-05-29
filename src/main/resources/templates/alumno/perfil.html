@@ -52,32 +52,55 @@
 </section>
 
 <form action="#" th:action="@{/alumno/perfil}"
-      th:object="${alumno}" method="post">
+          th:object="${alumnos}" method="post">
     <h2 align="center">Datos del alumno</h2>
     <table align="center">
+
         <tr>
             <td><label>Nombre y apellidos: </label></td>
-            <td><a th:text="${alumno.nombre+' '+alumno.apellidos}"></a></td>
+            <td><a th:text="${alumnos.nombre+' '+alumnos.apellidos}"></a></td>
         </tr>
 
         <tr>
             <td><label>DNI: </label></td>
-            <td><a th:text="${alumno.dni}"></a></td>
+            <td><a th:text="${alumnos.dni}"></a></td>
         </tr>
 
         <tr>
             <td><label>Número de teléfono: </label></td>
-            <td><a th:text="${alumno.numTel}"></a></td>
+            <td><a th:text="${alumnos.numTel}"></a></td>
         </tr>
 
         <tr>
             <td><label>Correo electrónico: </label></td>
-            <td><a th:text="${alumno.email}"></a></td>
+            <td><a th:text="${alumnos.email}"></a></td>
         </tr>
         <tr>
             <td><label>Titulación: </label></td>
-            <td><a th:text="${alumno.curso+'º '+alumno.titulacion}"></a></td>
+            <td><a th:text="${alumnos.curso+' '+alumnos.titulacion}"></a></td>
         </tr>
+
+        <tr>
+            <td><label>Género: </label></td>
+            <td><a th:text="${alumnos.genero}"></a></td>
+        </tr>
+
+        <tr>
+            <td><label>Fecha creación: </label></td>
+            <td><a th:text="${alumnos.fechaCreacion}"></a></td>
+        </tr>
+
+        <tr>
+            <td><label>Balance horas: </label></td>
+            <td><a th:text="${alumnos.balanceHoras}"></a></td>
+        </tr>
+
+        <tr>
+            <td><label>SKP: </label></td>
+            <td><a th:text="${alumnos.isSkp == true ? 'Eres SKP' : 'Eres un usuario normal'}"></a></td>
+        </tr>
+
+
     </table>
 </form>
 </body>
