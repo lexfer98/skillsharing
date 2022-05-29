@@ -44,9 +44,9 @@
                             <li th:if="*{alumno == null}" class="nav-item">
                                 <a href="#" class="nav-link">Contactanos</a>
                             </li>
-                            <li th:unless="*{alumno == null}" class="nav-item">
+                            <li class="nav-item" th:object="${session}">
                                 <a th:if="*{alumno.isSkp}" href="/skp/menu" class="nav-link">Menú SKP</a>
-                                <a th:unless="*{alumno.isSkp}" href="#" class="nav-link">Contactanos</a>
+                                <a th:if="*{!alumno.isSkp}" href="/alumno/contactanos" class="nav-link">Contactanos</a>
                             </li>
                             <li th:if="*{alumno != null}"class="nav-item"><a href="/logout" th:href="@{/logout}" class="nav-link">Cerrar sesión</a></li>
                             <li th:if="*{alumno == null}"class="dropdown nav-item d-md-flex align-items-center">

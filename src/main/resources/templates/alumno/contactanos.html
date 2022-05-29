@@ -33,7 +33,7 @@
                         <li class="nav-item"><a href="/alumno/perfil" class="nav-link">Mi perfil</a></li>
                         <li class="nav-item" th:object="${session}">
                             <a th:if="*{alumno.isSkp}" href="/skp/menu" class="nav-link">Menú SKP</a>
-                            <a th:unless="*{alumno.isSkp}" href="/alumno/contactanos" class="nav-link">Contactanos</a>
+                            <a th:if="*{!alumno.isSkp}" href="/alumno/contactanos" class="nav-link">Contactanos</a>
                         </li>
                         <li class="nav-item"><a href="/logout" th:href="@{/logout}" class="nav-link">Cerrar sesión</a></li>
                     </ul>
@@ -51,13 +51,10 @@
         </p>
     </div>
 </section>
-
+<table align="center">
+    <tr>
+        <td><label>Puedes contactarnos a el siguiente teléfono 64436271. Si quieres más información contactanos por correo a ujies@uji.es</label></td>
+    </tr>
+</table>
 </body>
-
-
-
-
-
-
-
 </html>

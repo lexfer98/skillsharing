@@ -20,7 +20,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-30 text-center mb-30">
-                <h2 style="font-size:40px;">MIS SOLICITUDES A OTRAS OFERTAS</h2>
+                <h2 style="font-size:60px;">MIS SOLICITUDES A OTRAS OFERTAS</h2>
             </div>
         </div>
     </div>
@@ -41,7 +41,7 @@
                         <li class="nav-item"><a href="/alumno/perfil" class="nav-link">Mi perfil</a></li>
                         <li class="nav-item" th:object="${session}">
                             <a th:if="*{alumno.isSkp}" href="/skp/menu" class="nav-link">Menú SKP</a>
-                            <a th:unless="*{alumno.isSkp}" href="#" class="nav-link">Contactanos</a>
+                            <a th:unless="*{alumno.isSkp}" href="/alumno/contactanos" class="nav-link">Contactanos</a>
                         </li>
                         <li class="nav-item"><a href="/logout" th:href="@{/logout}" class="nav-link">Cerrar sesión</a></li>
                     </ul>
