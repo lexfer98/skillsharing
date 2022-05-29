@@ -42,10 +42,36 @@
                     </div>
                 </div>
             </nav>
-
         </div>
-
     </section>
+    <form th:action="@{/oferta/listarSkillsOfertas}"style="margin: auto; width: 220px; margin-top: 50px;">
+        <select name="habilidad">
+            <option th:each="nombre : ${nombres}"
+                    th:value="${nombre}"
+                    th:text="${nombre}">
+
+            </option>
+        </select>
+        <button> OK </button>
+    </form>
+    <div class="card-columns" style="margin-top: 50px;">
+        <div class="card" style="width: 18rem;" th:each="oferta: ${ofertas}" align="center">
+            <div class="card-body">
+                <h5 class="card-title"><b><a th:text="${oferta.nombre}"></a></b></h5>
+                <p class="card-text"><a th:text="${oferta.descripcion}"></a></p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><a th:each="habilidad: ${habilidades}" th:if="${habilidad.id_habilidad==oferta.idHabilidad}" th:text="${habilidad.nombre+' '+habilidad.nivel}"></a></li>
+                <li class="list-group-item">Inicio: <a th:text="${oferta.fechaIniciacion}"></a></li>
+                <li class="list-group-item">Fin: <a th:text="${oferta.fechaFinalizacion}"></a></li>
+            </ul>
+            <div class="card-body">
+
+                <a  role="button" class="btn btn-primary" th:href="@{/solicitud/add/{id_oferta}(id_oferta=${oferta.idOferta})}">Solicitar</a>
+                <a th:href="@{/oferta/oferta/{id_oferta}(id_oferta=${oferta.idOferta})}" class="btn btn-warning" role="button">Más información</a>
+            </div>
+        </div>
+    </div>
 
 
 
