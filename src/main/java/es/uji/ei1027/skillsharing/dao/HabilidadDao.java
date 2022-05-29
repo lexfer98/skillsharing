@@ -44,8 +44,23 @@ public class HabilidadDao {
         }
     }
 
-    public void deleteHabilidad(Habilidad habilidad) {
-        jdbcTemplate.update("UPDATE habilidad SET activa = false WHERE id_habilidad = ?",habilidad.getId_habilidad());
+    public List<Habilidad> getHabilidadesDesactivadas() {
+        try {
+            return jdbcTemplate.query("SELECT * FROM Habilidad  WHERE activa = false",
+                    new HabilidadRowMapper());
+
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Habilidad>();
+        }
+    }
+
+    public void desactivaHabilidad(int idHabilidad) {
+        jdbcTemplate.update("UPDATE habilidad SET activa = false WHERE id_habilidad = ?", idHabilidad);
+    }
+
+    public void activaHabilidad(int idHabilidad) {
+        jdbcTemplate.update("UPDATE habilidad SET activa = true WHERE id_habilidad = ?", idHabilidad);
     }
 
     public void addHabilidad(Habilidad habilidad) {
@@ -62,7 +77,7 @@ public class HabilidadDao {
 
     public Habilidad getIdHabilidad(int habilidad) {
         try {
-            return jdbcTemplate.queryForObject("SELECT * FROM Habilidad WHERE id_habilidad = ? and activa = true",
+            return jdbcTemplate.queryForObject("SELECT * FROM Habilidad WHERE id_habilidad = ?",
                     new HabilidadRowMapper(),
                     habilidad);
 

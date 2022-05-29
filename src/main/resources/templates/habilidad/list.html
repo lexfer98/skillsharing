@@ -48,27 +48,31 @@
         <!-- END nav -->
     </div>
 </section>
-<div class="container" style="margin-top: 50px;">
-    <a href="add">Agrega una habilidad</a>
-    <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Descripción</th>
-                <th>Nivel</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="habilidad: ${habilidades}">
-                <td th:text="${habilidad.nombre}"></td>
-                <td th:text="${habilidad.descripcion}"></td>
-                <td th:text="${habilidad.nivel}"></td>
-                <td><a th:href="@{/habilidad/update/{id_habilidad}(id_habilidad=${habilidad.id_habilidad})}">Edita</a>
-                </td>
-            </tr>
-            </tbody>
-    </table>
+<form style="margin: auto; width: 220px; margin-top: 50px;" th:action="@{/habilidad/listarHabilidadesEstado}">
+    <select name="habilidad" >
+        <option value="Todas">Todas</option>
+        <option value="Desactivadas">Desactivadas</option>
+        <option value="Activas">Activas</option>
+    </select>
+    <button> OK </button>
+</form>
+
+<div class="card-columns" align="center" style="margin-top: 50px;">
+    <div class="card" style="width: 18rem;" th:each="habilidad: ${habilidades}" align="center">
+        <div class="card-body">
+            <h5 class="card-title"><b><a th:text="${habilidad.nombre}"></a></b></h5>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><a th:text="${habilidad.descripcion}"></a></li>
+            <li class="list-group-item">Nivel: <a th:text="${habilidad.nivel}"></a></li>
+            <li class="list-group-item">Estado: <a th:text="${habilidad.activa == null ?'Activada': 'Desactivada'}"></a></li>
+        </ul>
+        <div class="card-body" th:object="${session}">
+            <a th:if="${habilidad.activa}" th:href="@{/habilidad/desactivar/{idHabilidad}(idHabilidad=${habilidad.id_habilidad})}" class="btn btn-warning" role="button">Desactivar</a>
+            <a th:if="${!habilidad.activa}" th:href="@{/habilidad/activar/{idHabilidad}(idHabilidad=${habilidad.id_habilidad})}" class="btn btn-warning" role="button">Activar</a>
+            <a class="btn btn-warning" th:href="@{/habilidad/update/{idHabilidad}(idHabilidad=${habilidad.id_habilidad})}" role="button">Editar</a>
+        </div>
+    </div>
 </div>
 </body>
 </html>
