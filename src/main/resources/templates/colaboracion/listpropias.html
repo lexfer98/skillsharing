@@ -67,7 +67,7 @@
                 </ul>
             </div>
             <div class="card-body">
-                <a th:href="@{/colaboracion/update/{id_colaboracion}(id_colaboracion=${colaboracion.id_colaboracion})}" class="btn btn-danger" role="button">Finalizar</a>
+                <a th:if="alumno.dni==solicitud.dni_solicitante" th:href="@{/colaboracion/update/{id_colaboracion}(id_colaboracion=${colaboracion.id_colaboracion})}" class="btn btn-danger" role="button">Finalizar</a>
             </div>
         </div>
     </div>

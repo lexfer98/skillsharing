@@ -64,8 +64,9 @@ public class ColaboracionController {
         session.setAttribute("alumno", session.getAttribute("alumno"));
         session.setAttribute("solicitud", session.getAttribute("alumno"));
         Alumno alumno = (Alumno) session.getAttribute("alumno");
-        model.addAttribute("solicitudes", solicitudDao.getTodasTusSolicitadas(alumno.getDni()));
-        model.addAttribute("ofertas", ofertaDao.getTodasTusOfertas(alumno.getDni()));
+        model.addAttribute("alumno",alumno);
+        model.addAttribute("solicitudes", solicitudDao.getTodasSolicitudes());
+        model.addAttribute("ofertas", ofertaDao.getTodasOfertas());
         model.addAttribute("habilidades", habilidadDao.getTodasHabilidades());
         model.addAttribute("colaboraciones", colaboracionDao.getColaboracionesPropias(alumno.getDni()));
         return "colaboracion/listpropias";

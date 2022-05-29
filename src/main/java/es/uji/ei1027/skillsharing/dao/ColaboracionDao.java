@@ -32,8 +32,8 @@ public class ColaboracionDao {
 
     public List<Colaboracion> getColaboracionesPropias(String dni){
         try{
-            return jdbcTemplate.query("SELECT c.* FROM Colaboracion AS c JOIN solicitud AS s USING(id_solicitud) WHERE s.dni_solicitante = ? AND c.activo = true",
-                    new ColaboracionRowMapper(), dni);
+            return jdbcTemplate.query("SELECT c.* FROM Colaboracion AS c join oferta AS o USING(id_oferta) JOIN solicitud AS s USING(id_solicitud) WHERE (s.dni_solicitante = ? or o.dni_propietario = ? ) AND c.activo = true",
+                    new ColaboracionRowMapper(), dni, dni);
         }catch (EmptyResultDataAccessException e){
             return new ArrayList<>();
         }
